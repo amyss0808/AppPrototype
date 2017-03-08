@@ -68,6 +68,7 @@ class HouseContainerViewController: UIViewController {
         
         Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/houseList/\(utf8Address!)").responseJSON { response in
             switch response.result {
+                
             case .success(let value):
                 
                 let json = JSON(value)
@@ -76,11 +77,11 @@ class HouseContainerViewController: UIViewController {
                 
                 for (_,subJson):(String, JSON) in json {
                     
-                    let rawSquare = subJson["square"].stringValue
+                    let rawSquare = subJson["square"].stringValue.replacingOccurrences(of: " ", with: "")
                     let square = rawSquare.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 5))
                     
-                    let rawType = subJson["type"].stringValue
-                    let type = rawType.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 10))
+                    let rawType = subJson["type"].stringValue.replacingOccurrences(of: " ", with: "")
+                    let type = rawType.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 3))
                     
                     let house = House(houseIndex: subJson["id"].intValue, houseTitle: subJson["title"].stringValue, houseAddress: subJson["address"].stringValue, housePrice: subJson["price"].stringValue, houseSquare: square, houseType: type)
                     self.houseList.append(house)
@@ -101,6 +102,7 @@ class HouseContainerViewController: UIViewController {
     }
     
     private func loadVideoData() {
+        
         let utf8Address = self.selectedAddress.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         
         self.videoList.removeAll()
