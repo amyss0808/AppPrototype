@@ -6,4 +6,9 @@
 //  Copyright © 2017年 soslab. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import MapKit
+
+class SearchPointAnnotation: MKPointAnnotation {
+}
+

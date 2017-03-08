@@ -1,5 +1,5 @@
 //
-//  housePointAnnotaion.swift
+//  HousePointAnnotaion.swift
 //  AppPrototype
 //
 //  Created by 鍾妘 on 2017/2/21.
@@ -9,8 +9,8 @@
 import UIKit
 import MapKit
 
-class housePointAnnotation: MKPointAnnotation {
+class HousePointAnnotation: MKPointAnnotation {
     
-    //MARK: Properties
+    //MARK: - Properties
     var index: Int = 0
 }

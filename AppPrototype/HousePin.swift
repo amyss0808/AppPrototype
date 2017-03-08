@@ -10,12 +10,12 @@ import UIKit
 
 class HousePin {
     
-    //MARK: Properties
+    //MARK: - Properties
     var latitude: Double
     var longitude: Double
     var address: String
     
-    // MARK: Initilization
+    // MARK: - Initilization
     init(latitude: Double, longitude: Double, address: String) {
         self.address = address
         self.latitude = latitude

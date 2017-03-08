@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class TaskPin: MKPointAnnotation{
+class TaskPointAnnotation: MKPointAnnotation{
     
     //MARK: Properties
     var id = 0

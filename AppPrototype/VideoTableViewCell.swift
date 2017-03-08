@@ -10,6 +10,11 @@ import UIKit
 
 class VideoTableViewCell: UITableViewCell {
 
+    //MARK: - Properties
+    @IBOutlet weak var videoTime: UILabel!
+    @IBOutlet weak var videoTitle: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,7 +22,6 @@ class VideoTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
