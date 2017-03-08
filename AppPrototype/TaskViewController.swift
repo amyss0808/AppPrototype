@@ -90,6 +90,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+
         switch view.annotation {
             
         case is TaskPointAnnotation:
@@ -107,6 +108,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         default:
             print("The selected pin is not a TaskPointAnnotation")
         }
+
     }
     
     

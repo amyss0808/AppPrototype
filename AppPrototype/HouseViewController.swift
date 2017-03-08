@@ -120,6 +120,7 @@ extension HouseViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         switch view.annotation {
+
         case is HousePointAnnotation:
             
             containerView.isHidden = false

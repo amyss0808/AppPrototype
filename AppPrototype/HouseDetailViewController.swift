@@ -16,29 +16,41 @@ class HouseDetailViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainView: UIView!
+    
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var housePriceLabel: UILabel!
     @IBOutlet weak var houseTitleLabel: UILabel!
     @IBOutlet weak var houseAddressLabel: UILabel!
+    
     @IBOutlet weak var imagesScrollView: UIScrollView!
+    
     @IBOutlet weak var houseDescriptionView: UIView!
     @IBOutlet weak var houseDescriptionLabel: UILabel!
+    
     @IBOutlet weak var mapContainerView: UIView!
+    @IBOutlet weak var mapTitleView: UIView!
     @IBOutlet weak var mapView: MKMapView!
+    
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var detailViewTitle: UILabel!
-    @IBOutlet weak var urlButton: UIButton!
+    @IBOutlet weak var detailTitleView: UIView!
     @IBOutlet weak var detailViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var detailTitleView: UIView!
-    @IBOutlet weak var mapTitleView: UIView!
+    @IBOutlet weak var communityView: UIView!
+    @IBOutlet weak var communityTitleView: UIView!
+    @IBOutlet weak var communityTitle: UILabel!
+    @IBOutlet weak var communityTitleHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var communityViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var communityTitleViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var urlButton: UIButton!
+    
     var houseUrl: String = ""
     var houseIndex :Int = 0 {
         didSet{
             loadHouseDetail()
         }
     }
-    var imagesArray : [String] = ["http://album.s3.hicloud.net.tw/02153D/A.JPG?t=1488366676","http://album.s3.hicloud.net.tw/68209V/A.JPG?t=1488366711","http://album.s3.hicloud.net.tw/22863X/A.JPG?t=1488366405","http://album.s3.hicloud.net.tw/65815E/A.JPG?t=1488366548"] {
+    var imagesArray : [String] = [String]() {
         didSet {
             loadImages()
         }
@@ -92,62 +104,92 @@ class HouseDetailViewController: UIViewController {
                 let json = JSON(value)
                 
                 var houseDetailArray: [(key: String, value: String)] = []
-      
-                let typeData = json["type"].stringValue.replacingOccurrences(of: " ", with: "")
-                let typeArray = typeData.components(separatedBy: "：")
-                houseDetailArray.append((key:typeArray[0], value: typeArray[1]))
                 
-                let patternData = json["pattern"].stringValue.replacingOccurrences(of: " ", with: "")
-                let patternArray = patternData.components(separatedBy: "：")
-                houseDetailArray.append((key: patternArray[0], value: patternArray[1]))
                 
-                let registeredSquareData = json["registeredSquare"].stringValue.replacingOccurrences(of: " ", with: "")
+                let registeredSquareData = json["square"].stringValue.replacingOccurrences(of: " ", with: "")
                 let registeredSquareArray = registeredSquareData.components(separatedBy: "：")
                 houseDetailArray.append((key: registeredSquareArray[0], value: registeredSquareArray[1]))
-
-                let statusData = json["status"].stringValue.replacingOccurrences(of: " ", with: "")
-                let statusArrayByComma = statusData.components(separatedBy: ",")
-                for status in statusArrayByComma {
-                    let statusArray = status.components(separatedBy: "：")
-                    houseDetailArray.append((key:statusArray[0], value:statusArray[1]))
-                }
                 
                 let location = json["locationPoint"].arrayValue
                 let latitude = location[0].floatValue
                 let longitude = location[1].floatValue
                 self.houseLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
                 
+                let title = json["title"].stringValue.replacingOccurrences(of: " ", with: "")
+                print(title)
+                
+                let price = json["price"].stringValue.replacingOccurrences(of: " ", with: "")
+                
+                let description = json["description"].stringValue.replacingOccurrences(of: " " , with: "")
+                print(description)
+                
+                let address = json["address"].stringValue.replacingOccurrences(of: " ", with: "")
+                print(address)
+                
+                let typeData = json["type"].stringValue.replacingOccurrences(of: " ", with: "")
+                let typeArray = typeData.components(separatedBy: "：")
+                print(typeArray)
+                
+                let url = json["url"].stringValue
+                print(url)
+                
+                let pictureData = json["picture"].stringValue.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").replacingOccurrences(of: " ", with: "")
+                self.imagesArray = pictureData.components(separatedBy: ",")
+                print(self.imagesArray)
+                
+                let community = json["community"].dictionaryObject ?? nil
+                if let communityDic = community {
+                    if let communityName = communityDic["name"] as? String, let communityDescription = communityDic["description"] as? String {
+                        print(communityName)
+                        print(communityDescription)
+                    }
+                } else {
+                    print("no community")
+                }
+                
+                let information = json["information"].stringValue.replacingOccurrences(of: " ", with: "")
+                let informationArray = information.components(separatedBy: ",")
+                print(informationArray)
+                
+                let lifeData = json["life"].stringValue.replacingOccurrences(of: " ", with: "")
+                let lifeArray = lifeData.components(separatedBy: ",")
+                print(lifeArray)
+                
+                
+//                houseDetailArray.append((key:typeArray[0], value: typeArray[1]))
                 
                     DispatchQueue.main.async(execute: {
-                        self.houseTitleLabel.text = json["title"].stringValue
-                        self.housePriceLabel.text = json["price"].stringValue
-                        self.houseAddressLabel.text = json["address"].stringValue
-                        self.houseDescriptionLabel.text = json["description"].stringValue
-                        self.houseUrl = json["url"].stringValue
                         
-                        for (index, detail) in houseDetailArray.enumerated() {
-                            
-                            let yPosition = self.detailViewTitle.frame.height + CGFloat((index + 1) * 8) + CGFloat(index * 20)
-                            
-                            let keyLabel = UILabel()
-                            keyLabel.text = detail.key
-                            keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
-                            keyLabel.sizeToFit()
-                            keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
-                            keyLabel.textAlignment = .left
-                            self.detailView.addSubview(keyLabel)
-                            print(keyLabel.frame)
-                            
-                            let valueLabel = UILabel()
-                            valueLabel.text = detail.value
-                            valueLabel.textColor = .white
-                            valueLabel.sizeToFit()
-                            let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
-                            valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
-                            print(valueLabel.frame)
-                            self.detailView.addSubview(valueLabel)
-                        }
-                        self.detailViewHeightConstraint.constant = self.detailViewTitle.frame.height + CGFloat(houseDetailArray.count * 28 + 4)
+                        self.houseTitleLabel.text = title
+                        self.housePriceLabel.text = price
+                        self.houseAddressLabel.text = address
+                        self.houseDescriptionLabel.text = description
+                        self.houseUrl = url
+                        
+//                        for (index, detail) in houseDetailArray.enumerated() {
+//                            
+//                            let yPosition = self.detailViewTitle.frame.height + CGFloat((index + 1) * 8) + CGFloat(index * 20)
+//                            
+//                            let keyLabel = UILabel()
+//                            keyLabel.text = detail.key
+//                            keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
+//                            keyLabel.sizeToFit()
+//                            keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
+//                            keyLabel.textAlignment = .left
+//                            self.detailView.addSubview(keyLabel)
+//                            print(keyLabel.frame)
+//                            
+//                            let valueLabel = UILabel()
+//                            valueLabel.text = detail.value
+//                            valueLabel.textColor = .white
+//                            valueLabel.sizeToFit()
+//                            let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
+//                            valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
+//                            print(valueLabel.frame)
+//                            self.detailView.addSubview(valueLabel)
+////                        }
+//                        self.detailViewHeightConstraint.constant = self.detailViewTitle.frame.height + CGFloat(houseDetailArray.count * 28 + 4)
+                        
                         
 
                     })
