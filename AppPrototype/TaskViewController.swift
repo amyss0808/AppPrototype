@@ -11,13 +11,13 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import CoreLocation
+import os.log
 
 class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var containerView: UIView!
-    
     let manager = CLLocationManager()
     
     
@@ -41,7 +41,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let userLocation: CLLocation = locations[locations.count-1]
         let latitude: CLLocationDegrees = userLocation.coordinate.latitude
         let longitude: CLLocationDegrees = userLocation.coordinate.longitude
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.05, 0.05)
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.0025, 0.0025)
         let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
@@ -90,14 +90,27 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        containerView.isHidden = false
-        if view as TaskPointAnnotation {
-            <#code#>
+        switch view.annotation {
+            
+        case is TaskPointAnnotation:
+            guard let selectedAnnotation = view.annotation as? TaskPointAnnotation else {
+                fatalError("The selected pin annotation cannot be downcast")
+            }
+            
+            guard let subview = self.childViewControllers[0] as? TaskContainerViewController else {
+                fatalError("The first child view controller of taskViewController is not a container view controller")
+            }
+            subview.loadTaskDetail(of: selectedAnnotation.id)
+            
+            containerView.isHidden = false
+            
+        default:
+            print("The selected pin is not a TaskPointAnnotation")
         }
     }
+    
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         containerView.isHidden = true
     }
-
 }

@@ -10,13 +10,21 @@ import UIKit
 import MobileCoreServices
 import Alamofire
 import SwiftyJSON
+import os.log
 
 class TaskContainerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    // MARK: - Properties
+    // MARK: - Camera Properties
     let imagePicker = UIImagePickerController()
     var videoFilePath: String = ""
-    var id: String = ""
+    var videoId: String = ""
+    
+    
+    // MARK: - Task Detail Properties
+    @IBOutlet weak var taskTitle: UILabel!
+    @IBOutlet weak var taskDuration: UILabel!
+    @IBOutlet weak var taskDistance: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +113,7 @@ class TaskContainerViewController: UIViewController, UIImagePickerControllerDele
             switch response.result {
                 
             case .success(let value):
-                self.id = self.uploadVideo(accessToken: value, fileURL: URL(fileURLWithPath: self.videoFilePath))
+                self.videoId = self.uploadVideo(accessToken: value, fileURL: URL(fileURLWithPath: self.videoFilePath))
                 
             case .failure(let error):
                 print("callback: \(error)")
@@ -125,20 +133,20 @@ class TaskContainerViewController: UIViewController, UIImagePickerControllerDele
                 
             case .success(let value):
                 let json = JSON(value)
-                self.id = json["id"].stringValue
+                self.videoId = json["id"].stringValue
                 
                 // send video id to server
-                if !self.id.isEmpty {
-                    print(self.id)
+                if !self.videoId.isEmpty {
+                    print(self.videoId)
                 } else {
-                    print("id is empty")
+                    print("Video Id is empty")
                 }
                 
             case .failure(let error):
                 print("Upload video: \(error)")
             }
         })
-        return id
+        return videoId
     }
 
     
@@ -153,6 +161,9 @@ class TaskContainerViewController: UIViewController, UIImagePickerControllerDele
             case .success(let value):
                 let json = JSON(value)
                 print(json)
+                self.taskDistance.text = json["distance"].stringValue
+                self.taskTitle.text = json["title"].stringValue.components(separatedBy: "_")[0]
+                self.taskDuration.text = json["duration"].stringValue
             
             case .failure(let error):
                 print("load task detail error because: \(error)")
@@ -160,15 +171,4 @@ class TaskContainerViewController: UIViewController, UIImagePickerControllerDele
         })
 
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
