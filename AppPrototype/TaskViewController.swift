@@ -91,9 +91,6 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         containerView.isHidden = false
-        if view as TaskPointAnnotation {
-            <#code#>
-        }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
