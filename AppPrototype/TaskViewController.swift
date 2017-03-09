@@ -101,6 +101,8 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             guard let subview = self.childViewControllers[0] as? TaskContainerViewController else {
                 fatalError("The first child view controller of taskViewController is not a container view controller")
             }
+            
+            // load task info on the container view
             subview.loadTaskDetail(of: selectedAnnotation.id)
             
             containerView.isHidden = false

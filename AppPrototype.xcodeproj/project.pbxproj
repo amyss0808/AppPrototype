@@ -13,6 +13,7 @@
 		C46EDE471E6E6167003FBBB6 /* TaskPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */; };
 		C46EDE491E6EB02E003FBBB6 /* TaskContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */; };
 		C46EDE4B1E6EC71F003FBBB6 /* VideoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE4A1E6EC71F003FBBB6 /* VideoEditViewController.swift */; };
+		C4FB83211E712FE6006C1CDA /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB83201E712FE6006C1CDA /* Task.swift */; };
 		E10A76501E5DC0DB00D9F045 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A764F1E5DC0DB00D9F045 /* VideoDetailViewController.swift */; };
 		E1423DAE1E5C549A0034E5B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */; };
 		E1423DB21E5C549A0034E5B8 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1423DB11E5C549A0034E5B8 /* TaskViewController.swift */; };
@@ -52,6 +53,7 @@
 		C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPointAnnotation.swift; sourceTree = "<group>"; };
 		C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskContainerViewController.swift; sourceTree = "<group>"; };
 		C46EDE4A1E6EC71F003FBBB6 /* VideoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditViewController.swift; sourceTree = "<group>"; };
+		C4FB83201E712FE6006C1CDA /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C8D46CBBD05E56590487755C /* Pods_AppPrototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppPrototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10A764F1E5DC0DB00D9F045 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		E1423DAA1E5C549A0034E5B8 /* AppPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 			children = (
 				E1D03CF41E5C6CB2000FC684 /* House.swift */,
 				E1D03CF61E5C798F000FC684 /* Video.swift */,
+				C4FB83201E712FE6006C1CDA /* Task.swift */,
 				E1423DD11E5C5DF90034E5B8 /* HousePin.swift */,
 				C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */,
 				E1423DCF1E5C5D7B0034E5B8 /* HousePointAnnotaion.swift */,
@@ -342,6 +345,7 @@
 				E1423DAE1E5C549A0034E5B8 /* AppDelegate.swift in Sources */,
 				E1D03CF51E5C6CB2000FC684 /* House.swift in Sources */,
 				E1D03CF31E5C6920000FC684 /* VideoTableViewCell.swift in Sources */,
+				C4FB83211E712FE6006C1CDA /* Task.swift in Sources */,
 				E10A76501E5DC0DB00D9F045 /* VideoDetailViewController.swift in Sources */,
 				C46EDE4B1E6EC71F003FBBB6 /* VideoEditViewController.swift in Sources */,
 				E1D03CF11E5C690D000FC684 /* HouseTableViewCell.swift in Sources */,
