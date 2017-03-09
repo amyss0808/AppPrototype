@@ -33,10 +33,10 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>此應用程式想要取用您的地理資訊</string>
 	<key>NSCameraUsageDescription</key>
 	<string>此應用程式想要取用您的相機</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>此應用程式想要取用您的地理資訊</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>此應用程式想要取用您的麥克風</string>
 	<key>NSPhotoLibraryUsageDescription</key>
