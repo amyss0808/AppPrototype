@@ -33,10 +33,6 @@ class HouseDetailViewController: UIViewController {
     @IBOutlet weak var squareTitleLabel: UILabel!
     @IBOutlet weak var squareViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var mapContainerView: UIView!
-    @IBOutlet weak var mapTitleView: UIView!
-    @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailTitleView: UIView!
@@ -46,14 +42,22 @@ class HouseDetailViewController: UIViewController {
     @IBOutlet weak var communityTitleView: UIView!
     @IBOutlet weak var communityTitleLabel: UILabel!
     @IBOutlet weak var communityDescriptionLabel: UILabel!
-    @IBOutlet weak var communityTitleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var communityViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var communityTitleViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var communityTitleLabelHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var verticalSpaceBetweenMapCommunity: NSLayoutConstraint!
+    @IBOutlet weak var mapContainerView: UIView!
+    @IBOutlet weak var mapTitleView: UIView!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var verticalSpaceBetweenCommunitySurronding: NSLayoutConstraint!
     @IBOutlet weak var surrondingView: UIView!
     @IBOutlet weak var surrondingTitleView: UIView!
     @IBOutlet weak var surrondingTitleLabel: UILabel!
     @IBOutlet weak var surrondingViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var surrondingTitleViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var surrondingTitleLabelHeight: NSLayoutConstraint!
     
     @IBOutlet weak var urlButton: UIButton!
     
@@ -99,18 +103,18 @@ class HouseDetailViewController: UIViewController {
         communityView.layer.shadowOffset = CGSize(width: -1, height: 1)
         communityView.layer.shadowOpacity = 0.2
         
-        surrondingView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
-        surrondingView.layer.masksToBounds = false
-        surrondingView.layer.cornerRadius = 7.0
-        surrondingView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        surrondingView.layer.shadowOpacity = 0.2
-        
         mapContainerView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         mapContainerView.layer.masksToBounds = false
         mapContainerView.layer.cornerRadius = 7.0
         mapContainerView.layer.shadowOffset = CGSize(width: -1, height: 1)
         mapContainerView.layer.shadowOpacity = 0.2
         self.mapView.mapType = .standard
+        
+        surrondingView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
+        surrondingView.layer.masksToBounds = false
+        surrondingView.layer.cornerRadius = 7.0
+        surrondingView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        surrondingView.layer.shadowOpacity = 0.2
         
         urlButton.layer.cornerRadius = 4
         urlButton.layer.shadowOffset = CGSize(width: -1, height: 1)
@@ -151,6 +155,7 @@ class HouseDetailViewController: UIViewController {
                 let url = json["url"].stringValue
                 
                 let pictureData = json["picture"].stringValue.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").replacingOccurrences(of: " ", with: "")
+                self.imagesArray = pictureData.components(separatedBy: ",")
                 
                 let information = json["information"].stringValue.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(說明)", with: "")
                 var informationArray = information.components(separatedBy: "@")
@@ -158,14 +163,8 @@ class HouseDetailViewController: UIViewController {
                     informationArray.remove(at: typeIndex)
                 }
                 
-                if let patternIndex = informationArray.index(where: { $0.contains("格局") }) {
-                   let patternTuple = informationArray[patternIndex].components(separatedBy: ":")
-                    squareArray.append((key: patternTuple[0], value: patternTuple[1]))
-                    informationArray.remove(at: patternIndex)
-                }
-                
                 for index in 2..<informationArray.count {
-                    if informationArray[index].contains("坪") {
+                    if informationArray[index].contains("坪") || informationArray[index].contains("格局"){
                         let squareTuple = informationArray[index].components(separatedBy: ":")
                         squareArray.append((key: squareTuple[0], value: squareTuple[1]))
                     } else {
@@ -193,6 +192,8 @@ class HouseDetailViewController: UIViewController {
                         let lifeTuple = life.components(separatedBy: ":")
                         surrondingArray.append((key: lifeTuple[0], value: lifeTuple[1]))
                     }
+                } else {
+                    surrondingArray.removeAll()
                 }
                 
                 let location = json["locationPoint"].arrayValue
@@ -210,29 +211,33 @@ class HouseDetailViewController: UIViewController {
                         self.houseDescriptionLabel.sizeToFit()
                         self.houseDescriptionViewConstraint.constant = CGFloat(36) + self.houseDescriptionLabel.frame.height
                         
-                        self.imagesArray = pictureData.components(separatedBy: ",")
-                        self.houseLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-                        self.houseUrl = url
+                        self.changeSquareUI(squareArray: squareArray)
                         
                         self.changeDetailUI(detailArray: detailArray)
                         
-                        self.changeSquareUI(squareArray: squareArray)
-                        
                         if communityArray.isEmpty {
-                            print("community is empty")
                             self.communityViewHeightConstraint.constant = 0
-                            self.communityTitleHeightConstraint.constant = 0
+                            self.communityTitleLabelHeightConstraint.constant = 0
                             self.communityTitleViewHeightConstraint.constant = 0
+                            self.verticalSpaceBetweenMapCommunity.constant = 0
                         } else {
                             self.changeCommunityUI(communityArray: communityArray)
                         }
                         
-                        self.changeSurrondingUI(surrondingArray: surrondingArray)
+                        self.houseLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
                         
+                        if surrondingArray.isEmpty {
+                            self.surrondingViewHeightConstraint.constant = 0
+                            self.surrondingTitleViewHeight.constant = 0
+                            self.surrondingTitleLabelHeight.constant = 0
+                            self.verticalSpaceBetweenCommunitySurronding.constant = 0
+                        } else {
+                            self.changeSurrondingUI(surrondingArray: surrondingArray)
+                        }
                         
+                        self.houseUrl = url
                     })
-                
-                print(json)
+
             case .failure(let error):
                 print(error)
             }
@@ -246,7 +251,6 @@ class HouseDetailViewController: UIViewController {
         for (index, imageUrl) in self.imagesArray.enumerated() {
             
             Alamofire.request(imageUrl).response { response in
-                
                 if response.error == nil {
                     if let data = response.data {
                         let imageView = UIImageView(image: UIImage(data: data, scale: 1 ))
@@ -284,7 +288,7 @@ class HouseDetailViewController: UIViewController {
                     
                     let keyLabel = UILabel()
                     keyLabel.text = communityTuple.key
-                    keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
+                    keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
                     keyLabel.sizeToFit()
                     keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
                     keyLabel.textAlignment = .left
@@ -301,7 +305,7 @@ class HouseDetailViewController: UIViewController {
                 case "社區介紹":
                     let keyLabel = UILabel()
                     keyLabel.text = communityTuple.key
-                    keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
+                    keyLabel.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
                     keyLabel.sizeToFit()
                     keyLabel.frame = CGRect(x: 12, y: self.communityTitleView.frame.height + CGFloat(16) + CGFloat(20), width: keyLabel.frame.width, height: keyLabel.frame.height)
                     keyLabel.textAlignment = .left
@@ -324,7 +328,7 @@ class HouseDetailViewController: UIViewController {
             
             let keyLabel = UILabel()
             keyLabel.text = surronding.key
-            keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
+            keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
             keyLabel.sizeToFit()
             keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
             keyLabel.textAlignment = .left
@@ -349,32 +353,52 @@ class HouseDetailViewController: UIViewController {
             
             let keyLabel = UILabel()
             keyLabel.text = detail.key
-            keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
+            keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
             keyLabel.sizeToFit()
             keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
             keyLabel.textAlignment = .left
             self.detailView.addSubview(keyLabel)
             
-            let valueLabel = UILabel()
-            valueLabel.text = detail.value
-            valueLabel.textColor = .white
-            valueLabel.sizeToFit()
-            let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
-            valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
-            self.detailView.addSubview(valueLabel)
+            if detail.key.contains("障礙空間") && detail.value.components(separatedBy: "、").count > 1{
+                for (index, value) in detail.value.components(separatedBy: "、").enumerated() {
+                    print(value)
+                    let valueLabel = UILabel()
+                    valueLabel.text = value
+                    valueLabel.textColor = .white
+                    valueLabel.sizeToFit()
+                    let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
+                    valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition + CGFloat(index * 28), width: valueLabel.frame.width, height: valueLabel.frame.height)
+                    self.detailView.addSubview(valueLabel)
+                }
+                
+                self.detailViewHeightConstraint.constant = self.detailTitleView.frame.height + CGFloat((detailArray.count + 1) * 28 + 8)
+                
+            } else {
+                let valueLabel = UILabel()
+                valueLabel.text = detail.value
+                valueLabel.textColor = .white
+                valueLabel.sizeToFit()
+                let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
+                valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
+                self.detailView.addSubview(valueLabel)
+                
+                self.detailViewHeightConstraint.constant = self.detailTitleView.frame.height + CGFloat(detailArray.count * 28 + 8)
+            }
+            
+            
         }
-        self.detailViewHeightConstraint.constant = self.detailTitleView.frame.height + CGFloat(detailArray.count * 28 + 8)
         
     }
     
     func changeSquareUI(squareArray :[(key: String, value: String)]) {
+        
         for (index, detail) in squareArray.enumerated() {
             
             let yPosition = self.squareTitleView.frame.height + CGFloat((index + 1) * 8) + CGFloat(index * 20)
             
             let keyLabel = UILabel()
             keyLabel.text = detail.key
-            keyLabel.textColor = UIColor(red: 178.0/255.0, green: 223.0/255.0, blue: 238.0/255.0, alpha: 1)
+            keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
             keyLabel.sizeToFit()
             keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
             keyLabel.textAlignment = .left
