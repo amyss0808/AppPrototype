@@ -57,7 +57,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     
     // MARK: - Pin functions
-    func loadTaskPin() {
+    private func loadTaskPin() {
         var taskPinList = [TaskPointAnnotation]()
         let url = "http://140.119.19.33:8080/SoslabProjectServer/taskLocationList"
         
@@ -86,6 +86,42 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             }
         })
     }
+    
+    
+    
+    // whether the selected taskpin is near user or not
+    private func isNear(_ taskPin: TaskPointAnnotation) -> Bool {
+        var isNear = false
+        
+        let request = MKDirectionsRequest()
+        request.source = MKMapItem.forCurrentLocation()
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: taskPin.coordinate))
+        
+        let directions = MKDirections(request: request)
+        directions.calculate { (response, error) in
+            
+            guard let myresponse = response else {
+                fatalError("request directions has errors: \(error)")
+            }
+            if myresponse.routes[0].distance > 200 {
+                isNear = false
+            } else {
+                isNear = true
+            }
+        }
+        return isNear
+    }
+    
+    
+    
+    private func createAlert() {
+        let farAlert = UIAlertController(title: "Task is too far!", message: "You cannot execute the task.", preferredStyle: .alert)
+        
+        farAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+            print("yes is too far")
+        }))
+        self.present(farAlert, animated: true, completion: nil)
+    }
 
     
     
@@ -103,14 +139,19 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             }
             
             // load task info on the container view
-            subview.loadTaskDetail(of: selectedAnnotation.id)
+            let isNear = self.isNear(selectedAnnotation)
+            subview.loadTaskDetail(of: selectedAnnotation.id, isNear: isNear)
+            
+            
+            if isNear == false {
+                createAlert()
+            }
             
             containerView.isHidden = false
             
         default:
             print("The selected pin is not a TaskPointAnnotation")
         }
-
     }
     
     

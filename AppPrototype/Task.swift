@@ -9,6 +9,7 @@
 import UIKit
 
 class Task {
+    var taskId: String
     var taskTitle: String
     var taskDistance: String
     var taskDuration: String
@@ -16,8 +17,10 @@ class Task {
     var taskStartPointLongitude: Double
     var taskEndPointLatitude: Double
     var taskEndPointLongitude: Double
+    var taskIsNear: Bool
     
-    init(taskTitle: String, taskDistance: String, taskDuration: String, taskStartPointLatitude: Double, taskStartPointLongitude: Double, taskEndPointLatitude: Double, taskEndPointLongitude: Double) {
+    init(taskId: String, taskTitle: String, taskDistance: String, taskDuration: String, taskStartPointLatitude: Double, taskStartPointLongitude: Double, taskEndPointLatitude: Double, taskEndPointLongitude: Double, taskIsNear: Bool) {
+        self.taskId = taskId
         self.taskTitle = taskTitle
         self.taskDistance = taskDistance
         self.taskDuration = taskDuration
@@ -25,6 +28,7 @@ class Task {
         self.taskStartPointLongitude = taskStartPointLongitude
         self.taskEndPointLatitude = taskEndPointLatitude
         self.taskEndPointLongitude = taskEndPointLongitude
+        self.taskIsNear = taskIsNear
     }
     
 }

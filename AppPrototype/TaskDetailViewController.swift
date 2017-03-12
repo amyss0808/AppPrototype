@@ -13,20 +13,23 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 import os.log
+import CoreMotion
 
 
 class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,MKMapViewDelegate {
 
     // MARK: - Camera Properties
     let imagePicker = UIImagePickerController()
-    var videoFilePath: String = ""
-    var videoId: String = ""
+    var videoFilePath: String? = nil
+    var videoId: String? = nil
+    let motionManager = CMMotionManager()
     
     
     // MARK: - Task Properties
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskDuration: UILabel!
     @IBOutlet weak var taskDistance: UILabel!
+    @IBOutlet weak var executeTask: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     var task: Task? = nil
     
@@ -35,6 +38,9 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
+        
+        
         guard let mytask = task else {
             fatalError("task is \(task)")
         }
@@ -42,19 +48,37 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         taskDuration.text = mytask.taskDuration
         taskDistance.text = mytask.taskDistance
         
-        let centerLatitude = (mytask.taskStartPointLatitude + mytask.taskEndPointLatitude)/2
-        let centerLongitude = (mytask.taskStartPointLongitude + mytask.taskEndPointLongitude)/2
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.0025, 0.0025)
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(centerLatitude, centerLongitude)
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        mapView.setRegion(region, animated: false)
-        
+        configureMapView(for: mytask)
         loadStartEndPins(of: mytask)
+        
+        // disabel or enable + decorate "執行任務" UIButton
+        if mytask.taskIsNear == false {
+            executeTask.isEnabled = false
+            executeTask.layer.cornerRadius = 4
+            executeTask.setTitle("無法執行", for: .disabled)
+            executeTask.backgroundColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
+            
+        } else {
+            executeTask.isEnabled = true
+            executeTask.layer.cornerRadius = 4
+            executeTask.layer.shadowOffset = CGSize(width: -1, height: 1)
+            executeTask.layer.shadowOpacity = 0.2
+        }
     }
     
     
     
     // MARK: - Task Functions
+    private func configureMapView(for task: Task) {
+        let centerLatitude = (task.taskStartPointLatitude + task.taskEndPointLatitude)/2
+        let centerLongitude = (task.taskStartPointLongitude + task.taskEndPointLongitude)/2
+        let centerlocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(centerLatitude, centerLongitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(centerlocation, 550, 550)
+        
+        mapView.setRegion(region, animated: false)
+    }
+    
+    
     private func loadStartEndPins(of task: Task) {
         let startPin = MKPointAnnotation()
         let endPin = MKPointAnnotation()
@@ -68,6 +92,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    
     private func showRoute(from startPin: MKPointAnnotation, to endPin: MKPointAnnotation) {
         let request = MKDirectionsRequest()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: startPin.coordinate))
@@ -75,22 +100,20 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         request.transportType = .walking
         
         let directions = MKDirections(request: request)
-        directions.calculate(completionHandler: { [unowned self] response, error in
+        directions.calculate(completionHandler: { response, error in
             guard let myresponse = response else {
                 fatalError("request directions has errors: \(error)")
             }
             self.mapView.add(myresponse.routes[0].polyline)
         })
-        
-        
-        
     }
     
     
+    // Draws the route on the map using map overlay
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor.blue
+            polylineRenderer.strokeColor = UIColor(red: 42/255, green: 124/255, blue: 242/255, alpha: 1)
             polylineRenderer.lineWidth = 5;
             return polylineRenderer
             
@@ -108,30 +131,73 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
             if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
                 imagePicker.sourceType = .camera
                 imagePicker.mediaTypes = [kUTTypeMovie as String]
+                imagePicker.cameraFlashMode = .off
                 imagePicker.allowsEditing = false
                 imagePicker.delegate = self
                 
-                present(imagePicker, animated: true, completion: {})
+                
+//                let circle = UIButton(frame: CGRect(x: 177, y: 605, width: 20, height: 20))
+//                circle.layer.cornerRadius = 10
+//                circle.backgroundColor = UIColor(red: 42.0/255.0, green: 124.0/255.0, blue: 242.0/255.0, alpha: 1)
+//                circle.addTarget(self, action: #selector(circleTapped), for: .touchUpInside)
+//                
+//                imagePicker.view.addSubview(circle)
+                
+                    
+                present(imagePicker, animated: true, completion: {
+                    
+                    // MARK: test - not finished
+                    self.motionManager.accelerometerUpdateInterval = 0.2
+                    self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { (accelerometerData, error) in
+                        guard let myACData = accelerometerData else {
+                            fatalError("accelerometerData : \(accelerometerData)")
+                        }
+                        print("\(myACData.acceleration.x),\(myACData.acceleration.y),\(myACData.acceleration.z)")
+                    })
+                })
             } else {
+                
                 // alert
-                print("There is no rear camera")
+                let alertNoRearCamera = UIAlertController(title: "No Rear Camera! ", message: "There is no rear camera on this device.", preferredStyle: .alert)
+                alertNoRearCamera.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                    print("There is no rear camera")
+                }))
+                
+                self.present(alertNoRearCamera, animated: true, completion: nil)
             }
         } else {
+            
             // alert
-            print("There is no camera on this device")
+            let alertNoCamera = UIAlertController(title: "No Camera! ", message: "There is no camera on this device.", preferredStyle: .alert)
+            alertNoCamera.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                print("There is no camera on this device")
+            }))
+            
+            self.present(alertNoCamera, animated: true, completion: nil)
         }
     }
     
     
+//    @objc private func circleTapped() {
+//        print("hihi")
+//    }
+    
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: {})
+        dismiss(animated: true, completion: {
+            self.motionManager.stopAccelerometerUpdates()
+            print("dismiss------------")
+        })
     }
     
     
-    // For responding to the user accepting a newly-captured movie
+    // called when the user accepts a newly-captured movie
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.motionManager.stopAccelerometerUpdates()
+        
         videoFilePath = ((info[UIImagePickerControllerMediaURL] as? NSURL)?.path)!
         
+        // present videoEdit view controller
         let videoEditor = self.storyboard?.instantiateViewController(withIdentifier: "videoEditor") as! VideoEditViewController
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 375, height: 64))
@@ -159,24 +225,24 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     private func saveVideoToAlbum() {
-        if !videoFilePath.isEmpty {
-            
-            // Save video to the main photo album
-            if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoFilePath)) {
-                UISaveVideoAtPathToSavedPhotosAlbum(videoFilePath, self, #selector(self.callback(videoPath:didFinishSavingWithError:contextInfo:)), nil)
-                
-            } else {
-                print("didn't save")
-            }
+        guard let myVideoFilePath = videoFilePath else {
+            fatalError("videoFilePath: \(videoFilePath)")
+        }
+        
+        // Save video to the main photo album
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(myVideoFilePath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum(myVideoFilePath, self, #selector(self.callback(videoPath: didFinishSavingWithError:contextInfo:)), nil)
             
         } else {
-            print("videoFilePath is empty")
+            print("didn't save")
         }
     }
     
     
     // Upload a video after saving the video to photos album
     @objc private func callback(videoPath: NSString, didFinishSavingWithError error: NSError?, contextInfo info: AnyObject) {
+        
+        // first request server to get access token
         let url = "http://140.119.19.33:8080/SoslabProjectServer/getAccessToken"
         
         Alamofire.request(url, method: .post).validate().responseString(completionHandler: {
@@ -184,7 +250,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
             switch response.result {
                 
             case .success(let value):
-                self.videoId = self.uploadVideo(accessToken: value, fileURL: URL(fileURLWithPath: self.videoFilePath))
+                self.uploadVideo(accessToken: value, fileURL: URL(fileURLWithPath: videoPath as String))
                 
             case .failure(let error):
                 print("callback: \(error)")
@@ -193,8 +259,8 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     
-    private func uploadVideo(accessToken: String, fileURL: URL) -> String {
-        print(self.videoFilePath)
+    private func uploadVideo(accessToken: String, fileURL: URL) {
+
         let url = "https://www.googleapis.com/upload/youtube/v3/videos?part=id"
         let headers = ["Authorization": "Bearer \(accessToken)"]
         
@@ -206,17 +272,22 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
                 let json = JSON(value)
                 self.videoId = json["id"].stringValue
                 
+                // MARK: - not finished
                 // send video id to server
-                if !self.videoId.isEmpty {
-                    print(self.videoId)
-                } else {
-                    print("Video Id is empty")
+                guard let myVideoId = self.videoId else {
+                    fatalError("videoId: \(self.videoId)")
                 }
                 
+            
             case .failure(let error):
                 print("Upload video: \(error)")
             }
         })
-        return videoId
+    }
+    
+    
+    private func sendVideoData(videoId: String) {
+        let url = "http://140.119.19.33:8080/SoslabProjectServer"
+        let parameters = ["videoId": videoId, "taskId": self.task?.taskId]
     }
 }
