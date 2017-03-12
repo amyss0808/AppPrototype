@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import MapKit
 import os.log
 
 class TaskContainerViewController: UIViewController {
@@ -19,6 +20,8 @@ class TaskContainerViewController: UIViewController {
     @IBOutlet weak var taskDistance: UILabel!
     var task: Task? = nil
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,7 +29,7 @@ class TaskContainerViewController: UIViewController {
     
     
     // MARK: - Task Detail Functions
-    func loadTaskDetail(of taskId: Int) {
+    func loadTaskDetail(of taskId: Int, isNear: Bool) {
         let url = "http://140.119.19.33:8080/SoslabProjectServer/task/\(taskId)"
         
         Alamofire.request(url, method: .get).validate().responseJSON(completionHandler: { response in
@@ -36,6 +39,7 @@ class TaskContainerViewController: UIViewController {
                 let json = JSON(value)
                 print(json)
                 
+                let id = json["id"].stringValue
                 let distance = json["distance"].stringValue
                 let title = json["title"].stringValue.components(separatedBy: "_")[0]
                 let duration = json["duration"].stringValue
@@ -58,7 +62,7 @@ class TaskContainerViewController: UIViewController {
                 }
 
                 
-                self.task = Task(taskTitle: title, taskDistance: distance, taskDuration: duration, taskStartPointLatitude: startLat, taskStartPointLongitude: startLng, taskEndPointLatitude: endLat, taskEndPointLongitude: endLng)
+                self.task = Task(taskId: id, taskTitle: title, taskDistance: distance, taskDuration: duration, taskStartPointLatitude: startLat, taskStartPointLongitude: startLng, taskEndPointLatitude: endLat, taskEndPointLongitude: endLng, taskIsNear: isNear)
                 
                 self.taskTitle.text = title
                 self.taskDistance.text = distance
@@ -69,6 +73,7 @@ class TaskContainerViewController: UIViewController {
             }
         })
     }
+    
     
     
     
