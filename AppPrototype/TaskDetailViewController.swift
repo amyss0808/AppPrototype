@@ -136,7 +136,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
                 imagePicker.delegate = self
                 
                 
-//                let circle = UIButton(frame: CGRect(x: 177, y: 605, width: 20, height: 20))
+//                let circle = UIButton(frame: CGRect(x: 177, y: 605, width: 10, height: 10))
 //                circle.layer.cornerRadius = 10
 //                circle.backgroundColor = UIColor(red: 42.0/255.0, green: 124.0/255.0, blue: 242.0/255.0, alpha: 1)
 //                circle.addTarget(self, action: #selector(circleTapped), for: .touchUpInside)
@@ -201,6 +201,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         let videoEditor = self.storyboard?.instantiateViewController(withIdentifier: "videoEditor") as! VideoEditViewController
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 375, height: 64))
+        navBar.barTintColor = UIColor(red: 46/255, green: 80/255, blue: 143/255, alpha: 1)
         videoEditor.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "編輯")
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneEditing))
@@ -214,8 +215,10 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     @objc private func doneEditing() {
+        print("Done")
         self.dismiss(animated: true, completion: {
-            self.saveVideoToAlbum()
+            print("dismissed")
+//            self.saveVideoToAlbum()
         })
     }
     

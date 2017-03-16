@@ -9,13 +9,32 @@
 import UIKit
 
 class VideoEditViewController: UIViewController {
-
+    
+    // MARK: - Button Outlets
+    @IBOutlet weak var convenienceStore: MultipleChoiceButton!
+    @IBOutlet weak var supermarket: MultipleChoiceButton!
+    @IBOutlet weak var hospital: MultipleChoiceButton!
+    @IBOutlet weak var breakfast: MultipleChoiceButton!
+    @IBOutlet weak var restaurant: MultipleChoiceButton!
+    @IBOutlet weak var gasStation: MultipleChoiceButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        var multipleChoicebttns = [MultipleChoiceButton]()
+        multipleChoicebttns = [convenienceStore, supermarket, hospital, breakfast, restaurant, gasStation]
     
+        
+        for bttn in multipleChoicebttns {
+            if bttn.isChoosed {
+                print("\(bttn.getButtonTitle())")
+            }
+        }
+    }
     
     
     

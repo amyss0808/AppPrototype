@@ -25,7 +25,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         super.viewDidLoad()
         mapView.delegate = self
         containerView.isHidden = true
-
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
@@ -33,6 +33,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         loadTaskPin()
     }
+    
     
     
     
@@ -57,7 +58,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     
     // MARK: - Pin functions
-    private func loadTaskPin() {
+    func loadTaskPin() {
         var taskPinList = [TaskPointAnnotation]()
         let url = "http://140.119.19.33:8080/SoslabProjectServer/taskLocationList"
         
@@ -93,22 +94,18 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     private func isNear(_ taskPin: TaskPointAnnotation) -> Bool {
         var isNear = false
         
-        let request = MKDirectionsRequest()
-        request.source = MKMapItem.forCurrentLocation()
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: taskPin.coordinate))
+        let pinLocation = CLLocation(latitude: taskPin.coordinate.latitude, longitude: taskPin.coordinate.longitude)
+
+        let userLocation = CLLocation(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude)
         
-        let directions = MKDirections(request: request)
-        directions.calculate { (response, error) in
-            
-            guard let myresponse = response else {
-                fatalError("request directions has errors: \(error)")
-            }
-            if myresponse.routes[0].distance > 200 {
-                isNear = false
-            } else {
-                isNear = true
-            }
+        let distance = pinLocation.distance(from: userLocation)
+        
+        if distance < 20000000 {
+            isNear = true
+        } else {
+            isNear = false
         }
+        
         return isNear
     }
     
