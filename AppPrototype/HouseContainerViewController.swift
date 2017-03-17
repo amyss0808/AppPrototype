@@ -18,7 +18,8 @@ class HouseContainerViewController: UIViewController {
     @IBOutlet weak var segmentControl: UISegmentedControl!
     var houseList = [House]()
     var videoList = [Video]()
-    var selectedAddress: String = "" {
+    var numberOfHouse: Int = 0
+    var selectedAddress: [String] = [] {
         didSet{
             switch segmentControl.selectedSegmentIndex {
             case 0:
@@ -62,78 +63,85 @@ class HouseContainerViewController: UIViewController {
     //MARK: Private Function
     private func loadHouseData() {
         
-        let utf8Address = self.selectedAddress.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
-        
         self.houseList.removeAll()
         
-        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/houseList/\(utf8Address!)").responseJSON { response in
-            switch response.result {
-                
-            case .success(let value):
-                
-                let json = JSON(value)
-                
-                let jsonArray: Array = json.arrayValue
-                
-                for (_,subJson):(String, JSON) in json {
+        for address in self.selectedAddress {
+            let utf8Address = address.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+            
+            Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/houseList/\(utf8Address!)").responseJSON { response in
+                switch response.result {
                     
-                    let rawSquare = subJson["square"].stringValue.replacingOccurrences(of: " ", with: "")
-                    let square = rawSquare.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 5))
+                case .success(let value):
                     
-                    let rawType = subJson["type"].stringValue.replacingOccurrences(of: " ", with: "")
-                    let type = rawType.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 3))
+                    let json = JSON(value)
                     
-                    let house = House(houseIndex: subJson["id"].intValue, houseTitle: subJson["title"].stringValue, houseAddress: subJson["address"].stringValue, housePrice: subJson["price"].stringValue, houseSquare: square, houseType: type)
-                    self.houseList.append(house)
+                    let jsonArray: Array = json.arrayValue
+                    
+                    for subJson in jsonArray {
+                        
+                        let rawSquare = subJson["square"].stringValue.replacingOccurrences(of: " ", with: "")
+                        let square = rawSquare.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 5))
+                        
+                        let rawType = subJson["type"].stringValue.replacingOccurrences(of: " ", with: "")
+                        let type = rawType.substring(from: rawSquare.index(rawSquare.startIndex, offsetBy: 3))
+                        
+                        let house = House(houseIndex: subJson["id"].intValue, houseTitle: subJson["title"].stringValue, houseAddress: subJson["address"].stringValue, housePrice: subJson["price"].stringValue, houseSquare: square, houseType: type)
+                        
+                        self.houseList.append(house)
+                    }
+                    
+                    if self.houseList.count == self.numberOfHouse {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
+                    
+                    print(json)
+                case .failure(let error):
+                    print(error)
                 }
-                
-                if jsonArray.count == self.houseList.count {
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
-                }
-                
-                print(json)
-            case .failure(let error):
-                print(error)
             }
+
         }
         
     }
     
     private func loadVideoData() {
         
-        let utf8Address = self.selectedAddress.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+         self.videoList.removeAll()
         
-        self.videoList.removeAll()
-        
-        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/videoList/\(utf8Address!)").responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                
-                let json = JSON(value)
-                
-                let jsonArray: Array = json.arrayValue
-                
-                for (_,subJson):(String, JSON) in json {
+        for address in self.selectedAddress {
+            let utf8Address = address.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+            
+            Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/houseList/\(utf8Address!)").responseJSON { response in
+                switch response.result {
                     
-                    let video = Video(videoId: subJson["id"].intValue, videoTitle: subJson["title"].stringValue, videoTime: subJson["time"].stringValue)
-                    self.videoList.append(video)
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    
+                    let jsonArray: Array = json.arrayValue
+                    
+                    for subJson in jsonArray {
+                        
+                        let video = Video(videoId: subJson["id"].intValue, videoTitle: subJson["title"].stringValue, videoTime: subJson["time"].stringValue)
+                        self.videoList.append(video)
+
+                    }
+                    
+                    if self.houseList.count == self.numberOfHouse {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
+                    
+                    print(json)
+                case .failure(let error):
+                    print(error)
                 }
-                
-                if jsonArray.count == self.videoList.count {
-                    DispatchQueue.main.async(execute: {
-                        print("reload")
-                        self.tableView.reloadData()
-                    })
-                }
-                
-                print(json)
-            case .failure(let error):
-                print(error)
             }
+            
         }
-        
     }
     
     

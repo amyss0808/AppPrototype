@@ -19,13 +19,12 @@ protocol HandleMapSearch {
 //MARK: - HouseViewController Class
 class HouseViewController: UIViewController {
     
-    
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
-    var housePinList = [HousePin]()
-    var address: String = ""
+    var annotationList = [Annotation]()
+    let clusteringManager = ClusteringManager()
     let locationManager = CLLocationManager()
     
     // for search
@@ -38,7 +37,7 @@ class HouseViewController: UIViewController {
         
         mapView.delegate = self
         mapView.mapType = .standard
-      
+        
         loadPin()
         
         locationManager.delegate = self
@@ -84,22 +83,20 @@ class HouseViewController: UIViewController {
                 
                 let jsonArray: Array = json.arrayValue
                 
-                for (_,subJson):(String, JSON) in json {
-                    let pin = HousePin(latitude: subJson["lat"].doubleValue, longitude: subJson["lng"].doubleValue, address: subJson["address"].stringValue)
-                    self.housePinList.append(pin)
+                for (index, subJson) in jsonArray.enumerated() {
+                    let annotation = Annotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: subJson["lat"].doubleValue, longitude: subJson["lng"].doubleValue)
+                    annotation.address = subJson["address"].stringValue
+                    annotation.numberOfElement = subJson["houseNumber"].intValue
+                    annotation.id = index
+                    
+                    self.annotationList.append(annotation)
                 }
                 
-                if jsonArray.count == self.housePinList.count {
-                    DispatchQueue.main.async(execute: {
-                        for (index, pin) in self.housePinList.enumerated() {
-                            print("addAnnotation \(index)")
-                            let annotation = HousePointAnnotation()
-                            annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(pin.latitude), longitude: CLLocationDegrees(pin.longitude))
-                            annotation.index = index
-                            self.mapView.addAnnotation(annotation)
-                        }
-                    })
-                }
+                DispatchQueue.main.async(execute: {
+                    self.clusteringManager.add(annotations: self.annotationList)
+                })
+                
             case .failure(let error):
                 print("Connecting to server failed.")
                 print(error)
@@ -119,33 +116,79 @@ class HouseViewController: UIViewController {
 extension HouseViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        view.layer.borderColor =  UIColor(red: 51.0/255.0, green: 153.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor
+        
         switch view.annotation {
-
-        case is HousePointAnnotation:
+            
+        case is Annotation:
             
             containerView.isHidden = false
-            
-            guard let selectedAnnotation = view.annotation as? HousePointAnnotation else {
-                fatalError("the selected annotation is not HousePointAnnotaion type")
+            guard let selectedAnnotationView = view as? AnnotationView else {
+                fatalError("the selected annotationVies is not the AnnotationClusterView type")
+            }
+            guard let selectedAnnotation = view.annotation as? Annotation else {
+                fatalError("the selected annotation is not Annotaion type")
             }
             
-            let index = selectedAnnotation.index
-            let selectedAddress = housePinList[index].address
+            let selectedAddress: [String] = [selectedAnnotation.address]
             
+            guard let countLabelText = selectedAnnotationView.countLabel.text else {
+                fatalError("the countLabelText is empty")
+            }
+            guard let numberOfHouse = Int(countLabelText) else {
+                fatalError("the countLabelText counld't convert into Integer")
+            }
             if let controller = self.childViewControllers[0] as? HouseContainerViewController {
                 controller.selectedAddress = selectedAddress
+                controller.numberOfHouse = numberOfHouse
             }
             print("\(selectedAddress) The address has been passed to HouseContainerViewController")
+        
+        case is AnnotationCluster:
             
+            containerView.isHidden = false
+            guard let selectedAnnotationClusterView = view as? AnnotationClusterView else {
+                fatalError("the selected annotationVies is not the AnnotationClusterView type")
+            }
+            guard let selectedAnnotationCluster = view.annotation as? AnnotationCluster else {
+                fatalError("the selected annotation is not AnnotaionCluster type")
+            }
+            
+            var selectedAddress: [String] = []
+            for mkAnnotation in selectedAnnotationCluster.annotations {
+                if let annotation = mkAnnotation as? Annotation {
+                    selectedAddress.append(annotation.address)
+                } else {
+                    fatalError("annotation in annotation cluster is not annotation type")
+                }
+            }
+            
+            guard let countLabelText = selectedAnnotationClusterView.countLabel.text else {
+                fatalError("the countLabelText is empty")
+            }
+            guard let numberOfHouse = Int(countLabelText) else {
+                fatalError("the countLabelText counld't convert into Integer")
+            }
+            if let controller = self.childViewControllers[0] as? HouseContainerViewController {
+                controller.selectedAddress = selectedAddress
+                controller.numberOfHouse = numberOfHouse
+            }
         default:
+            print("user select unknown annotation")
             break
         }
         
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        
+        view.layer.borderColor = UIColor.white.cgColor
+        
         switch view.annotation {
-        case is HousePointAnnotation:
+        case is Annotation:
+            containerView.isHidden = true
+        case is AnnotationCluster:
             containerView.isHidden = true
         default:
             break
@@ -153,12 +196,28 @@ extension HouseViewController : MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var reuseId = ""
         switch annotation {
-        case is HousePointAnnotation:
-            let pinView = MKAnnotationView()
-            pinView.isHidden = true
-            pinView.image = UIImage(named: "home")
-            return pinView
+        case is AnnotationCluster:
+            reuseId = "Cluster"
+            var clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            if clusterView == nil {
+                clusterView = AnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId)
+            } else {
+                clusterView?.annotation = annotation
+            }
+            return clusterView
+        case is Annotation:
+            
+            reuseId = "houseAnnotation"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            if annotationView == nil {
+                annotationView = AnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            } else {
+                annotationView?.annotation = annotation
+            }
+            
+            return annotationView
         default:
             return nil
         }
@@ -167,28 +226,18 @@ extension HouseViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        if mapView.region.span.latitudeDelta + mapView.region.span.longitudeDelta > 0.9 {
-        
-            let annotationsInVisibleMapRect = mapView.annotations(in: mapView.visibleMapRect)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+            let mapRectWidth = self.mapView.visibleMapRect.size.width
+            print("mapBoundsWidth is \(mapBoundsWidth), mapRectWidth is \(mapRectWidth)")
+            let scale = mapBoundsWidth / mapRectWidth
             
-            for annotation in annotationsInVisibleMapRect {
-                guard let confirmedAnnotation = annotation as? HousePointAnnotation else {
-                    continue
-                }
-                mapView.view(for: confirmedAnnotation)?.isHidden = true
+            let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+            
+            DispatchQueue.main.async {
+                self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
             }
-        } else {
-        
-        let annotationsInVisibleMapRect = mapView.annotations(in: mapView.visibleMapRect)
-        
-        for annotation in annotationsInVisibleMapRect {
-            guard let confirmedAnnotation = annotation as? HousePointAnnotation else {
-                continue
-            }
-            mapView.view(for: confirmedAnnotation)?.isHidden = false
         }
-        }
-        
     }
 }
 
