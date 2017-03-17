@@ -23,13 +23,23 @@
 		E1423DB71E5C549A0034E5B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1423DB61E5C549A0034E5B8 /* Assets.xcassets */; };
 		E1423DBA1E5C549A0034E5B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1423DB81E5C549A0034E5B8 /* LaunchScreen.storyboard */; };
 		E1423DC51E5C549A0034E5B8 /* AppPrototypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1423DC41E5C549A0034E5B8 /* AppPrototypeTests.swift */; };
-		E1423DD01E5C5D7B0034E5B8 /* HousePointAnnotaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1423DCF1E5C5D7B0034E5B8 /* HousePointAnnotaion.swift */; };
-		E1423DD21E5C5DF90034E5B8 /* HousePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1423DD11E5C5DF90034E5B8 /* HousePin.swift */; };
 		E1423DD41E5C5F710034E5B8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1423DD31E5C5F710034E5B8 /* Podfile */; };
 		E1733F911E5FE6CD007FAEAA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */; };
 		E1733F971E601221007FAEAA /* SearchPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1733F961E601221007FAEAA /* SearchPointAnnotation.swift */; };
 		E1CAA6521E60699200386DB0 /* HouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CAA6511E60699200386DB0 /* HouseViewController.swift */; };
 		E1CAA6541E606A1700386DB0 /* HouseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CAA6531E606A1700386DB0 /* HouseContainerViewController.swift */; };
+		E1CD51911E7AFD8300E73565 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51901E7AFD8300E73565 /* Annotation.swift */; };
+		E1CD51931E7AFD8F00E73565 /* AnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51921E7AFD8F00E73565 /* AnnotationCluster.swift */; };
+		E1CD51951E7AFD9D00E73565 /* AnnotationClusterTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51941E7AFD9D00E73565 /* AnnotationClusterTemplate.swift */; };
+		E1CD51971E7AFDA600E73565 /* AnnotationClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51961E7AFDA600E73565 /* AnnotationClusterView.swift */; };
+		E1CD51991E7AFDB200E73565 /* AnnotationClusterViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51981E7AFDB200E73565 /* AnnotationClusterViewConfiguration.swift */; };
+		E1CD51A01E7AFDC200E73565 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */; };
+		E1CD51A11E7AFDC200E73565 /* BoundingBox+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */; };
+		E1CD51A21E7AFDC200E73565 /* ClusteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD519C1E7AFDC200E73565 /* ClusteringManager.swift */; };
+		E1CD51A31E7AFDC200E73565 /* QuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD519D1E7AFDC200E73565 /* QuadTree.swift */; };
+		E1CD51A41E7AFDC200E73565 /* QuadTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD519E1E7AFDC200E73565 /* QuadTreeNode.swift */; };
+		E1CD51A51E7AFDC200E73565 /* ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD519F1E7AFDC200E73565 /* ZoomLevel.swift */; };
+		E1CD51A71E7AFDFB00E73565 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51A61E7AFDFB00E73565 /* AnnotationView.swift */; };
 		E1D03CF11E5C690D000FC684 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D03CF01E5C690D000FC684 /* HouseTableViewCell.swift */; };
 		E1D03CF31E5C6920000FC684 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D03CF21E5C6920000FC684 /* VideoTableViewCell.swift */; };
 		E1D03CF51E5C6CB2000FC684 /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D03CF41E5C6CB2000FC684 /* House.swift */; };
@@ -70,13 +80,23 @@
 		E1423DC01E5C549A0034E5B8 /* AppPrototypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppPrototypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1423DC41E5C549A0034E5B8 /* AppPrototypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPrototypeTests.swift; sourceTree = "<group>"; };
 		E1423DC61E5C549A0034E5B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1423DCF1E5C5D7B0034E5B8 /* HousePointAnnotaion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePointAnnotaion.swift; sourceTree = "<group>"; };
-		E1423DD11E5C5DF90034E5B8 /* HousePin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePin.swift; sourceTree = "<group>"; };
 		E1423DD31E5C5F710034E5B8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		E1733F961E601221007FAEAA /* SearchPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPointAnnotation.swift; sourceTree = "<group>"; };
 		E1CAA6511E60699200386DB0 /* HouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseViewController.swift; sourceTree = "<group>"; };
 		E1CAA6531E606A1700386DB0 /* HouseContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseContainerViewController.swift; sourceTree = "<group>"; };
+		E1CD51901E7AFD8300E73565 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		E1CD51921E7AFD8F00E73565 /* AnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationCluster.swift; sourceTree = "<group>"; };
+		E1CD51941E7AFD9D00E73565 /* AnnotationClusterTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationClusterTemplate.swift; sourceTree = "<group>"; };
+		E1CD51961E7AFDA600E73565 /* AnnotationClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationClusterView.swift; sourceTree = "<group>"; };
+		E1CD51981E7AFDB200E73565 /* AnnotationClusterViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationClusterViewConfiguration.swift; sourceTree = "<group>"; };
+		E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
+		E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BoundingBox+MapKit.swift"; sourceTree = "<group>"; };
+		E1CD519C1E7AFDC200E73565 /* ClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusteringManager.swift; sourceTree = "<group>"; };
+		E1CD519D1E7AFDC200E73565 /* QuadTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadTree.swift; sourceTree = "<group>"; };
+		E1CD519E1E7AFDC200E73565 /* QuadTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadTreeNode.swift; sourceTree = "<group>"; };
+		E1CD519F1E7AFDC200E73565 /* ZoomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomLevel.swift; sourceTree = "<group>"; };
+		E1CD51A61E7AFDFB00E73565 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		E1D03CF01E5C690D000FC684 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
 		E1D03CF21E5C6920000FC684 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		E1D03CF41E5C6CB2000FC684 /* House.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
@@ -144,12 +164,22 @@
 		E1423DAC1E5C549A0034E5B8 /* AppPrototype */ = {
 			isa = PBXGroup;
 			children = (
+				E1CD51901E7AFD8300E73565 /* Annotation.swift */,
+				E1CD51A61E7AFDFB00E73565 /* AnnotationView.swift */,
+				E1CD51921E7AFD8F00E73565 /* AnnotationCluster.swift */,
+				E1CD51961E7AFDA600E73565 /* AnnotationClusterView.swift */,
+				E1CD51941E7AFD9D00E73565 /* AnnotationClusterTemplate.swift */,
+				E1CD51981E7AFDB200E73565 /* AnnotationClusterViewConfiguration.swift */,
+				E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */,
+				E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */,
+				E1CD519C1E7AFDC200E73565 /* ClusteringManager.swift */,
+				E1CD519D1E7AFDC200E73565 /* QuadTree.swift */,
+				E1CD519E1E7AFDC200E73565 /* QuadTreeNode.swift */,
+				E1CD519F1E7AFDC200E73565 /* ZoomLevel.swift */,
 				E1D03CF41E5C6CB2000FC684 /* House.swift */,
 				E1D03CF61E5C798F000FC684 /* Video.swift */,
 				C4FB83201E712FE6006C1CDA /* Task.swift */,
-				E1423DD11E5C5DF90034E5B8 /* HousePin.swift */,
 				C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */,
-				E1423DCF1E5C5D7B0034E5B8 /* HousePointAnnotaion.swift */,
 				E1733F961E601221007FAEAA /* SearchPointAnnotation.swift */,
 				E1D03CF01E5C690D000FC684 /* HouseTableViewCell.swift */,
 				E1D03CF21E5C6920000FC684 /* VideoTableViewCell.swift */,
@@ -236,7 +266,7 @@
 				TargetAttributes = {
 					E1423DA91E5C549A0034E5B8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4FAWUFZ5VL;
+						DevelopmentTeam = SK34PM56LJ;
 						ProvisioningStyle = Automatic;
 					};
 					E1423DBF1E5C549A0034E5B8 = {
@@ -340,9 +370,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1733F911E5FE6CD007FAEAA /* LocationSearchTable.swift in Sources */,
-				E1423DD21E5C5DF90034E5B8 /* HousePin.swift in Sources */,
+				E1CD51991E7AFDB200E73565 /* AnnotationClusterViewConfiguration.swift in Sources */,
 				C46EDE471E6E6167003FBBB6 /* TaskPointAnnotation.swift in Sources */,
-				E1423DD01E5C5D7B0034E5B8 /* HousePointAnnotaion.swift in Sources */,
+				E1CD51A01E7AFDC200E73565 /* BoundingBox.swift in Sources */,
 				C45121C51E70578600DF13AD /* TaskDetailViewController.swift in Sources */,
 				C46EDE491E6EB02E003FBBB6 /* TaskContainerViewController.swift in Sources */,
 				E1CAA6521E60699200386DB0 /* HouseViewController.swift in Sources */,
@@ -352,15 +382,31 @@
 				E1D03CF51E5C6CB2000FC684 /* House.swift in Sources */,
 				E1D03CF31E5C6920000FC684 /* VideoTableViewCell.swift in Sources */,
 				C4FB83211E712FE6006C1CDA /* Task.swift in Sources */,
+				E1CD51A71E7AFDFB00E73565 /* AnnotationView.swift in Sources */,
 				E10A76501E5DC0DB00D9F045 /* VideoDetailViewController.swift in Sources */,
+
+				E1CD51951E7AFD9D00E73565 /* AnnotationClusterTemplate.swift in Sources */,
+				E1CD51911E7AFD8300E73565 /* Annotation.swift in Sources */,
+				E1CD51971E7AFDA600E73565 /* AnnotationClusterView.swift in Sources */,
+
 				C492D0721E7A6C5700F4F232 /* MultipleChoiceButton.swift in Sources */,
+
 				C46EDE4B1E6EC71F003FBBB6 /* VideoEditViewController.swift in Sources */,
+				E1CD51A41E7AFDC200E73565 /* QuadTreeNode.swift in Sources */,
 				E1D03CF11E5C690D000FC684 /* HouseTableViewCell.swift in Sources */,
 				E1D03CF71E5C798F000FC684 /* Video.swift in Sources */,
+				E1CD51A31E7AFDC200E73565 /* QuadTree.swift in Sources */,
 				E1DBA8B61E5D6FAB003A4484 /* HouseDetailViewController.swift in Sources */,
+
+				E1CD51A21E7AFDC200E73565 /* ClusteringManager.swift in Sources */,
+				E1CD51931E7AFD8F00E73565 /* AnnotationCluster.swift in Sources */,
+
 				C492D0701E78DA2B00F4F232 /* TabBarController.swift in Sources */,
+
 				E1733F971E601221007FAEAA /* SearchPointAnnotation.swift in Sources */,
 				E1CAA6541E606A1700386DB0 /* HouseContainerViewController.swift in Sources */,
+				E1CD51A51E7AFDC200E73565 /* ZoomLevel.swift in Sources */,
+				E1CD51A11E7AFDC200E73565 /* BoundingBox+MapKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,10 +544,10 @@
 			baseConfigurationReference = 0FAA4168324212D7AE946522 /* Pods-AppPrototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4FAWUFZ5VL;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = AppPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.AppPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.AppPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -512,10 +558,10 @@
 			baseConfigurationReference = 6F0ECF85A7E4B57CD9E2556E /* Pods-AppPrototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4FAWUFZ5VL;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = AppPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.AppPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.AppPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
