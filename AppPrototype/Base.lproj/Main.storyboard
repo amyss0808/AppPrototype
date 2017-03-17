@@ -144,18 +144,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sNT-ki-kt2" id="fj1-GO-zvJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c0b-hW-W21">
-                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="15" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TA3-rQ-fUT">
-                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="15" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -796,22 +796,6 @@
                                 <rect key="frame" x="8" y="74" width="359" height="106"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KO-W5-bce" customClass="CheckBox" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="53" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="晴天">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6M3-jQ-A1r" customClass="CheckBox" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="141" y="53" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="陰天">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2u-xz-km3" userLabel="Section Title View">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -824,13 +808,38 @@
                                         <color key="textColor" red="0.0067801186814904213" green="0.57886582612991333" blue="0.98579710721969604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bJ-dm-DYa" customClass="CheckBox" customModule="AppPrototype" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KO-W5-bce" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
+                                        <rect key="frame" x="56" y="53" width="77" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="晴天">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SingleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="4H8-Ug-Zbm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6M3-jQ-A1r" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
+                                        <rect key="frame" x="141" y="53" width="77" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="陰天">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SingleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="0rI-Oa-2Mi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bJ-dm-DYa" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="226" y="53" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="雨天">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="SingleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="32R-Ie-mPp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -858,6 +867,9 @@
                                         <state key="normal" title="便利商店">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="cy3-s2-1dm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ2-fb-DiU" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="56" y="97" width="77" height="30"/>
@@ -866,6 +878,9 @@
                                         <state key="normal" title="早餐店">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="PsJ-i5-aAW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-4w-ikG" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="141" y="59" width="77" height="30"/>
@@ -874,6 +889,9 @@
                                         <state key="normal" title="超市">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="6Xr-3i-nYe"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCt-NW-ePb" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="141" y="97" width="77" height="30"/>
@@ -882,6 +900,9 @@
                                         <state key="normal" title="餐廳">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="0lV-e9-AXh"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-QA-VeI" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="226" y="97" width="77" height="30"/>
@@ -890,6 +911,9 @@
                                         <state key="normal" title="加油站">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="aQv-gv-YSm"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6m-Ja-S5z" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="226" y="59" width="77" height="30"/>
@@ -898,6 +922,9 @@
                                         <state key="normal" title="醫院">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="Txw-Xg-IUt"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -918,21 +945,27 @@
                                         <color key="textColor" red="0.0067801186810000002" green="0.57886582610000004" blue="0.98579710720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-5I-T7d" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-5I-T7d" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="92" y="95" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="公園">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="3t1-uA-Efv"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXn-H4-b8t" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXn-H4-b8t" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="177" y="95" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="學校">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="2lj-vE-Fb0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezH-CE-vAW" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="92" y="57" width="77" height="30"/>
@@ -941,28 +974,64 @@
                                         <state key="normal" title="郵局">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="VPe-6k-yhw"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-oG-tU7" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-oG-tU7" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
                                         <rect key="frame" x="177" y="57" width="77" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="警察局">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="vEt-aj-rhb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FPW-6n-K7N">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.29304242130000002" green="0.407371223" blue="0.61487150189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="S3W-LV-Sqi">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="O3K-17-Imc">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="CancelEditing:" destination="1uj-kJ-p42" id="a8C-N0-2uC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="OIb-xD-EBA">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="doneEditing:" destination="1uj-kJ-p42" id="UzU-Yn-SmC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.47053432464599609" green="0.4706193208694458" blue="0.47052896022796631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="breakfast" destination="xJ2-fb-DiU" id="JXy-xF-wN3"/>
-                        <outlet property="convenienceStore" destination="UT4-pe-fRe" id="maw-Lr-SNv"/>
-                        <outlet property="gasStation" destination="LWq-QA-VeI" id="g19-VE-cNx"/>
-                        <outlet property="hospital" destination="O6m-Ja-S5z" id="IIQ-aB-eHx"/>
-                        <outlet property="restaurant" destination="JCt-NW-ePb" id="HM4-Mk-WYO"/>
-                        <outlet property="supermarket" destination="Dwv-4w-ikG" id="APA-Nh-dVc"/>
+                        <outlet property="cancelBarButton" destination="O3K-17-Imc" id="WHC-ws-y0t"/>
+                        <outlet property="doneBarButton" destination="OIb-xD-EBA" id="DKm-bz-4fk"/>
+                        <outletCollection property="weatherBttns" destination="0KO-W5-bce" id="eaJ-pV-5Qj"/>
+                        <outletCollection property="weatherBttns" destination="6M3-jQ-A1r" id="dwe-YW-RXs"/>
+                        <outletCollection property="weatherBttns" destination="8bJ-dm-DYa" id="YnY-ze-kL2"/>
+                        <outletCollection property="storeBttns" destination="UT4-pe-fRe" id="iM6-Jh-Ofa"/>
+                        <outletCollection property="storeBttns" destination="Dwv-4w-ikG" id="VbF-8W-bAK"/>
+                        <outletCollection property="storeBttns" destination="O6m-Ja-S5z" id="X4k-IG-GXh"/>
+                        <outletCollection property="storeBttns" destination="xJ2-fb-DiU" id="5bS-aS-rQK"/>
+                        <outletCollection property="storeBttns" destination="JCt-NW-ePb" id="t2k-lk-vdB"/>
+                        <outletCollection property="storeBttns" destination="LWq-QA-VeI" id="tkh-26-r9B"/>
+                        <outletCollection property="publicFacilityBttns" destination="ezH-CE-vAW" id="KXX-cu-BZy"/>
+                        <outletCollection property="publicFacilityBttns" destination="5Ub-oG-tU7" id="XLV-Rf-YCW"/>
+                        <outletCollection property="publicFacilityBttns" destination="go9-5I-T7d" id="Ytz-AD-SjK"/>
+                        <outletCollection property="publicFacilityBttns" destination="XXn-H4-b8t" id="MqP-ub-u1c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyP-je-VYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
