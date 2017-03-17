@@ -26,17 +26,9 @@ class MultipleChoiceButton: UIButton {
     override func awakeFromNib() {
         self.layer.cornerRadius = 4
         self.isChoosed = false
-        self.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
     }
     
     
-    @objc private func buttonClicked(sender: UIButton) {
-        if isChoosed {
-            isChoosed = false
-        } else {
-            isChoosed = true
-        }
-    }
  
 
     func getButtonTitle() -> String? {

@@ -100,7 +100,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         let distance = pinLocation.distance(from: userLocation)
         
-        if distance < 20000000 {
+        if distance < 2000000 {
             isNear = true
         } else {
             isNear = false
@@ -131,13 +131,13 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 fatalError("The selected pin annotation cannot be downcast")
             }
             
-            guard let subview = self.childViewControllers[0] as? TaskContainerViewController else {
+            guard let subviewController = self.childViewControllers[0] as? TaskContainerViewController else {
                 fatalError("The first child view controller of taskViewController is not a container view controller")
             }
             
             // load task info on the container view
             let isNear = self.isNear(selectedAnnotation)
-            subview.loadTaskDetail(of: selectedAnnotation.id, isNear: isNear)
+            subviewController.loadTaskDetail(of: selectedAnnotation.id, isNear: isNear)
             
             
             if isNear == false {

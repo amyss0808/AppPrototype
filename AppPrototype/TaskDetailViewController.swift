@@ -200,21 +200,16 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         // present videoEdit view controller
         let videoEditor = self.storyboard?.instantiateViewController(withIdentifier: "videoEditor") as! VideoEditViewController
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 375, height: 64))
-        navBar.barTintColor = UIColor(red: 46/255, green: 80/255, blue: 143/255, alpha: 1)
-        videoEditor.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "編輯")
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneEditing))
-        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelEditing))
-        navItem.rightBarButtonItem = doneItem
-        navItem.leftBarButtonItem = cancelItem
-        navBar.setItems([navItem], animated: false)
-        
-        imagePicker.present(videoEditor, animated: true, completion: {})
+        self.dismiss(animated: true, completion: {
+            self.present(videoEditor, animated: true, completion: {
+                videoEditor.test = "123"
+            })
+        })
+//        imagePicker.present(videoEditor, animated: true, completion: {})
     }
     
     
-    @objc private func doneEditing() {
+    func doneEditing() {
         print("Done")
         self.dismiss(animated: true, completion: {
             print("dismissed")
@@ -222,7 +217,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         })
     }
     
-    @objc private func cancelEditing() {
+    func cancelEditing() {
         self.dismiss(animated: true, completion: {})
     }
     
