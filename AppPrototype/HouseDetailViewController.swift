@@ -49,6 +49,7 @@ class HouseDetailViewController: UIViewController {
     @IBOutlet weak var verticalSpaceBetweenMapCommunity: NSLayoutConstraint!
     @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var mapTitleView: UIView!
+    @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var verticalSpaceBetweenCommunitySurronding: NSLayoutConstraint!
@@ -83,6 +84,8 @@ class HouseDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.mapView.delegate = self
+        
         houseDescriptionView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
 
         squareView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
@@ -272,9 +275,9 @@ class HouseDetailViewController: UIViewController {
     func loadHouseLocation() {
         let span = MKCoordinateSpanMake(0.0015, 0.0015)
         let region = MKCoordinateRegionMake(self.houseLocation, span)
-        mapView.setRegion(region, animated: false)
+        mapView.setRegion(region, animated: true)
         
-        let houseAnnotation = MKPointAnnotation()
+        let houseAnnotation = Annotation()
         houseAnnotation.coordinate = self.houseLocation
         mapView.addAnnotation(houseAnnotation)
     }
@@ -417,7 +420,11 @@ class HouseDetailViewController: UIViewController {
     }
     
 //     MARK: IBAction
-    @IBAction func tappedUrlButton(_ sender: UIButton) {
+    @IBAction func mapButtonTapped(_ sender: Any) {
+        self.loadHouseLocation()
+    }
+    
+    @IBAction func urlButtonTapped(_ sender: UIButton) {
     
         if !houseUrl.isEmpty {
             UIApplication.shared.open(URL(string: houseUrl)!)
@@ -427,4 +434,19 @@ class HouseDetailViewController: UIViewController {
     
     }
 
+}
+
+extension HouseDetailViewController : MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        switch annotation {
+        case is Annotation:
+            let annotationView = MKAnnotationView()
+            annotationView.image = UIImage(named: "pin")
+            return annotationView
+        default:
+            print("here")
+            return nil
+        }
+
+    }
 }

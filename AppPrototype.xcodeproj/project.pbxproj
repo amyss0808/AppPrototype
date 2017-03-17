@@ -384,25 +384,19 @@
 				C4FB83211E712FE6006C1CDA /* Task.swift in Sources */,
 				E1CD51A71E7AFDFB00E73565 /* AnnotationView.swift in Sources */,
 				E10A76501E5DC0DB00D9F045 /* VideoDetailViewController.swift in Sources */,
-
 				E1CD51951E7AFD9D00E73565 /* AnnotationClusterTemplate.swift in Sources */,
 				E1CD51911E7AFD8300E73565 /* Annotation.swift in Sources */,
 				E1CD51971E7AFDA600E73565 /* AnnotationClusterView.swift in Sources */,
-
 				C492D0721E7A6C5700F4F232 /* MultipleChoiceButton.swift in Sources */,
-
 				C46EDE4B1E6EC71F003FBBB6 /* VideoEditViewController.swift in Sources */,
 				E1CD51A41E7AFDC200E73565 /* QuadTreeNode.swift in Sources */,
 				E1D03CF11E5C690D000FC684 /* HouseTableViewCell.swift in Sources */,
 				E1D03CF71E5C798F000FC684 /* Video.swift in Sources */,
 				E1CD51A31E7AFDC200E73565 /* QuadTree.swift in Sources */,
 				E1DBA8B61E5D6FAB003A4484 /* HouseDetailViewController.swift in Sources */,
-
 				E1CD51A21E7AFDC200E73565 /* ClusteringManager.swift in Sources */,
 				E1CD51931E7AFD8F00E73565 /* AnnotationCluster.swift in Sources */,
-
 				C492D0701E78DA2B00F4F232 /* TabBarController.swift in Sources */,
-
 				E1733F971E601221007FAEAA /* SearchPointAnnotation.swift in Sources */,
 				E1CAA6541E606A1700386DB0 /* HouseContainerViewController.swift in Sources */,
 				E1CD51A51E7AFDC200E73565 /* ZoomLevel.swift in Sources */,
