@@ -40,6 +40,12 @@ class HouseViewController: UIViewController {
         
         loadPin()
         
+        self.locationButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
+        self.locationButton.layer.cornerRadius = 23
+        self.locationButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
+        self.locationButton.layer.shadowOpacity = 0.3
+        self.locationButton.imageEdgeInsets = UIEdgeInsetsMake(11,11,11,11)
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()

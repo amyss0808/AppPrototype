@@ -65,6 +65,8 @@ class HouseContainerViewController: UIViewController {
         
         self.houseList.removeAll()
         
+        var numberOfFinishedQueue: Int = 0
+        
         for address in self.selectedAddress {
             let utf8Address = address.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
             
@@ -90,7 +92,9 @@ class HouseContainerViewController: UIViewController {
                         self.houseList.append(house)
                     }
                     
-                    if self.houseList.count == self.numberOfHouse {
+                    numberOfFinishedQueue += 1
+                    
+                    if numberOfFinishedQueue == self.selectedAddress.count {
                         DispatchQueue.main.async(execute: {
                             self.tableView.reloadData()
                         })
@@ -99,6 +103,14 @@ class HouseContainerViewController: UIViewController {
                     print(json)
                 case .failure(let error):
                     print(error)
+                    
+                    numberOfFinishedQueue += 1
+                    
+                    if numberOfFinishedQueue == self.selectedAddress.count {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
                 }
             }
 
@@ -108,7 +120,9 @@ class HouseContainerViewController: UIViewController {
     
     private func loadVideoData() {
         
-         self.videoList.removeAll()
+        self.videoList.removeAll()
+        
+        var numberOfFinishedQueue: Int = 0
         
         for address in self.selectedAddress {
             let utf8Address = address.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
@@ -129,7 +143,9 @@ class HouseContainerViewController: UIViewController {
 
                     }
                     
-                    if self.houseList.count == self.numberOfHouse {
+                    numberOfFinishedQueue += 1
+                    
+                    if numberOfFinishedQueue == self.selectedAddress.count {
                         DispatchQueue.main.async(execute: {
                             self.tableView.reloadData()
                         })
@@ -137,6 +153,15 @@ class HouseContainerViewController: UIViewController {
                     
                     print(json)
                 case .failure(let error):
+                    
+                    numberOfFinishedQueue += 1
+                    
+                    if numberOfFinishedQueue == self.selectedAddress.count {
+                        DispatchQueue.main.async(execute: {
+                            self.tableView.reloadData()
+                        })
+                    }
+                    
                     print(error)
                 }
             }
