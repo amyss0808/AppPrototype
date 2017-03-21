@@ -62,23 +62,23 @@ class HouseDetailViewController: UIViewController {
     
     @IBOutlet weak var urlButton: UIButton!
     
-    var houseUrl: String = ""
     var houseIndex :Int = 0 {
         didSet{
             loadHouseDetail()
         }
     }
-    var imagesArray : [String] = [String]() {
+    private var imagesURLArray : [String] = [] {
         didSet {
             loadImages()
         }
     }
-    var houseLocation : CLLocationCoordinate2D = CLLocationCoordinate2D() {
+    private var houseLocation : CLLocationCoordinate2D = CLLocationCoordinate2D() {
         didSet {
             loadHouseLocation()
         }
     }
-    
+    private var imagesDataArray : [Data] = []
+    private var houseUrl: String = ""
     
     //MARK: Default Functions
     override func viewDidLoad() {
@@ -158,7 +158,7 @@ class HouseDetailViewController: UIViewController {
                 let url = json["url"].stringValue
                 
                 let pictureData = json["picture"].stringValue.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").replacingOccurrences(of: " ", with: "")
-                self.imagesArray = pictureData.components(separatedBy: ",")
+                self.imagesURLArray = pictureData.components(separatedBy: ",")
                 
                 let information = json["information"].stringValue.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(說明)", with: "")
                 var informationArray = information.components(separatedBy: "@")
@@ -249,21 +249,29 @@ class HouseDetailViewController: UIViewController {
     
     func loadImages() {
         
-        var sizeIndex = 0
+        var numberOfQueueFinished = 0
         
-        for (index, imageUrl) in self.imagesArray.enumerated() {
+        for imageUrl in self.imagesURLArray {
             
             Alamofire.request(imageUrl).response { response in
                 if response.error == nil {
                     if let data = response.data {
-                        let imageView = UIImageView(image: UIImage(data: data, scale: 1 ))
-                        imageView.frame = CGRect(x: self.view.frame.width * CGFloat(index), y: 0, width: self.imagesScrollView.frame.width, height: self.imagesScrollView.frame.height)
-                        imageView.contentMode = .scaleToFill
-                        self.imagesScrollView.contentSize.width = self.imagesScrollView.frame.width * CGFloat(sizeIndex + 1)
-                        self.imagesScrollView.addSubview(imageView)
-                        sizeIndex += 1
+                        self.imagesDataArray.append(data)
+                        numberOfQueueFinished += 1
+                        
+                        if self.imagesURLArray.count == numberOfQueueFinished {
+                            DispatchQueue.main.async(execute: {
+                                self.changeImagesUI()
+                            })
+                        }
                     } else {
                         print(response.error!)
+                        numberOfQueueFinished += 1
+                        if self.imagesURLArray.count == numberOfQueueFinished {
+                            DispatchQueue.main.async(execute: {
+                                self.changeImagesUI()
+                            })
+                        }
                     }
                 }
                 
@@ -280,6 +288,18 @@ class HouseDetailViewController: UIViewController {
         let houseAnnotation = Annotation()
         houseAnnotation.coordinate = self.houseLocation
         mapView.addAnnotation(houseAnnotation)
+    }
+    
+    func changeImagesUI() {
+        DispatchQueue.main.async(execute: {
+            for (index, data) in self.imagesDataArray.enumerated(){
+                let imageView = UIImageView(image: UIImage(data: data, scale: 1 ))
+                imageView.frame = CGRect(x: self.view.frame.width * CGFloat(index), y: 0, width: self.imagesScrollView.frame.width, height: self.imagesScrollView.frame.height)
+                imageView.contentMode = .scaleToFill
+                self.imagesScrollView.contentSize.width = self.imagesScrollView.frame.width * CGFloat(index + 1)
+                self.imagesScrollView.addSubview(imageView)
+            }
+        })
     }
     
     func changeCommunityUI(communityArray: [(key: String, value: String)]) {

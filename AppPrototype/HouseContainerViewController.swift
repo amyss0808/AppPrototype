@@ -16,6 +16,7 @@ class HouseContainerViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    @IBOutlet weak var loadingView: UIView!
     var houseList = [House]()
     var videoList = [Video]()
     var numberOfHouse: Int = 0
@@ -38,6 +39,7 @@ class HouseContainerViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         self.view.layer.cornerRadius = 7.0
+        self.loadingView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,6 +65,7 @@ class HouseContainerViewController: UIViewController {
     //MARK: Private Function
     private func loadHouseData() {
         
+        self.loadingView.isHidden = false
         self.houseList.removeAll()
         
         var numberOfFinishedQueue: Int = 0
@@ -91,12 +94,16 @@ class HouseContainerViewController: UIViewController {
                         
                         self.houseList.append(house)
                     }
+//                    DispatchQueue.main.async(execute: {
+//                        self.tableView.reloadData()
+//                    })
                     
                     numberOfFinishedQueue += 1
                     
                     if numberOfFinishedQueue == self.selectedAddress.count {
                         DispatchQueue.main.async(execute: {
                             self.tableView.reloadData()
+                            self.loadingView.isHidden = true
                         })
                     }
                     
@@ -109,6 +116,7 @@ class HouseContainerViewController: UIViewController {
                     if numberOfFinishedQueue == self.selectedAddress.count {
                         DispatchQueue.main.async(execute: {
                             self.tableView.reloadData()
+                            self.loadingView.isHidden = true
                         })
                     }
                 }
