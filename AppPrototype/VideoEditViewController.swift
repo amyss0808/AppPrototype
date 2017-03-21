@@ -7,35 +7,47 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import os.log
 
 class VideoEditViewController: UIViewController {
     
+    // MARK: - Section Views
+    @IBOutlet var sectionViews: [UIView]!
+    @IBOutlet var sectionTitleViews: [UIView]!
+    
+    
     // MARK: - Navigation Properties
-    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
-    var test = ""
     
     
-    // MARK: - Button Outlets
-    @IBOutlet var publicFacilityBttns: [MultipleChoiceButton]!
-    @IBOutlet var storeBttns: [MultipleChoiceButton]!
-    @IBOutlet var weatherBttns: [MultipleChoiceButton]!
+    // MARK: - VideoEditVC Button Outlets
+    @IBOutlet var publicFacilityBttns: [VideoEditVCButton]!
+    @IBOutlet var storeBttns: [VideoEditVCButton]!
+    @IBOutlet var weatherBttns: [VideoEditVCButton]!
+    
+    
+    // MARK: - Video Info Properties
+    var videoFilePath: String? = nil
+    var videoId: String? = nil
+    var taskId: String? = nil
+    var weather: String = ""
+    var stores: String = ""
+    var publicFacilities: String = ""
     
     
     
-    
+    // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-//        doneBarButton.target = self.presented
-//        doneBarButton.action = #selector(TaskDetailViewController.doneEditing)
-//
-//        
-//        cancelBarButton.target = TaskDetailViewController()
-//        cancelBarButton.action = #selector(TaskDetailViewController.cancelEditing)
+        decorateViews()
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
         for bttn in publicFacilityBttns {
             if bttn.isChoosed {
@@ -43,9 +55,12 @@ class VideoEditViewController: UIViewController {
                     print("The button has no titleLabel: \(bttn.titleLabel?.text)")
                     return
                 }
-                print("\(bttnTitle)")
+                self.publicFacilities = self.publicFacilities + bttnTitle + ","
             }
         }
+        self.publicFacilities = String(self.publicFacilities.characters.dropLast())
+        print(self.publicFacilities)
+        
         
         for bttn in storeBttns {
             if bttn.isChoosed {
@@ -53,9 +68,12 @@ class VideoEditViewController: UIViewController {
                     print("The button has no titleLabel: \(bttn.titleLabel?.text)")
                     return
                 }
-                print("\(bttnTitle)")
+                self.stores = self.stores + bttnTitle + ","
             }
         }
+        self.stores = String(self.stores.characters.dropLast())
+        print(self.stores)
+        
         
         for bttn in weatherBttns {
             if bttn.isChoosed {
@@ -63,14 +81,32 @@ class VideoEditViewController: UIViewController {
                     print("The button has no titleLabel: \(bttn.titleLabel?.text)")
                     return
                 }
-                print("\(bttnTitle)")
+                self.weather = self.weather + bttnTitle + ","
             }
         }
+        self.weather = String(self.weather.characters.dropLast())
+        print(self.weather)
     }
     
     
+    private func decorateViews() {
+        for section in sectionViews {
+            section.layer.cornerRadius = 8
+        }
+        
+        for sectionTitle in sectionTitleViews {
+            sectionTitle.layer.cornerRadius = 6
+        }
+        
+        finishButton.isEnabled = false
+        finishButton.layer.cornerRadius = 4
+        finishButton.backgroundColor = UIColor(red: 120/255, green: 120/255, blue: 120/255, alpha: 1)
+        
+    }
     
-    @IBAction func multipleChoiceBttnTapped(_ sender: MultipleChoiceButton) {
+    
+    // MARK: - VideoEditVC Button Functions
+    @IBAction func multipleChoiceBttnTapped(_ sender: VideoEditVCButton) {
         
         // default "isChoosed" = false
         if sender.isChoosed {
@@ -81,11 +117,19 @@ class VideoEditViewController: UIViewController {
     }
     
     
-    @IBAction func SingleChoiceBttnTapped(_ sender: MultipleChoiceButton) {
+    @IBAction func singleChoiceBttnTapped(_ sender: VideoEditVCButton) {
         
         // default "isChoosed" = false
         sender.isChoosed = true
         
+        // enable finishButton
+        finishButton.isEnabled = true
+        finishButton.backgroundColor = UIColor(red: 75/255, green: 104/255, blue: 157/255, alpha: 1)
+        finishButton.layer.cornerRadius = 4
+        finishButton.layer.shadowOffset = CGSize(width: -1, height: 1)
+        finishButton.layer.shadowOpacity = 0.2
+        
+        // disable other buttons
         for bttn in weatherBttns {
             if bttn.tag != sender.tag {
                 bttn.isChoosed = false
@@ -94,41 +138,124 @@ class VideoEditViewController: UIViewController {
     }
     
     
-    func doneButtonStatus() {
+    
+    // MARK: - Navigation Actions & Functions
+    @IBAction func finishEditing(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: {
+            self.saveVideoToAlbum()
+        })
+    }
+    
+    
+    @IBAction func cancelEditing(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // not used now
+    private func finishButtonShouldBeEnabled() -> Bool {
+        var shouldEnable = false
+        
         var count = 0
         for bttn in weatherBttns {
             if bttn.isChoosed == false {
                 count += 1
             }
         }
+        
         if count == weatherBttns.count {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            shouldEnable = true
+        } else {
+            shouldEnable = false
+        }
+        return shouldEnable
+    }
+    
+    
+    
+    // MARK: - Server Functions
+    private func saveVideoToAlbum() {
+        guard let myVideoFilePath = videoFilePath else {
+            fatalError("videoFilePath: \(videoFilePath)")
+        }
+        
+        // Save video to the main photo album
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(myVideoFilePath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum(myVideoFilePath, self, #selector(self.getAccessTokenToUpload(videoPath: didFinishSavingWithError:contextInfo:)), nil)
+            
+        } else {
+            print("didn't save")
         }
     }
     
     
-    @IBAction func doneEditing(_ sender: UIBarButtonItem) {
-        print("done")
-        print("\(test)")
-        self.dismiss(animated: true, completion: nil)
+    // Upload a video after saving the video to photos album
+    @objc private func getAccessTokenToUpload(videoPath: NSString, didFinishSavingWithError error: NSError?, contextInfo info: AnyObject) {
+        
+        // first request server to get access token
+        let url = "http://140.119.19.33:8080/SoslabProjectServer/getAccessToken"
+        
+        Alamofire.request(url, method: .post).validate().responseString(completionHandler: {
+            response in
+            switch response.result {
+                
+            case .success(let accessToken):
+                self.uploadVideo(by: accessToken, from: URL(fileURLWithPath: videoPath as String))
+                
+            case .failure(let error):
+                print("callback: \(error)")
+            }
+        })
     }
     
     
-    @IBAction func CancelEditing(_ sender: UIBarButtonItem) {
-        print("cancel")
-        self.dismiss(animated: true, completion: nil)
+    private func uploadVideo(by accessToken: String, from fileURL: URL) {
+        
+        let url = "https://www.googleapis.com/upload/youtube/v3/videos?part=id"
+        let headers = ["Authorization": "Bearer \(accessToken)"]
+        
+        Alamofire.upload(fileURL, to: url, method: .post, headers: headers).validate().responseJSON(completionHandler: { response in
+            
+            switch response.result {
+                
+            case .success(let value):
+                let json = JSON(value)
+                self.videoId = json["id"].stringValue
+                
+                // send video id to server
+                guard let myVideoId = self.videoId else {
+                    fatalError("videoId: \(self.videoId)")
+                }
+                guard let myTaskId = self.taskId else {
+                    fatalError("taskId: \(self.taskId)")
+                }
+                self.sendVideoData(taskId: myTaskId, videoId: myVideoId, stores: self.stores, weather: self.weather, publicFacilities: self.publicFacilities)
+                
+            case .failure(let error):
+                print("Upload video: \(error)")
+            }
+        })
     }
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    private func sendVideoData(taskId: String, videoId: String, stores: String, weather: String, publicFacilities: String) {
+        
+        let url = "http://140.119.19.33:8080/SoslabProjectServer/saveTask"
+        let parameters = ["id": taskId, "youtubeId": videoId, "shop": stores, "weather": weather, "facility": publicFacilities]
+        
+        Alamofire.request(url, method: .post, parameters: parameters).validate().responseString(completionHandler: {
+            response in
+            
+            switch response.result {
+                
+            case .success(let value):
+                print("\(value)")
+                
+            case .failure(let error):
+                print("Send Video Data: \(error)")
+            
+            }
+        })
     }
-    */
 
 }

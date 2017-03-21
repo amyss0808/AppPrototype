@@ -18,6 +18,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     // MARK: - Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var locationButton: UIButton!
     let manager = CLLocationManager()
     
     
@@ -32,6 +33,12 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         manager.startUpdatingLocation()
         
         loadTaskPin()
+        
+        // decorate locationButton
+        locationButton.layer.cornerRadius = 23
+        locationButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
+        locationButton.layer.shadowOpacity = 0.3
+        locationButton.imageEdgeInsets = UIEdgeInsetsMake(11,11,11,11)
     }
     
     
@@ -59,6 +66,8 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     // MARK: - Pin functions
     func loadTaskPin() {
+        print("loading pins")
+        
         var taskPinList = [TaskPointAnnotation]()
         let url = "http://140.119.19.33:8080/SoslabProjectServer/taskLocationList"
         

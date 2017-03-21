@@ -99,6 +99,15 @@
                                 <rect key="frame" x="0.0" y="-66" width="375" height="669"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ko-f7-1L5">
+                                <rect key="frame" x="313" y="467" width="46" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="locate"/>
+                                <connections>
+                                    <action selector="getUserLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="XTv-k2-2Uw"/>
+                                </connections>
+                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICR-Pb-UsZ">
                                 <rect key="frame" x="0.0" y="379" width="375" height="175"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -106,14 +115,6 @@
                                     <segue destination="cQ7-1j-kId" kind="embed" identifier="taskContainerSegue" id="DFY-Bb-XAa"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ko-f7-1L5">
-                                <rect key="frame" x="327" y="154" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="location"/>
-                                <connections>
-                                    <action selector="getUserLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="XTv-k2-2Uw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.4705343246" green="0.47061932090000003" blue="0.47052896020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -123,13 +124,14 @@
                     <navigationItem key="navigationItem" id="4DX-yN-CgF"/>
                     <connections>
                         <outlet property="containerView" destination="ICR-Pb-UsZ" id="JIj-S1-jTO"/>
+                        <outlet property="locationButton" destination="5Ko-f7-1L5" id="izK-0X-ktM"/>
                         <outlet property="mapView" destination="8K5-rn-Ssq" id="dVq-YI-X2v"/>
                         <segue destination="nO5-H8-neh" kind="show" identifier="showTaskDetail" id="y7U-MP-OrP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="368.36581709145429"/>
+            <point key="canvasLocation" x="1476" y="369"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="bqa-dJ-wLN">
@@ -807,246 +809,284 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ6-A8-D5K" userLabel="Section View">
-                                <rect key="frame" x="8" y="74" width="359" height="106"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2u-xz-km3" userLabel="Section Title View">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.25879135727882385" green="0.2588421106338501" blue="0.25878816843032837" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="天氣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-sO-LPj" userLabel="Section Title Label">
-                                        <rect key="frame" x="8" y="4" width="42" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" red="0.0067801186814904213" green="0.57886582612991333" blue="0.98579710721969604" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KO-W5-bce" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="53" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="晴天">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SingleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="4H8-Ug-Zbm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6M3-jQ-A1r" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="141" y="53" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="陰天">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SingleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="0rI-Oa-2Mi"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bJ-dm-DYa" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="226" y="53" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="雨天">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="SingleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="32R-Ie-mPp"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7me-x1-WGP" userLabel="Section View">
-                                <rect key="frame" x="8" y="188" width="359" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fyh-oF-H8o" userLabel="Section Title View">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-hE-9ha" userLabel="Section Title Label">
-                                        <rect key="frame" x="8" y="4" width="137" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" red="0.0067801186810000002" green="0.57886582610000004" blue="0.98579710720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UT4-pe-fRe" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="59" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719558716" green="0.66278749704360962" blue="0.66266411542892456" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="便利商店">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="cy3-s2-1dm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ2-fb-DiU" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="97" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="早餐店">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="PsJ-i5-aAW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-4w-ikG" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="141" y="59" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="超市">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="6Xr-3i-nYe"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCt-NW-ePb" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="141" y="97" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="餐廳">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="0lV-e9-AXh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-QA-VeI" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="226" y="97" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="加油站">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="aQv-gv-YSm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6m-Ja-S5z" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="226" y="59" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="醫院">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="Txw-Xg-IUt"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5To-sJ-00F" userLabel="Section View">
-                                <rect key="frame" x="8" y="350" width="359" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iKH-jP-YzP" userLabel="Section Title View">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="公家機關／設施" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOR-cX-hEP" userLabel="Section Title Label">
-                                        <rect key="frame" x="8" y="4" width="137" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" red="0.0067801186810000002" green="0.57886582610000004" blue="0.98579710720000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-5I-T7d" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="92" y="95" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="公園">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="3t1-uA-Efv"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXn-H4-b8t" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="177" y="95" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="學校">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="2lj-vE-Fb0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezH-CE-vAW" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="92" y="57" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="郵局">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="VPe-6k-yhw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-oG-tU7" customClass="MultipleChoiceButton" customModule="AppPrototype" customModuleProvider="target">
-                                        <rect key="frame" x="177" y="57" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66267138719999996" green="0.66278749699999995" blue="0.66266411540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="警察局">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="vEt-aj-rhb"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FPW-6n-K7N">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPW-6n-K7N">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.29304242130000002" green="0.407371223" blue="0.61487150189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem id="S3W-LV-Sqi">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="O3K-17-Imc">
+                                        <barButtonItem key="leftBarButtonItem" image="cancel" id="O3K-17-Imc">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <action selector="CancelEditing:" destination="1uj-kJ-p42" id="a8C-N0-2uC"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="OIb-xD-EBA">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="doneEditing:" destination="1uj-kJ-p42" id="UzU-Yn-SmC"/>
+                                                <action selector="cancelEditing:" destination="1uj-kJ-p42" id="fPU-MQ-00V"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6v8-IT-8H6">
+                                <rect key="frame" x="8" y="91" width="359" height="556"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ6-A8-D5K" userLabel="Section View">
+                                        <rect key="frame" x="8" y="78" width="343" height="92"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2u-xz-km3" userLabel="Section Title View">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.25879135727882385" green="0.2588421106338501" blue="0.25878816843032837" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="天氣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-sO-LPj" userLabel="Section Title Label">
+                                                <rect key="frame" x="8" y="4" width="42" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0KO-W5-bce" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="45" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="晴天">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="singleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="ZKV-HX-aur"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bJ-dm-DYa" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="175" y="45" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="雨天">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="singleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="fiF-BQ-KcR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sA-kE-d6t" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="258" y="45" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="颱風">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="singleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="qwY-Xt-nxn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6M3-jQ-A1r" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="91" y="45" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="陰天">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="singleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="Pfr-tJ-bMp"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5To-sJ-00F" userLabel="Section View">
+                                        <rect key="frame" x="8" y="319" width="343" height="91"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iKH-jP-YzP" userLabel="Section Title View">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="公家機關／設施" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOR-cX-hEP" userLabel="Section Title Label">
+                                                <rect key="frame" x="8" y="4" width="137" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXn-H4-b8t" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="174" y="44" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764705882354" green="0.40784313725490196" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="學校">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="0fi-Sw-ntK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezH-CE-vAW" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="44" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764705882354" green="0.40784313725490196" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="郵局">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="1Zr-CC-c79"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-oG-tU7" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="258" y="44" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764705882354" green="0.40784313725490196" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="警察局">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="pzb-xr-3Xc"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="go9-5I-T7d" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="91" y="44" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764705882354" green="0.40784313725490196" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="公園">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="TdK-u8-4eq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7me-x1-WGP" userLabel="Section View">
+                                        <rect key="frame" x="8" y="178" width="343" height="133"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fyh-oF-H8o" userLabel="Section Title View">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-hE-9ha" userLabel="Section Title Label">
+                                                <rect key="frame" x="8" y="4" width="137" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UT4-pe-fRe" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="48" y="46" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="便利商店">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="khb-k9-jUg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ2-fb-DiU" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="48" y="84" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="早餐店">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="Cy2-aj-8Xo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-4w-ikG" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="133" y="46" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="超市">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="jLt-Yt-U7H"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCt-NW-ePb" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="133" y="84" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="餐廳">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="ZZb-gK-upt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-QA-VeI" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="218" y="84" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="加油站">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="fK1-Jq-KKb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6m-Ja-S5z" customClass="VideoEditVCButton" customModule="AppPrototype" customModuleProvider="target">
+                                                <rect key="frame" x="218" y="46" width="77" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.40784313729999999" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="醫院">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="multipleChoiceBttnTapped:" destination="1uj-kJ-p42" eventType="touchUpInside" id="ECT-gs-d3N"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選取您在此任務遇到的物件" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmN-ps-Mrm">
+                                        <rect key="frame" x="8" y="21" width="343" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfL-XA-0zj">
+                                        <rect key="frame" x="121" y="453" width="116" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.29304242130000002" green="0.407371223" blue="0.61487150189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="完成">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="finishEditing:" destination="1uj-kJ-p42" eventType="touchUpInside" id="uSh-dl-eKu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35289931297302246" green="0.35296526551246643" blue="0.35289514064788818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.47053432464599609" green="0.4706193208694458" blue="0.47052896022796631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="cancelBarButton" destination="O3K-17-Imc" id="WHC-ws-y0t"/>
-                        <outlet property="doneBarButton" destination="OIb-xD-EBA" id="DKm-bz-4fk"/>
-                        <outletCollection property="weatherBttns" destination="0KO-W5-bce" id="eaJ-pV-5Qj"/>
-                        <outletCollection property="weatherBttns" destination="6M3-jQ-A1r" id="dwe-YW-RXs"/>
-                        <outletCollection property="weatherBttns" destination="8bJ-dm-DYa" id="YnY-ze-kL2"/>
-                        <outletCollection property="storeBttns" destination="UT4-pe-fRe" id="iM6-Jh-Ofa"/>
-                        <outletCollection property="storeBttns" destination="Dwv-4w-ikG" id="VbF-8W-bAK"/>
-                        <outletCollection property="storeBttns" destination="O6m-Ja-S5z" id="X4k-IG-GXh"/>
-                        <outletCollection property="storeBttns" destination="xJ2-fb-DiU" id="5bS-aS-rQK"/>
-                        <outletCollection property="storeBttns" destination="JCt-NW-ePb" id="t2k-lk-vdB"/>
-                        <outletCollection property="storeBttns" destination="LWq-QA-VeI" id="tkh-26-r9B"/>
-                        <outletCollection property="publicFacilityBttns" destination="ezH-CE-vAW" id="KXX-cu-BZy"/>
-                        <outletCollection property="publicFacilityBttns" destination="5Ub-oG-tU7" id="XLV-Rf-YCW"/>
-                        <outletCollection property="publicFacilityBttns" destination="go9-5I-T7d" id="Ytz-AD-SjK"/>
-                        <outletCollection property="publicFacilityBttns" destination="XXn-H4-b8t" id="MqP-ub-u1c"/>
+                        <outlet property="finishButton" destination="YfL-XA-0zj" id="XiT-1Y-f3M"/>
+                        <outletCollection property="publicFacilityBttns" destination="XXn-H4-b8t" collectionClass="NSMutableArray" id="Cyb-nB-52l"/>
+                        <outletCollection property="publicFacilityBttns" destination="ezH-CE-vAW" collectionClass="NSMutableArray" id="rMc-Z1-kMe"/>
+                        <outletCollection property="publicFacilityBttns" destination="go9-5I-T7d" collectionClass="NSMutableArray" id="RBX-25-pTx"/>
+                        <outletCollection property="publicFacilityBttns" destination="5Ub-oG-tU7" collectionClass="NSMutableArray" id="vTj-11-zir"/>
+                        <outletCollection property="storeBttns" destination="JCt-NW-ePb" collectionClass="NSMutableArray" id="8T8-G5-gHV"/>
+                        <outletCollection property="storeBttns" destination="xJ2-fb-DiU" collectionClass="NSMutableArray" id="kkQ-YE-FkU"/>
+                        <outletCollection property="storeBttns" destination="LWq-QA-VeI" collectionClass="NSMutableArray" id="r4j-7G-pYP"/>
+                        <outletCollection property="storeBttns" destination="Dwv-4w-ikG" collectionClass="NSMutableArray" id="qOd-MU-JJ4"/>
+                        <outletCollection property="storeBttns" destination="UT4-pe-fRe" collectionClass="NSMutableArray" id="qXi-fA-eqi"/>
+                        <outletCollection property="storeBttns" destination="O6m-Ja-S5z" collectionClass="NSMutableArray" id="LxX-ax-M7s"/>
+                        <outletCollection property="weatherBttns" destination="0KO-W5-bce" collectionClass="NSMutableArray" id="raP-af-2dT"/>
+                        <outletCollection property="weatherBttns" destination="8bJ-dm-DYa" collectionClass="NSMutableArray" id="hKZ-ci-Ie8"/>
+                        <outletCollection property="weatherBttns" destination="6M3-jQ-A1r" collectionClass="NSMutableArray" id="rK9-hn-e30"/>
+                        <outletCollection property="weatherBttns" destination="8sA-kE-d6t" collectionClass="NSMutableArray" id="Qpl-qK-4QX"/>
+                        <outletCollection property="sectionViews" destination="ZZ6-A8-D5K" collectionClass="NSMutableArray" id="YUH-gE-vUF"/>
+                        <outletCollection property="sectionViews" destination="5To-sJ-00F" collectionClass="NSMutableArray" id="ye2-Bn-ehf"/>
+                        <outletCollection property="sectionViews" destination="7me-x1-WGP" collectionClass="NSMutableArray" id="lpa-Lw-GFq"/>
+                        <outletCollection property="sectionTitleViews" destination="d2u-xz-km3" collectionClass="NSMutableArray" id="agi-yn-aCZ"/>
+                        <outletCollection property="sectionTitleViews" destination="iKH-jP-YzP" collectionClass="NSMutableArray" id="Soh-xZ-qhk"/>
+                        <outletCollection property="sectionTitleViews" destination="Fyh-oF-H8o" collectionClass="NSMutableArray" id="3BS-Kx-Cgj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyP-je-VYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1223,8 +1263,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="25" height="25"/>
         <image name="home" width="32" height="32"/>
         <image name="info" width="16" height="16"/>
+        <image name="locate" width="48" height="48"/>
         <image name="location" width="32" height="32"/>
         <image name="return" width="32" height="32"/>
         <image name="task" width="32" height="32"/>
