@@ -103,7 +103,7 @@
                                 <rect key="frame" x="313" y="467" width="46" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="locate"/>
+                                <state key="normal" image="location"/>
                                 <connections>
                                     <action selector="getUserLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="XTv-k2-2Uw"/>
                                 </connections>
@@ -512,32 +512,29 @@
                                                                 <color key="textColor" red="0.0" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTZ-eX-7d3">
-                                                                <rect key="frame" x="321" y="3" width="22" height="22"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="22" id="6vW-He-X7d"/>
-                                                                    <constraint firstAttribute="height" constant="22" id="qF7-h6-kny"/>
-                                                                </constraints>
-                                                                <state key="normal" image="return"/>
-                                                                <connections>
-                                                                    <action selector="mapButtonTapped:" destination="Ju3-Lj-l2p" eventType="touchUpInside" id="zkq-o1-UhF"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="Rat-VP-LvX" firstAttribute="top" secondItem="Qds-Lt-foo" secondAttribute="top" constant="4" id="Lhp-a2-PJe"/>
                                                             <constraint firstAttribute="height" constant="28" id="M7g-KT-bOY"/>
-                                                            <constraint firstAttribute="trailing" secondItem="FTZ-eX-7d3" secondAttribute="trailing" constant="16" id="UJl-in-MWk"/>
-                                                            <constraint firstAttribute="bottom" secondItem="FTZ-eX-7d3" secondAttribute="bottom" constant="3" id="df1-nl-Vii"/>
                                                             <constraint firstAttribute="trailing" secondItem="Rat-VP-LvX" secondAttribute="trailing" constant="8" id="e48-zd-00E"/>
-                                                            <constraint firstItem="FTZ-eX-7d3" firstAttribute="top" secondItem="Qds-Lt-foo" secondAttribute="top" constant="3" id="rlk-P8-UkX"/>
                                                             <constraint firstItem="Rat-VP-LvX" firstAttribute="leading" secondItem="Qds-Lt-foo" secondAttribute="leading" constant="12" id="tIe-Q4-RBW"/>
                                                         </constraints>
                                                     </view>
                                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ltw-eO-fgl">
                                                         <rect key="frame" x="0.0" y="28" width="359" height="172"/>
                                                     </mapView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONM-UN-smb">
+                                                        <rect key="frame" x="305" y="146" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="2jg-o3-y3y"/>
+                                                            <constraint firstAttribute="width" constant="36" id="hIl-E4-Zgr"/>
+                                                        </constraints>
+                                                        <state key="normal" image="pin"/>
+                                                        <connections>
+                                                            <action selector="mapButtonTapped:" destination="Ju3-Lj-l2p" eventType="touchUpInside" id="Dyb-97-LvL"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -547,7 +544,9 @@
                                                     <constraint firstItem="Ltw-eO-fgl" firstAttribute="top" secondItem="Qds-Lt-foo" secondAttribute="bottom" id="GmM-lm-JZ6"/>
                                                     <constraint firstAttribute="height" constant="200" id="NaV-gO-M7U"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ltw-eO-fgl" secondAttribute="trailing" id="Skx-kE-xRS"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ONM-UN-smb" secondAttribute="trailing" constant="18" id="WBk-Sh-0gw"/>
                                                     <constraint firstAttribute="bottom" secondItem="Ltw-eO-fgl" secondAttribute="bottom" id="fmf-cn-kpT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ONM-UN-smb" secondAttribute="bottom" constant="18" id="gEK-5U-WjI"/>
                                                     <constraint firstItem="Qds-Lt-foo" firstAttribute="leading" secondItem="kQu-g5-4cG" secondAttribute="leading" id="j0p-CR-uFf"/>
                                                 </constraints>
                                             </view>
@@ -717,7 +716,7 @@
                         <outlet property="imagesScrollView" destination="mXy-oc-bv7" id="FOG-aY-2il"/>
                         <outlet property="mainScrollView" destination="9cB-cR-48p" id="b8T-vB-8qz"/>
                         <outlet property="mainView" destination="SZq-dh-0e9" id="w99-03-3oH"/>
-                        <outlet property="mapButton" destination="FTZ-eX-7d3" id="hTV-r1-BFH"/>
+                        <outlet property="mapButton" destination="ONM-UN-smb" id="JsR-xN-dz6"/>
                         <outlet property="mapContainerView" destination="kQu-g5-4cG" id="wSP-uK-XX3"/>
                         <outlet property="mapTitleView" destination="Qds-Lt-foo" id="otW-3C-kge"/>
                         <outlet property="mapView" destination="Ltw-eO-fgl" id="eTQ-dN-TdB"/>
@@ -1281,9 +1280,8 @@
         <image name="cancel" width="25" height="25"/>
         <image name="home" width="32" height="32"/>
         <image name="info" width="16" height="16"/>
-        <image name="locate" width="48" height="48"/>
         <image name="location" width="32" height="32"/>
-        <image name="return" width="32" height="32"/>
+        <image name="pin" width="32" height="32"/>
         <image name="task" width="32" height="32"/>
         <image name="video" width="16" height="16"/>
     </resources>

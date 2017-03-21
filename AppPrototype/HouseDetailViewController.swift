@@ -113,6 +113,12 @@ class HouseDetailViewController: UIViewController {
         mapContainerView.layer.shadowOpacity = 0.2
         self.mapView.mapType = .standard
         
+        self.mapButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
+        self.mapButton.layer.cornerRadius = self.mapButton.layer.frame.width / 2
+        self.mapButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
+        self.mapButton.layer.shadowOpacity = 0.3
+        self.mapButton.imageEdgeInsets = UIEdgeInsetsMake(8,8,8,8)
+        
         surrondingView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         surrondingView.layer.masksToBounds = false
         surrondingView.layer.cornerRadius = 7.0

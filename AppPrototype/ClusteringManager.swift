@@ -128,8 +128,18 @@ public class ClusteringManager {
     
     public func display(annotations: [MKAnnotation], onMapView mapView:MKMapView){
 		let before = NSMutableSet(array: mapView.annotations)
-		before.remove(mapView.userLocation)
 
+        for annotation in mapView.annotations {
+            switch annotation {
+            case is MKUserLocation:
+                before.remove(annotation)
+            case is SearchAnnotation:
+                before.remove(annotation)
+            default:
+                continue
+            }
+        }
+        
 		let after = NSSet(array: annotations)
 
 		let toKeep = NSMutableSet(set: before)
