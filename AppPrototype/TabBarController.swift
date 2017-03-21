@@ -20,8 +20,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
-        print("hello: \(viewController)")
-        
         guard let selectedVC = viewController as? UINavigationController else {
             print("selectedVC cannot downcast to TaskViewController")
             return
@@ -36,7 +34,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 print("topVC cannot downcast to TaskViewController because selectedVC.top: \(selectedVC.topViewController)")
                 return
             }
-            
             topVC.loadTaskPin()
             
         default:
