@@ -11,7 +11,7 @@ import MapKit
 
 public class AnnotationClusterView : MKAnnotationView {
 
-	private var configuration: AnnotationClusterViewConfiguration
+	private var configuration: AnnotationViewConfiguration
 
 	public let countLabel: UILabel = {
 		let label = UILabel()
@@ -33,13 +33,13 @@ public class AnnotationClusterView : MKAnnotationView {
 	}
 
 	public override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-		self.configuration = AnnotationClusterViewConfiguration.default()
+		self.configuration = AnnotationViewConfiguration.default()
 		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
 		self.setupView()
 	}
 
     required public init?(coder aDecoder: NSCoder) {
-		self.configuration = AnnotationClusterViewConfiguration.default()
+		self.configuration = AnnotationViewConfiguration.default()
         super.init(coder: aDecoder)
 		self.setupView()
     }

@@ -1,5 +1,5 @@
 //
-//  AnnotationClusterTemplate.swift
+//  AnnotationTemplate.swift
 //  AnnotationClusteringSwift
 //
 //  Created by Antoine Lamy on 23/9/2016.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-public enum AnnotationClusterDisplayMode {
+public enum AnnotationDisplayMode {
 	case SolidColor(sideLength: CGFloat, color: UIColor)
 	case Image(imageName: String)
 }
 
-public struct AnnotationClusterTemplate {
+public struct AnnotationTemplate {
 
 	let range: Range<Int>?
-	let displayMode: AnnotationClusterDisplayMode
+	let displayMode: AnnotationDisplayMode
 
 	public var borderWidth: CGFloat = 0
 
@@ -31,7 +31,7 @@ public struct AnnotationClusterTemplate {
 		}
 	}
 
-	public init(range: Range<Int>?, displayMode: AnnotationClusterDisplayMode) {
+	public init(range: Range<Int>?, displayMode: AnnotationDisplayMode) {
 		self.range = range
 		self.displayMode = displayMode
 	}

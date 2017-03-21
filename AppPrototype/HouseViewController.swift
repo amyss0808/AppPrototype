@@ -24,6 +24,7 @@ class HouseViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     var annotationList = [Annotation]()
+    var searchAnnotation = SearchAnnotation()
     let clusteringManager = ClusteringManager()
     let locationManager = CLLocationManager()
     
@@ -37,7 +38,9 @@ class HouseViewController: UIViewController {
         
         mapView.delegate = self
         mapView.mapType = .standard
-        
+        mapView.showsUserLocation = true
+        mapView.userLocation.title = ""
+    
         loadPin()
         
         self.locationButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
@@ -70,8 +73,8 @@ class HouseViewController: UIViewController {
         resultSearchController?.searchBar.delegate = self
         
         containerView.isHidden = true
-        
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//        
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,6 +85,7 @@ class HouseViewController: UIViewController {
     //MARK: Private Functions
     private func loadPin() {
         Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/videoRoadList").responseJSON { response in
+           
             switch response.result {
             case .success(let value):
                 
@@ -101,6 +105,15 @@ class HouseViewController: UIViewController {
                 
                 DispatchQueue.main.async(execute: {
                     self.clusteringManager.add(annotations: self.annotationList)
+                    
+                    let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+                    let mapRectWidth = self.mapView.visibleMapRect.size.width
+                    let scale = mapBoundsWidth / mapRectWidth
+                    
+                    let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+                
+                    self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
+                
                 })
                 
             case .failure(let error):
@@ -192,19 +205,30 @@ extension HouseViewController : MKMapViewDelegate {
         view.layer.borderColor = UIColor.white.cgColor
         
         switch view.annotation {
+            
         case is Annotation:
+            
             containerView.isHidden = true
+            
         case is AnnotationCluster:
+            
             containerView.isHidden = true
+            
         default:
+            
             break
+        
         }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         var reuseId = ""
+        
         switch annotation {
+        
         case is AnnotationCluster:
+        
             reuseId = "Cluster"
             var clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             if clusterView == nil {
@@ -213,6 +237,7 @@ extension HouseViewController : MKMapViewDelegate {
                 clusterView?.annotation = annotation
             }
             return clusterView
+        
         case is Annotation:
             
             reuseId = "houseAnnotation"
@@ -224,14 +249,31 @@ extension HouseViewController : MKMapViewDelegate {
             }
             
             return annotationView
+        
+        case is SearchAnnotation:
+            
+            reuseId = "searchAnnotationView"
+            var searchAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            if searchAnnotationView == nil {
+                searchAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                searchAnnotationView?.image = UIImage(named: "pin")
+            } else {
+                searchAnnotationView?.annotation = annotation
+            }
+            
+            return searchAnnotationView
+            
         default:
+        
             return nil
+        
         }
         
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
+        print(self.mapView.annotations)
         DispatchQueue.global(qos: .userInitiated).async {
             let mapBoundsWidth = Double(self.mapView.bounds.size.width)
             let mapRectWidth = self.mapView.visibleMapRect.size.width
@@ -244,6 +286,7 @@ extension HouseViewController : MKMapViewDelegate {
                 self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
             }
         }
+    
     }
 }
 
@@ -257,17 +300,20 @@ extension HouseViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if status == .authorizedAlways {
+            
             locationManager.requestLocation()
         }
+   
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
-            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let span = MKCoordinateSpanMake(0.0025, 0.0025)
             let region = MKCoordinateRegionMake(location.coordinate, span)
             mapView.setRegion(region, animated: true)
         }
+    
         locationManager.stopUpdatingLocation()
     }
 }
@@ -277,18 +323,22 @@ extension HouseViewController : CLLocationManagerDelegate {
 extension HouseViewController: HandleMapSearch {
     
     func dropPinZoomIn(placemark: MKPlacemark){
-        
+
         // cache the pin
         selectedPin = placemark
         // clear existing pins
-        //        mapView.removeAnnotations(mapView.annotations)
-        let annotation = SearchPointAnnotation()
-        annotation.coordinate = placemark.coordinate
+        self.mapView.removeAnnotation(self.searchAnnotation)
         
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        mapView.setRegion(region, animated: true)
+        let searchAnnotation = SearchAnnotation()
+        searchAnnotation.coordinate = placemark.coordinate
+        self.searchAnnotation = searchAnnotation
+       
+        self.mapView.addAnnotation(searchAnnotation)
+        
+        let span = MKCoordinateSpanMake(0.025, 0.025)
+        let region = MKCoordinateRegionMake(searchAnnotation.coordinate, span)
+        self.mapView.setRegion(region, animated: true)
+        
     }
     
 }
