@@ -216,10 +216,13 @@
 		E1423DAC1E5C549A0034E5B8 /* AppPrototype */ = {
 			isa = PBXGroup;
 			children = (
+
 				C4C91E301E97E5E200137554 /* TableCellPrototype */,
 				C4C91E2F1E97E5A000137554 /* AnnotationCluster */,
 				C4C91E2E1E97E58300137554 /* Models */,
 				C4C91E2D1E97E54900137554 /* Annotations */,
+
+
 				E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */,
 				E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */,
 				E1CAA6511E60699200386DB0 /* HouseViewController.swift */,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wN8-MO-kBm">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wN8-MO-kBm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9T-fn-6e6">
@@ -79,9 +80,7 @@
         <scene sceneID="BNJ-Y9-QqD">
             <objects>
                 <navigationController storyboardIdentifier="TaskNavigationController" id="1Mh-gV-Sgv" userLabel="Task Navigation Controller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="任務" image="task" selectedImage="task" id="3Ck-gU-xZ0">
-                        <inset key="imageInsets" minX="2" minY="3" maxX="2" maxY="1"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="任務" image="task" id="3Ck-gU-xZ0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="37h-96-jqL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -194,9 +193,7 @@
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" customClass="TabBarController" customModule="AppPrototype" customModuleProvider="target" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -576,29 +573,29 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwz-yZ-RVF">
                                 <rect key="frame" x="8" y="291" width="359" height="107"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-l5-Bi9">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-l5-Bi9">
                                         <rect key="frame" x="8" y="8" width="343" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA4-HB-Hof">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="25"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="便利商店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVZ-zM-4sB">
-                                                <rect key="frame" x="88" y="0.0" width="79.5" height="25"/>
+                                                <rect key="frame" x="88" y="0.0" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超市" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCh-Ca-QUe">
-                                                <rect key="frame" x="175.5" y="0.0" width="80" height="25"/>
+                                                <rect key="frame" x="176" y="0.0" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="醫院" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-7A-WBP">
-                                                <rect key="frame" x="263.5" y="0.0" width="79.5" height="25"/>
+                                                <rect key="frame" x="264" y="0.0" width="79" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -801,19 +798,19 @@
                                                 <rect key="frame" x="0.0" y="356" width="375" height="140"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-DP-far">
-                                                        <rect key="frame" x="0.0" y="8" width="375" height="124"/>
-                                                        <color key="backgroundColor" red="0.36862745098039218" green="0.36862745098039218" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <rect key="frame" x="8" y="8" width="359" height="124"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
+                                                <color key="backgroundColor" red="0.36862745098039218" green="0.36862745098039218" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="KOa-DP-far" firstAttribute="leading" secondItem="2SH-0P-cp2" secondAttribute="leading" id="HzX-Mh-Gma"/>
+                                                    <constraint firstItem="KOa-DP-far" firstAttribute="leading" secondItem="2SH-0P-cp2" secondAttribute="leading" constant="8" id="5KV-vp-vYE"/>
                                                     <constraint firstAttribute="bottom" secondItem="KOa-DP-far" secondAttribute="bottom" constant="8" id="JwG-z1-b5I"/>
                                                     <constraint firstAttribute="height" constant="140" id="N9n-jQ-UfJ"/>
                                                     <constraint firstItem="KOa-DP-far" firstAttribute="top" secondItem="2SH-0P-cp2" secondAttribute="top" constant="8" id="RNo-lv-UsF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="KOa-DP-far" secondAttribute="trailing" id="jXN-6e-plT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KOa-DP-far" secondAttribute="trailing" constant="8" id="Zre-fh-Bb8"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qfw-7z-UR8">
@@ -1688,10 +1685,7 @@
         <scene sceneID="VAS-kw-AqQ">
             <objects>
                 <navigationController storyboardIdentifier="HouseNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="xJG-Y9-gg0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首頁" image="home" id="acW-dT-cKf">
-                        <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="首頁" image="home" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WkL-fA-Po2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1714,13 +1708,13 @@
     </scenes>
     <resources>
         <image name="cancel" width="25" height="25"/>
-        <image name="home" width="32" height="32"/>
+        <image name="home" width="25" height="25"/>
         <image name="info" width="16" height="16"/>
         <image name="location" width="32" height="32"/>
         <image name="pin" width="32" height="32"/>
         <image name="play" width="50" height="50"/>
         <image name="start record" width="64" height="64"/>
-        <image name="task" width="32" height="32"/>
+        <image name="task" width="25" height="25"/>
         <image name="video" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
