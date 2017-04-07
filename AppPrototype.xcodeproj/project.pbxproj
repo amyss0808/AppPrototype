@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		13C0ED889A940D10E119FE4B /* Pods_AppPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D46CBBD05E56590487755C /* Pods_AppPrototype.framework */; };
-		850D7D7E1E66D379007D9F78 /* TableSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D7D7D1E66D379007D9F78 /* TableSubView.swift */; };
 		C419AC941E83A45D0062B818 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */; };
 		C45121C51E70578600DF13AD /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45121C41E70578600DF13AD /* TaskDetailViewController.swift */; };
 		C46EDE471E6E6167003FBBB6 /* TaskPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */; };
 		C46EDE491E6EB02E003FBBB6 /* TaskContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */; };
 		C492D0701E78DA2B00F4F232 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D06F1E78DA2B00F4F232 /* TabBarController.swift */; };
 		C492D0721E7A6C5700F4F232 /* VideoEditVCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D0711E7A6C5700F4F232 /* VideoEditVCButton.swift */; };
+		C4C91E2C1E97CDE900137554 /* StartEndPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C91E2B1E97CDE900137554 /* StartEndPointAnnotation.swift */; };
 		C4F2DB871E842775002138AD /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F2DB861E842775002138AD /* VideoPlaybackViewController.swift */; };
 		C4F2DB891E842CD1002138AD /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F2DB881E842CD1002138AD /* PlayerView.swift */; };
 		C4F2DB8B1E87F7A1002138AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F2DB8A1E87F7A1002138AD /* Assets.xcassets */; };
@@ -62,13 +62,13 @@
 /* Begin PBXFileReference section */
 		0FAA4168324212D7AE946522 /* Pods-AppPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppPrototype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppPrototype/Pods-AppPrototype.debug.xcconfig"; sourceTree = "<group>"; };
 		6F0ECF85A7E4B57CD9E2556E /* Pods-AppPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppPrototype/Pods-AppPrototype.release.xcconfig"; sourceTree = "<group>"; };
-		850D7D7D1E66D379007D9F78 /* TableSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSubView.swift; sourceTree = "<group>"; };
 		C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
 		C45121C41E70578600DF13AD /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPointAnnotation.swift; sourceTree = "<group>"; };
 		C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskContainerViewController.swift; sourceTree = "<group>"; };
 		C492D06F1E78DA2B00F4F232 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C492D0711E7A6C5700F4F232 /* VideoEditVCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditVCButton.swift; sourceTree = "<group>"; };
+		C4C91E2B1E97CDE900137554 /* StartEndPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartEndPointAnnotation.swift; sourceTree = "<group>"; };
 		C4F2DB861E842775002138AD /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		C4F2DB881E842CD1002138AD /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		C4F2DB8A1E87F7A1002138AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +135,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C4C91E2D1E97E54900137554 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */,
+				E1733F961E601221007FAEAA /* SearchAnnotation.swift */,
+				C4C91E2B1E97CDE900137554 /* StartEndPointAnnotation.swift */,
+			);
+			name = Annotations;
+			sourceTree = "<group>";
+		};
+		C4C91E2E1E97E58300137554 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E1D03CF41E5C6CB2000FC684 /* House.swift */,
+				E1D03CF61E5C798F000FC684 /* Video.swift */,
+				C4FB83201E712FE6006C1CDA /* Task.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C4C91E2F1E97E5A000137554 /* AnnotationCluster */ = {
+			isa = PBXGroup;
+			children = (
+				E1CD51901E7AFD8300E73565 /* Annotation.swift */,
+				E1CD51A61E7AFDFB00E73565 /* AnnotationView.swift */,
+				E1CD51921E7AFD8F00E73565 /* AnnotationCluster.swift */,
+				E1CD51961E7AFDA600E73565 /* AnnotationClusterView.swift */,
+				E1CD51941E7AFD9D00E73565 /* AnnotationTemplate.swift */,
+				E1CD51981E7AFDB200E73565 /* AnnotationViewConfiguration.swift */,
+				E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */,
+				E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */,
+				E1CD519C1E7AFDC200E73565 /* ClusteringManager.swift */,
+				E1CD519D1E7AFDC200E73565 /* QuadTree.swift */,
+				E1CD519E1E7AFDC200E73565 /* QuadTreeNode.swift */,
+				E1CD519F1E7AFDC200E73565 /* ZoomLevel.swift */,
+			);
+			name = AnnotationCluster;
+			sourceTree = "<group>";
+		};
+		C4C91E301E97E5E200137554 /* TableCellPrototype */ = {
+			isa = PBXGroup;
+			children = (
+				E1D03CF01E5C690D000FC684 /* HouseTableViewCell.swift */,
+				E1D03CF21E5C6920000FC684 /* VideoTableViewCell.swift */,
+			);
+			name = TableCellPrototype;
+			sourceTree = "<group>";
+		};
 		D3732345667A0A0F77A0533A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,26 +216,10 @@
 		E1423DAC1E5C549A0034E5B8 /* AppPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				E1CD51901E7AFD8300E73565 /* Annotation.swift */,
-				E1CD51A61E7AFDFB00E73565 /* AnnotationView.swift */,
-				E1CD51921E7AFD8F00E73565 /* AnnotationCluster.swift */,
-				E1CD51961E7AFDA600E73565 /* AnnotationClusterView.swift */,
-				E1CD51941E7AFD9D00E73565 /* AnnotationTemplate.swift */,
-				E1CD51981E7AFDB200E73565 /* AnnotationViewConfiguration.swift */,
-				E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */,
-				E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */,
-				E1CD519C1E7AFDC200E73565 /* ClusteringManager.swift */,
-				E1CD519D1E7AFDC200E73565 /* QuadTree.swift */,
-				E1CD519E1E7AFDC200E73565 /* QuadTreeNode.swift */,
-				E1CD519F1E7AFDC200E73565 /* ZoomLevel.swift */,
-				E1D03CF41E5C6CB2000FC684 /* House.swift */,
-				E1D03CF61E5C798F000FC684 /* Video.swift */,
-				C4FB83201E712FE6006C1CDA /* Task.swift */,
-				C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */,
-				E1733F961E601221007FAEAA /* SearchAnnotation.swift */,
-				E1D03CF01E5C690D000FC684 /* HouseTableViewCell.swift */,
-				E1D03CF21E5C6920000FC684 /* VideoTableViewCell.swift */,
-				850D7D7D1E66D379007D9F78 /* TableSubView.swift */,
+				C4C91E301E97E5E200137554 /* TableCellPrototype */,
+				C4C91E2F1E97E5A000137554 /* AnnotationCluster */,
+				C4C91E2E1E97E58300137554 /* Models */,
+				C4C91E2D1E97E54900137554 /* Annotations */,
 				E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */,
 				E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */,
 				E1CAA6511E60699200386DB0 /* HouseViewController.swift */,
@@ -272,7 +304,7 @@
 				TargetAttributes = {
 					E1423DA91E5C549A0034E5B8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = SK34PM56LJ;
+						DevelopmentTeam = 4FAWUFZ5VL;
 						ProvisioningStyle = Automatic;
 					};
 					E1423DBF1E5C549A0034E5B8 = {
@@ -382,7 +414,7 @@
 				C45121C51E70578600DF13AD /* TaskDetailViewController.swift in Sources */,
 				C46EDE491E6EB02E003FBBB6 /* TaskContainerViewController.swift in Sources */,
 				E1CAA6521E60699200386DB0 /* HouseViewController.swift in Sources */,
-				850D7D7E1E66D379007D9F78 /* TableSubView.swift in Sources */,
+				C4C91E2C1E97CDE900137554 /* StartEndPointAnnotation.swift in Sources */,
 				E1423DB21E5C549A0034E5B8 /* TaskViewController.swift in Sources */,
 				E1423DAE1E5C549A0034E5B8 /* AppDelegate.swift in Sources */,
 				E1D03CF51E5C6CB2000FC684 /* House.swift in Sources */,
@@ -546,11 +578,11 @@
 			baseConfigurationReference = 0FAA4168324212D7AE946522 /* Pods-AppPrototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SK34PM56LJ;
+				DEVELOPMENT_TEAM = 4FAWUFZ5VL;
 				INFOPLIST_FILE = AppPrototype/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.soslab1.AppPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.AppPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -561,11 +593,11 @@
 			baseConfigurationReference = 6F0ECF85A7E4B57CD9E2556E /* Pods-AppPrototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SK34PM56LJ;
+				DEVELOPMENT_TEAM = 4FAWUFZ5VL;
 				INFOPLIST_FILE = AppPrototype/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.soslab1.AppPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.AppPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

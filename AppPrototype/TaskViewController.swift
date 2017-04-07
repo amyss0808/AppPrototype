@@ -65,7 +65,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "請輸入街道名或地標"
         navigationItem.titleView = resultSearchController?.searchBar
        
         
@@ -217,11 +217,26 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             if searchAnnotationView == nil {
                 searchAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 searchAnnotationView?.image = UIImage(named: "pin")
+                
             } else {
                 searchAnnotationView?.annotation = annotation
             }
             
             return searchAnnotationView
+            
+        case is TaskPointAnnotation:
+            reuseId = "taskPointAnnotationView"
+            var taskPointAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            
+            if taskPointAnnotationView == nil {
+                taskPointAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                taskPointAnnotationView?.image = UIImage(named: "taskpin")
+                
+            } else {
+                taskPointAnnotationView?.annotation = annotation
+            }
+            
+            return taskPointAnnotationView
             
         default:
             return nil

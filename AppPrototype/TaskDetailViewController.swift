@@ -82,8 +82,8 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     private func loadStartEndPins(of task: Task) {
-        let startPin = MKPointAnnotation()
-        let endPin = MKPointAnnotation()
+        let startPin = StartEndPointAnnotation(position: .start)
+        let endPin = StartEndPointAnnotation(position: .end)
         startPin.coordinate.latitude = task.taskStartPointLatitude
         startPin.coordinate.longitude = task.taskStartPointLongitude
         endPin.coordinate.latitude = task.taskEndPointLatitude
@@ -126,52 +126,48 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     
-    
-    // MARK: - Camera Functions
-    @IBAction func executeTask(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
-                imagePicker.sourceType = .camera
-                imagePicker.mediaTypes = [kUTTypeMovie as String]
-                imagePicker.cameraFlashMode = .off
-                imagePicker.allowsEditing = false
-                imagePicker.delegate = self
-                
-                
-                present(imagePicker, animated: true, completion: {
-                    
-                    // MARK: test - not finished
-                    self.motionManager.accelerometerUpdateInterval = 0.2
-                    self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { (accelerometerData, error) in
-                        guard let myACData = accelerometerData else {
-                            fatalError("accelerometerData : \(String(describing: accelerometerData))")
-                        }
-                        print("\(myACData.acceleration.x),\(myACData.acceleration.y),\(myACData.acceleration.z)")
-                    })
-                })
-            } else {
-                
-                // alert
-                let alertNoRearCamera = UIAlertController(title: "No Rear Camera! ", message: "There is no rear camera on this device.", preferredStyle: .alert)
-                alertNoRearCamera.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                    print("There is no rear camera")
-                }))
-                
-                self.present(alertNoRearCamera, animated: true, completion: nil)
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var reuseId = ""
+        
+        switch annotation {
+        case is StartEndPointAnnotation:
+            guard let startEndPointAnnotation = annotation as? StartEndPointAnnotation else {
+                fatalError("Unexpected annotation class: \(annotation)")
             }
-        } else {
             
-            // alert
-            let alertNoCamera = UIAlertController(title: "No Camera! ", message: "There is no camera on this device.", preferredStyle: .alert)
-            alertNoCamera.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
-                print("There is no camera on this device")
-            }))
+            if startEndPointAnnotation.position == .start {
+                reuseId = "startPointAnnotation"
+                let startPointAnnotationView = self.setImage(for: startEndPointAnnotation, reuseId, with: "start pin")
+                
+                return startPointAnnotationView
+                
+            } else {
+                reuseId = "endPointAnnotation"
+                let endPointAnnotationView = self.setImage(for: startEndPointAnnotation, reuseId, with: "start pin")
+                
+                return endPointAnnotationView
+            }
             
-            self.present(alertNoCamera, animated: true, completion: nil)
+            
+        default:
+            return nil
         }
     }
+
     
-    
+    private func setImage(for annotation: MKAnnotation, _ reuseId: String, with imageName: String) -> MKAnnotationView? {
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            annotationView?.image = UIImage(named: imageName)
+            
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
+    }
     
     
     // MARK: - Navigation
