@@ -15,15 +15,24 @@ import os.log
 
 class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    // MARK: - Properties
+    // MARK: - Map Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     let manager = CLLocationManager()
     
     
+    
+    // MARK: - Search Properties
+    var resultSearchController: UISearchController? = nil
+    var searchAnnotation = SearchAnnotation()
+    
+    
+    // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.prepareSearch()
+        
         mapView.delegate = self
         containerView.isHidden = true
         
@@ -39,7 +48,36 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         locationButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
         locationButton.layer.shadowOpacity = 0.3
         locationButton.imageEdgeInsets = UIEdgeInsetsMake(11,11,11,11)
+        
+        // disable userlocation pin view
+        mapView.userLocation.title = ""
+        
     }
+    
+    
+    
+    // MARK: - Search Functions
+    private func prepareSearch() {
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        locationSearchTable.mapView = mapView
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+       
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        locationSearchTable.handleMapSearchDelegate = self
+        resultSearchController?.searchBar.delegate = self
+    }
+
+    
     
     
     
@@ -163,5 +201,74 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         containerView.isHidden = true
+    }
+    
+    
+    // called when add annotation
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        var reuseId = ""
+        
+        switch annotation {
+            
+        case is SearchAnnotation:
+            reuseId = "searchAnnotationView"
+            var searchAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            if searchAnnotationView == nil {
+                searchAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                searchAnnotationView?.image = UIImage(named: "pin")
+            } else {
+                searchAnnotationView?.annotation = annotation
+            }
+            
+            return searchAnnotationView
+            
+        default:
+            return nil
+        }
+    }
+}
+
+
+
+
+
+
+// MARK: - HandleMapSearch Protocal Implement
+extension TaskViewController: HandleMapSearch {
+    
+    func dropPinZoomIn(placemark: MKPlacemark){
+        
+        // clear existing pins
+        self.mapView.removeAnnotation(self.searchAnnotation)
+        
+        let searchAnnotation = SearchAnnotation()
+        searchAnnotation.coordinate = placemark.coordinate
+        self.searchAnnotation = searchAnnotation
+        
+        self.mapView.addAnnotation(searchAnnotation)
+        
+        let span = MKCoordinateSpanMake(0.025, 0.025)
+        let region = MKCoordinateRegionMake(searchAnnotation.coordinate, span)
+        self.mapView.setRegion(region, animated: true)
+        
+    }
+}
+
+
+
+
+// MARK: - UISearchBarDelegate Implement
+extension TaskViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let result = resultSearchController?.searchResultsController as? LocationSearchTable else{
+            fatalError("Unexpected search result controller \(String(describing: resultSearchController?.searchResultsController))")
+        }
+        let matchItems = result.matchingItems
+        
+        self.dropPinZoomIn(placemark: matchItems[0].placemark)
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
