@@ -18,12 +18,18 @@ class TaskContainerViewController: UIViewController {
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskDuration: UILabel!
     @IBOutlet weak var taskDistance: UILabel!
-    var task: Task? = nil
+    var task: Task?
+    
+    
+    // MARK: - View Outlets
+    @IBOutlet weak var taskDetailView: UIView!
     
     
     
+    // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.taskDetailView.layer.cornerRadius = 6
     }
     
     

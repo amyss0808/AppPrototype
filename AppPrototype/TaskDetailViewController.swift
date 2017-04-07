@@ -14,7 +14,7 @@ import os.log
 import CoreMotion
 
 
-class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,MKMapViewDelegate {
+class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate {
 
     // MARK: - Camera Properties
     let imagePicker = UIImagePickerController()
@@ -30,9 +30,15 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     var task: Task? = nil
     
     
+    // MARK: - View Outlets
+    @IBOutlet weak var taskDetailView: UIView!
     
+    
+    
+    // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.taskDetailView.layer.cornerRadius = 6
         
         mapView.delegate = self
         
@@ -130,7 +136,8 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
                 imagePicker.cameraFlashMode = .off
                 imagePicker.allowsEditing = false
                 imagePicker.delegate = self
-            
+                
+                
                 present(imagePicker, animated: true, completion: {
                     
                     // MARK: test - not finished
@@ -166,25 +173,20 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: {
-            self.motionManager.stopAccelerometerUpdates()
-            print("dismiss------------")
-        })
-    }
     
-    
-    // called when the user accepts a newly-captured movie
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.motionManager.stopAccelerometerUpdates()
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         
-        // dismiss imagepicker & present videoEdit view controller
-        let videoEditor = self.storyboard?.instantiateViewController(withIdentifier: "videoEditor") as! VideoEditViewController
-        
-        self.dismiss(animated: true, completion: nil)
-        self.present(videoEditor, animated: true, completion: {
-            videoEditor.videoFilePath = ((info[UIImagePickerControllerMediaURL] as? NSURL)?.path)!
-            videoEditor.taskId = self.task?.taskId
-        })
+        switch (segue.identifier ?? "") {
+        case "videoCapture":
+            guard let videoCaptureVC = segue.destination as? VideoCaptureViewController else {
+                fatalError("The destination view controller: \(segue.destination) of this segue is not VideoCaptureViewController")
+            }
+            videoCaptureVC.taskId = self.task?.taskId
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
     }
 }

@@ -14,9 +14,9 @@ class VideoEditVCButton: UIButton {
     var isChoosed: Bool = false {
         didSet {
             if isChoosed == true {
-                self.backgroundColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
-            } else {
                 self.backgroundColor = UIColor(red: 75/255, green: 104/255, blue: 157/255, alpha: 1)
+            } else {
+                self.backgroundColor = UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1)
             }
         }
     }
