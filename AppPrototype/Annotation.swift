@@ -10,13 +10,13 @@ import UIKit
 import CoreLocation
 import MapKit
 
-open class Annotation: NSObject {
+class Annotation: NSObject {
     
-    open var coordinate = CLLocationCoordinate2D()
-    open var title: String?
-    open var id: Int = 0
-    open var address = ""
-    open var numberOfElement = 1
+    var coordinate = CLLocationCoordinate2D()
+    var title: String?
+    var id: Int = 0
+    var address = ""
+    var numberOfElement = 1
 }
 
 extension Annotation : MKAnnotation { }

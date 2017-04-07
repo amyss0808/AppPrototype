@@ -24,7 +24,7 @@ public struct AnnotationViewConfiguration {
 		extraSmallTemplate.fontSize = 13
 
         var smallTemplate = AnnotationTemplate(range: Range(uncheckedBounds: (lower: 16, upper: 51)), sideLength: 43)
-        smallTemplate.borderWidth = 3
+        smallTemplate.borderWidth = 3.5
         smallTemplate.fontSize = 13
         
 		var mediumTemplate = AnnotationTemplate(range: Range(uncheckedBounds: (lower: 51, upper: 101)), sideLength: 48)
@@ -32,11 +32,11 @@ public struct AnnotationViewConfiguration {
 		mediumTemplate.fontSize = 14
 
 		var largeTemplate = AnnotationTemplate(range: Range(uncheckedBounds: (lower: 101, upper: 301)), sideLength: 53)
-		largeTemplate.borderWidth = 5
+		largeTemplate.borderWidth = 4.5
 		largeTemplate.fontSize = 14
         
         var extraLargeTemplate = AnnotationTemplate(range: nil, sideLength: 58)
-        extraLargeTemplate.borderWidth = 3
+        extraLargeTemplate.borderWidth = 5
         extraLargeTemplate.fontSize = 15
 
 		return AnnotationViewConfiguration(templates: [extraSmallTemplate, smallTemplate, mediumTemplate, largeTemplate], defaultTemplate: extraLargeTemplate)

@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import MapKit
 
+//MARK: - HouseDetailViewController Class
 class HouseDetailViewController: UIViewController {
     
     // MARK: Properties
@@ -62,64 +63,57 @@ class HouseDetailViewController: UIViewController {
     
     @IBOutlet weak var urlButton: UIButton!
     
+    var imagesURLArray : [String] = [] {
+        didSet {
+            loadImages()
+        }
+    }
+    var houseLocation : CLLocationCoordinate2D = CLLocationCoordinate2D() {
+        didSet {
+            loadHouseLocation()
+        }
+    }
+    var imagesDataArray : [Data] = []
+    var houseUrl: String = ""
+    
     var houseIndex :Int = 0 {
         didSet{
             loadHouseDetail()
         }
     }
-    private var imagesURLArray : [String] = [] {
-        didSet {
-            loadImages()
-        }
-    }
-    private var houseLocation : CLLocationCoordinate2D = CLLocationCoordinate2D() {
-        didSet {
-            loadHouseLocation()
-        }
-    }
-    private var imagesDataArray : [Data] = []
-    private var houseUrl: String = ""
     
     //MARK: Default Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.mapView.delegate = self
-        
-        houseDescriptionView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
 
-        squareView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         squareView.layer.masksToBounds = false
         squareView.layer.cornerRadius = 7.0
         squareView.layer.shadowOffset = CGSize(width: -1, height: 1)
         squareView.layer.shadowOpacity = 0.2
         
-        detailView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         detailView.layer.masksToBounds = false
         detailView.layer.cornerRadius = 7.0
         detailView.layer.shadowOffset = CGSize(width: -1, height: 1)
         detailView.layer.shadowOpacity = 0.2
         
-        communityView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         communityView.layer.masksToBounds = false
         communityView.layer.cornerRadius = 7.0
         communityView.layer.shadowOffset = CGSize(width: -1, height: 1)
         communityView.layer.shadowOpacity = 0.2
         
-        mapContainerView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         mapContainerView.layer.masksToBounds = false
         mapContainerView.layer.cornerRadius = 7.0
         mapContainerView.layer.shadowOffset = CGSize(width: -1, height: 1)
         mapContainerView.layer.shadowOpacity = 0.2
         self.mapView.mapType = .standard
         
-        self.mapButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
         self.mapButton.layer.cornerRadius = self.mapButton.layer.frame.width / 2
         self.mapButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
         self.mapButton.layer.shadowOpacity = 0.3
         self.mapButton.imageEdgeInsets = UIEdgeInsetsMake(8,8,8,8)
         
-        surrondingView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
         surrondingView.layer.masksToBounds = false
         surrondingView.layer.cornerRadius = 7.0
         surrondingView.layer.shadowOffset = CGSize(width: -1, height: 1)
@@ -134,9 +128,31 @@ class HouseDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    
+//     MARK: IBAction
+    @IBAction func mapButtonTapped(_ sender: Any) {
+        self.loadHouseLocation()
+    }
+    
+    @IBAction func urlButtonTapped(_ sender: UIButton) {
+    
+        if !houseUrl.isEmpty {
+            UIApplication.shared.open(URL(string: houseUrl)!)
+        } else {
+            loadHouseDetail()
+        }
+    
+    }
 
-    //MARK: Private Functions
+}
+
+
+//MARK: - Load Data from Server
+extension HouseDetailViewController {
+    
     func loadHouseDetail() {
+        
         var detailArray :[(key: String, value: String)] = []
         var communityArray :[(key: String, value: String)] = []
         var surrondingArray :[(key: String, value: String)] = []
@@ -210,43 +226,43 @@ class HouseDetailViewController: UIViewController {
                 let longitude = location[1].floatValue
                 
                 
-                    DispatchQueue.main.async(execute: {
-                        
-                        self.houseTitleLabel.text = title
-                        self.housePriceLabel.text = price
-                        self.houseAddressLabel.text = address
-                        
-                        self.houseDescriptionLabel.text = description
-                        self.houseDescriptionLabel.sizeToFit()
-                        self.houseDescriptionViewConstraint.constant = CGFloat(36) + self.houseDescriptionLabel.frame.height
-                        
-                        self.changeSquareUI(squareArray: squareArray)
-                        
-                        self.changeDetailUI(detailArray: detailArray)
-                        
-                        if communityArray.isEmpty {
-                            self.communityViewHeightConstraint.constant = 0
-                            self.communityTitleLabelHeightConstraint.constant = 0
-                            self.communityTitleViewHeightConstraint.constant = 0
-                            self.verticalSpaceBetweenMapCommunity.constant = 0
-                        } else {
-                            self.changeCommunityUI(communityArray: communityArray)
-                        }
-                        
-                        self.houseLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-                        
-                        if surrondingArray.isEmpty {
-                            self.surrondingViewHeightConstraint.constant = 0
-                            self.surrondingTitleViewHeight.constant = 0
-                            self.surrondingTitleLabelHeight.constant = 0
-                            self.verticalSpaceBetweenCommunitySurronding.constant = 0
-                        } else {
-                            self.changeSurrondingUI(surrondingArray: surrondingArray)
-                        }
-                        
-                        self.houseUrl = url
-                    })
-
+                DispatchQueue.main.async(execute: {
+                    
+                    self.houseTitleLabel.text = title
+                    self.housePriceLabel.text = price
+                    self.houseAddressLabel.text = address
+                    
+                    self.houseDescriptionLabel.text = description
+                    self.houseDescriptionLabel.sizeToFit()
+                    self.houseDescriptionViewConstraint.constant = CGFloat(36) + self.houseDescriptionLabel.frame.height
+                    
+                    self.changeSquareUI(squareArray: squareArray)
+                    
+                    self.changeDetailUI(detailArray: detailArray)
+                    
+                    if communityArray.isEmpty {
+                        self.communityViewHeightConstraint.constant = 0
+                        self.communityTitleLabelHeightConstraint.constant = 0
+                        self.communityTitleViewHeightConstraint.constant = 0
+                        self.verticalSpaceBetweenMapCommunity.constant = 0
+                    } else {
+                        self.changeCommunityUI(communityArray: communityArray)
+                    }
+                    
+                    self.houseLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+                    
+                    if surrondingArray.isEmpty {
+                        self.surrondingViewHeightConstraint.constant = 0
+                        self.surrondingTitleViewHeight.constant = 0
+                        self.surrondingTitleLabelHeight.constant = 0
+                        self.verticalSpaceBetweenCommunitySurronding.constant = 0
+                    } else {
+                        self.changeSurrondingUI(surrondingArray: surrondingArray)
+                    }
+                    
+                    self.houseUrl = url
+                })
+                
             case .failure(let error):
                 print(error)
             }
@@ -295,6 +311,11 @@ class HouseDetailViewController: UIViewController {
         houseAnnotation.coordinate = self.houseLocation
         mapView.addAnnotation(houseAnnotation)
     }
+}
+
+
+//MARK: - Change UI
+extension HouseDetailViewController {
     
     func changeImagesUI() {
         DispatchQueue.main.async(execute: {
@@ -312,45 +333,45 @@ class HouseDetailViewController: UIViewController {
         
         for communityTuple in communityArray {
             switch communityTuple.key {
-                case "社區名稱":
-                    let yPosition = self.communityTitleView.frame.height + CGFloat(8)
-                    
-                    let keyLabel = UILabel()
-                    keyLabel.text = communityTuple.key
-                    keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
-                    keyLabel.sizeToFit()
-                    keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
-                    keyLabel.textAlignment = .left
-                    self.communityView.addSubview(keyLabel)
-                    
-                    let valueLabel = UILabel()
-                    valueLabel.text = communityTuple.value
-                    valueLabel.textColor = .white
-                    valueLabel.sizeToFit()
-                    let xPositionOfValue = self.communityView.frame.width - 12 - valueLabel.frame.width
-                    valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
-                    self.communityView.addSubview(valueLabel)
+            case "社區名稱":
+                let yPosition = self.communityTitleView.frame.height + CGFloat(8)
                 
-                case "社區介紹":
-                    let keyLabel = UILabel()
-                    keyLabel.text = communityTuple.key
-                    keyLabel.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
-                    keyLabel.sizeToFit()
-                    keyLabel.frame = CGRect(x: 12, y: self.communityTitleView.frame.height + CGFloat(16) + CGFloat(20), width: keyLabel.frame.width, height: keyLabel.frame.height)
-                    keyLabel.textAlignment = .left
-                    self.communityView.addSubview(keyLabel)
+                let keyLabel = UILabel()
+                keyLabel.text = communityTuple.key
+                keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
+                keyLabel.sizeToFit()
+                keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
+                keyLabel.textAlignment = .left
+                self.communityView.addSubview(keyLabel)
                 
-                    self.communityDescriptionLabel.text = communityTuple.value
-                    self.communityDescriptionLabel.sizeToFit()
+                let valueLabel = UILabel()
+                valueLabel.text = communityTuple.value
+                valueLabel.textColor = .white
+                valueLabel.sizeToFit()
+                let xPositionOfValue = self.communityView.frame.width - 12 - valueLabel.frame.width
+                valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
+                self.communityView.addSubview(valueLabel)
+                
+            case "社區介紹":
+                let keyLabel = UILabel()
+                keyLabel.text = communityTuple.key
+                keyLabel.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1)
+                keyLabel.sizeToFit()
+                keyLabel.frame = CGRect(x: 12, y: self.communityTitleView.frame.height + CGFloat(16) + CGFloat(20), width: keyLabel.frame.width, height: keyLabel.frame.height)
+                keyLabel.textAlignment = .left
+                self.communityView.addSubview(keyLabel)
+                
+                self.communityDescriptionLabel.text = communityTuple.value
+                self.communityDescriptionLabel.sizeToFit()
             default:
-                    break
+                break
             }
         }
         self.communityViewHeightConstraint.constant = CGFloat(100) + self.communityDescriptionLabel.frame.height
     }
     
     func changeSurrondingUI(surrondingArray :[(key: String, value: String)]) {
-       
+        
         for (index, surronding) in surrondingArray.enumerated() {
             
             let yPosition = self.surrondingTitleView.frame.height + CGFloat((index + 1) * 8) + CGFloat(index * 20)
@@ -442,24 +463,8 @@ class HouseDetailViewController: UIViewController {
             self.squareView.addSubview(valueLabel)
         }
         self.squareViewHeightConstraint.constant = self.squareTitleView.frame.height + CGFloat(squareArray.count * 28 + 8)
-
+        
     }
-    
-//     MARK: IBAction
-    @IBAction func mapButtonTapped(_ sender: Any) {
-        self.loadHouseLocation()
-    }
-    
-    @IBAction func urlButtonTapped(_ sender: UIButton) {
-    
-        if !houseUrl.isEmpty {
-            UIApplication.shared.open(URL(string: houseUrl)!)
-        } else {
-            loadHouseDetail()
-        }
-    
-    }
-
 }
 
 extension HouseDetailViewController : MKMapViewDelegate {

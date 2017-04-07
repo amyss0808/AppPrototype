@@ -87,12 +87,12 @@ class TaskContainerViewController: UIViewController {
                 fatalError("The destination view controller: \(segue.destination) of this segue is not TaskDetailViewController")
             }
             guard let mytask = self.task else {
-                fatalError("In prepare for segue: self.task is \(self.task)")
+                fatalError("In prepare for segue: self.task is \(String(describing: self.task))")
             }
             taskDetailVC.task = mytask
             
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
     }
 }

@@ -12,13 +12,20 @@ class Video {
     
     //MARK: - Properties
     var videoId: Int
+    var imageData: Data?
     var videoTitle: String
     var videoTime: String
+    var videoWeather: String
+    var videoElements: [String]
     
     //MARK: - Initialization
-    init(videoId: Int, videoTitle: String, videoTime: String) {
+    init(videoId: Int, imageData: Data?, videoTitle: String, videoTime: String, videoWeather: String, videoElements: [String]) {
+        
         self.videoId = videoId
-        self.videoTime = videoTime
+        self.imageData = imageData
         self.videoTitle = videoTitle
+        self.videoTime = videoTime
+        self.videoWeather = videoWeather
+        self.videoElements = videoElements
     }
 }
