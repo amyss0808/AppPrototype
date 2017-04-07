@@ -14,10 +14,21 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var videoTime: UILabel!
     @IBOutlet weak var videoTitle: UILabel!
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var roundedView: UIView!
+    
+    @IBOutlet var elementLabels: [UILabel]!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        roundedView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
+        roundedView.layer.masksToBounds = false
+        roundedView.layer.cornerRadius = 7.0
+        roundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        roundedView.layer.shadowOpacity = 0.2
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
