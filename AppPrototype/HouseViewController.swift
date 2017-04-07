@@ -24,14 +24,14 @@ class HouseViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     var annotationList = [Annotation]()
-    var searchAnnotation = SearchAnnotation()
     let clusteringManager = ClusteringManager()
+    
     let locationManager = CLLocationManager()
     
     // for search
     var resultSearchController: UISearchController? = nil
-    var selectedPin: MKPlacemark? = nil
-    
+    var searchAnnotation: SearchAnnotation? = nil
+
     //MARK: Default Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class HouseViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.userLocation.title = ""
     
-        loadPin()
+        self.loadPin()
         
         self.locationButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
         self.locationButton.layer.cornerRadius = 23
@@ -61,9 +61,8 @@ class HouseViewController: UIViewController {
         
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "請輸入街道名或地標"
         navigationItem.titleView = resultSearchController?.searchBar
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Test", style: .done, target: nil, action: nil)
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
@@ -73,8 +72,8 @@ class HouseViewController: UIViewController {
         resultSearchController?.searchBar.delegate = self
         
         containerView.isHidden = true
-//        
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,10 +81,20 @@ class HouseViewController: UIViewController {
     }
     
     
+    //MARK: IBAction
+    @IBAction func getUserLocation(_ sender: UIButton) {
+        locationManager.startUpdatingLocation()
+    }
+    
+}
+
+// MARK: - Load Data from Server
+extension HouseViewController {
+    
     //MARK: Private Functions
-    private func loadPin() {
+    func loadPin() {
         Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/videoRoadList").responseJSON { response in
-           
+            
             switch response.result {
             case .success(let value):
                 
@@ -111,9 +120,9 @@ class HouseViewController: UIViewController {
                     let scale = mapBoundsWidth / mapRectWidth
                     
                     let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
-                
+                    
                     self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
-                
+                    
                 })
                 
             case .failure(let error):
@@ -122,14 +131,7 @@ class HouseViewController: UIViewController {
             }
         }
     }
-    
-    //MARK: IBAction
-    @IBAction func getUserLocation(_ sender: UIButton) {
-        locationManager.startUpdatingLocation()
-    }
-    
 }
-
 
 //MARK: - MKMapViewDelegate Implement
 extension HouseViewController : MKMapViewDelegate {
@@ -143,33 +145,30 @@ extension HouseViewController : MKMapViewDelegate {
         case is Annotation:
             
             containerView.isHidden = false
-            guard let selectedAnnotationView = view as? AnnotationView else {
-                fatalError("the selected annotationVies is not the AnnotationClusterView type")
-            }
+            
             guard let selectedAnnotation = view.annotation as? Annotation else {
                 fatalError("the selected annotation is not Annotaion type")
             }
             
-            let selectedAddress: [String] = [selectedAnnotation.address]
-            
+            guard let selectedAnnotationView = view as? AnnotationView else {
+                fatalError("the selected annotationVies is not the AnnotationClusterView type")
+            }
             guard let countLabelText = selectedAnnotationView.countLabel.text else {
                 fatalError("the countLabelText is empty")
             }
             guard let numberOfHouse = Int(countLabelText) else {
                 fatalError("the countLabelText counld't convert into Integer")
             }
+            
             if let controller = self.childViewControllers[0] as? HouseContainerViewController {
-                controller.selectedAddress = selectedAddress
+                controller.selectedAddress = [selectedAnnotation.address]
                 controller.numberOfHouse = numberOfHouse
             }
-            print("\(selectedAddress) The address has been passed to HouseContainerViewController")
         
         case is AnnotationCluster:
             
             containerView.isHidden = false
-            guard let selectedAnnotationClusterView = view as? AnnotationClusterView else {
-                fatalError("the selected annotationVies is not the AnnotationClusterView type")
-            }
+
             guard let selectedAnnotationCluster = view.annotation as? AnnotationCluster else {
                 fatalError("the selected annotation is not AnnotaionCluster type")
             }
@@ -182,7 +181,10 @@ extension HouseViewController : MKMapViewDelegate {
                     fatalError("annotation in annotation cluster is not annotation type")
                 }
             }
-            
+
+            guard let selectedAnnotationClusterView = view as? AnnotationClusterView else {
+                fatalError("the selected annotationVies is not the AnnotationClusterView type")
+            }
             guard let countLabelText = selectedAnnotationClusterView.countLabel.text else {
                 fatalError("the countLabelText is empty")
             }
@@ -247,7 +249,6 @@ extension HouseViewController : MKMapViewDelegate {
             } else {
                 annotationView?.annotation = annotation
             }
-            
             return annotationView
         
         case is SearchAnnotation:
@@ -260,7 +261,6 @@ extension HouseViewController : MKMapViewDelegate {
             } else {
                 searchAnnotationView?.annotation = annotation
             }
-            
             return searchAnnotationView
             
         default:
@@ -272,8 +272,7 @@ extension HouseViewController : MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
-        print(self.mapView.annotations)
+
         DispatchQueue.global(qos: .userInitiated).async {
             let mapBoundsWidth = Double(self.mapView.bounds.size.width)
             let mapRectWidth = self.mapView.visibleMapRect.size.width
@@ -293,17 +292,16 @@ extension HouseViewController : MKMapViewDelegate {
 
 //MARK: - CLLocaitonManagerDelegate Implement
 extension HouseViewController : CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
+    
         if status == .authorizedAlways {
-            
             locationManager.requestLocation()
         }
-   
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -313,7 +311,6 @@ extension HouseViewController : CLLocationManagerDelegate {
             let region = MKCoordinateRegionMake(location.coordinate, span)
             mapView.setRegion(region, animated: true)
         }
-    
         locationManager.stopUpdatingLocation()
     }
 }
@@ -323,11 +320,11 @@ extension HouseViewController : CLLocationManagerDelegate {
 extension HouseViewController: HandleMapSearch {
     
     func dropPinZoomIn(placemark: MKPlacemark){
-
-        // cache the pin
-        selectedPin = placemark
+        
         // clear existing pins
-        self.mapView.removeAnnotation(self.searchAnnotation)
+        if let searchAnnotation = self.searchAnnotation {
+            self.mapView.removeAnnotation(searchAnnotation)
+        }
         
         let searchAnnotation = SearchAnnotation()
         searchAnnotation.coordinate = placemark.coordinate
@@ -349,12 +346,12 @@ extension HouseViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let result = resultSearchController?.searchResultsController as? LocationSearchTable else{
-            fatalError("Unexpected search result controller \(resultSearchController?.searchResultsController)")
+            fatalError("Unexpected search result controller \(String(describing: resultSearchController?.searchResultsController))")
         }
         let matchItems = result.matchingItems
         
         self.dropPinZoomIn(placemark: matchItems[0].placemark)
         
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
