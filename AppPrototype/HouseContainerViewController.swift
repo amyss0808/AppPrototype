@@ -35,11 +35,12 @@ class HouseContainerViewController: UIViewController {
             }
         }
     }
-    var houseList = [House]()
-    var videoList = [Video]()
     var numberOfHouse: Int = 0
-    var numberOfVideo: Int = 0
-    var numberOfImageFinishedDownload: Int = 0
+    
+    fileprivate var houseList = [House]()
+    fileprivate var videoList = [Video]()
+    fileprivate var numberOfVideo: Int = 0
+    fileprivate var numberOfImageFinishedDownload: Int = 0
     
     // MARK: Default Functions
     override func viewDidLoad() {
@@ -109,7 +110,6 @@ class HouseContainerViewController: UIViewController {
     
     //MARK: Private Function
     func convertVideoTime(toChinese videoTime: String) -> String {
-        
         switch videoTime {
         case "morning":
             return "早上"
@@ -125,6 +125,7 @@ class HouseContainerViewController: UIViewController {
     }
     
 }
+
 
     //MARK: - Load Data from Server
 extension HouseContainerViewController {
@@ -144,9 +145,8 @@ extension HouseContainerViewController {
                     
                 case .success(let value):
                     
-                    let json = JSON(value)
-                    
-                    let jsonArray: Array = json.arrayValue
+                    print("---Downloading House Data of \(address) Succeed---")
+                    let jsonArray: Array = JSON(value).arrayValue
                     
                     for subJson in jsonArray {
                         
@@ -170,10 +170,9 @@ extension HouseContainerViewController {
                         })
                     }
                     
-                    print(json)
-                    
                 case .failure(let error):
-                    
+                  
+                    print("---Downloading House Data of \(address) Failed---")
                     print(error)
                     
                     numberOfFinishedQueue += 1
@@ -207,9 +206,9 @@ extension HouseContainerViewController {
                     
                 case .success(let value):
                     
-                    let json = JSON(value)
+                    print("---Downloading Video Data of \(address) Succeed---")
                     
-                    let jsonArray: Array = json.arrayValue
+                    let jsonArray: Array = JSON(value).arrayValue
                     
                     for subJson in jsonArray {
                         
@@ -255,7 +254,6 @@ extension HouseContainerViewController {
                             self.loadingViewLabel.text = "尚未有影片可供觀看"
                         }
                     }
-                    print(jsonArray)
                 case .failure(let error):
                     
                     numberOfFinishedQueue += 1
@@ -266,6 +264,7 @@ extension HouseContainerViewController {
                             self.loadingViewLabel.text = "尚未有影片可供觀看"
                         }
                     }
+                    print("---Downloading Video Data of \(address) Failed---")
                     print(error)
                 }
             }
@@ -279,6 +278,8 @@ extension HouseContainerViewController {
             
             if response.error == nil {
                 
+                print("---Downloading Video Image of No.\(index) Video Succeed---")
+                
                 if let data = response.data {
                     self.videoList[index].imageData = data
                 }
@@ -286,12 +287,15 @@ extension HouseContainerViewController {
                 self.numberOfImageFinishedDownload += 1
                 
                 if self.numberOfImageFinishedDownload == self.numberOfVideo {
-                    print(self.videoList.last?.videoElements ?? "reload table view videoID")
                     self.tableView.reloadData()
                     self.loadingView.isHidden = true
+                    
+                    print("---TableView Reloading Data Succeed---")
                 }
                 
             } else {
+                
+                print("---Downloading Video Image of No.\(index) Video Failed---")
                 print(response.error!)
                 
                 self.numberOfImageFinishedDownload += 1
@@ -299,12 +303,15 @@ extension HouseContainerViewController {
                 if self.numberOfImageFinishedDownload == self.numberOfVideo {
                     self.tableView.reloadData()
                     self.loadingView.isHidden = true
+                    
+                    print("---TableView Reloading Data Succeed---")
                 }
             }
             
         }
     }
 }
+
 
 //MARK: - UITableViewDelegate Implement
 extension HouseContainerViewController: UITableViewDelegate {
@@ -314,6 +321,8 @@ extension HouseContainerViewController: UITableViewDelegate {
     }
 
 }
+
+
 //MARK: - UITableViewDataSource Implement
 extension HouseContainerViewController: UITableViewDataSource {
     
@@ -358,38 +367,30 @@ extension HouseContainerViewController: UITableViewDataSource {
                     
                 case 1:
                     if video.videoWeather.isEmpty {
-                        print("the \(elementLabel.tag) tag is hidden")
                         elementLabel.isHidden = true
                     } else {
                         elementLabel.isHidden = false
-                        print("the \(elementLabel.tag) tag should show \(video.videoWeather)")
                         elementLabel.text = video.videoWeather
                     }
                 case 2:
                     if numberOfElements > 0 {
-                        print("the \(elementLabel.tag) tag should show \(videoElements[0])")
                         elementLabel.isHidden = false
                         elementLabel.text = videoElements[0]
                     } else {
-                        print("the \(elementLabel.tag) tag is hidden")
                         elementLabel.isHidden = true
                     }
                 case 3:
                     if numberOfElements > 1 {
-                        print("the \(elementLabel.tag) tag should show \(videoElements[1])")
                         elementLabel.isHidden = false
                         elementLabel.text = videoElements[1]
                     } else {
-                        print("the \(elementLabel.tag) tag is hidden")
                         elementLabel.isHidden = true
                     }
                 case 4:
                     if numberOfElements > 2 {
-                        print("the \(elementLabel.tag) tag should show \(videoElements[2])")
                         elementLabel.isHidden = false
                         elementLabel.text = videoElements[2]
                     } else {
-                        print("the \(elementLabel.tag) tag is hidden")
                         elementLabel.isHidden = true
                     }
                 case 5:
@@ -397,11 +398,9 @@ extension HouseContainerViewController: UITableViewDataSource {
                         elementLabel.isHidden = false
                         elementLabel.text = "..."
                     } else if numberOfElements == 4 {
-                        print("the \(elementLabel.tag) tag should show \(videoElements[3])")
                         elementLabel.isHidden = false
                         elementLabel.text = videoElements[3]
                     } else {
-                        print("the \(elementLabel.tag) tag is hidden")
                         elementLabel.isHidden = true
                     }
                 default:

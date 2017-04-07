@@ -129,8 +129,7 @@ class HouseDetailViewController: UIViewController {
     }
     
     
-    
-//     MARK: IBAction
+    // MARK: IBAction
     @IBAction func mapButtonTapped(_ sender: Any) {
         self.loadHouseLocation()
     }
@@ -158,9 +157,12 @@ extension HouseDetailViewController {
         var surrondingArray :[(key: String, value: String)] = []
         var squareArray :[(key: String, value: String)] = []
         
-        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/house/\(houseIndex)").responseJSON { response in
+        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/house/\(self.houseIndex)").responseJSON { response in
             switch response.result {
             case .success(let value):
+                
+                print("---Downloading No. \(self.houseIndex) House Succeed")
+                
                 let json = JSON(value)
                 
                 let title = json["title"].stringValue.replacingOccurrences(of: " ", with: "")
@@ -264,6 +266,7 @@ extension HouseDetailViewController {
                 })
                 
             case .failure(let error):
+                print("---Downloading No. \(self.houseIndex) House Fail")
                 print(error)
             }
         }
@@ -467,7 +470,10 @@ extension HouseDetailViewController {
     }
 }
 
+
+    // MARK: MKMapViewDelegate Implement
 extension HouseDetailViewController : MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         switch annotation {
         case is Annotation:

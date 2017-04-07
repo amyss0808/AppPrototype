@@ -53,44 +53,18 @@ class VideoDetailViewController: UIViewController, MKMapViewDelegate {
     
     func changeElementsUI(elements: [String]) {
         
-//        let numberOfElements = elements.count
-//        
-//        for elementLabel in self.videoElementLabels {
-//            
-//            let tagNumber = elementLabel.tag
-//            
-//            if tagNumber == 0 {
-//                if numberOfElements > 0 {
-//                    elementLabel.text = elements[0]
-//                } else {
-//                    elementLabel.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5)
-//                }
-//            } else if tagNumber > 0 && tagNumber <= 11 {
-//                if numberOfElements > tagNumber - 1 {
-//                    elementLabel.text = elements[tagNumber - 1]
-//                } else {
-//                    elementLabel.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5)
-//                }
-//            } else if elementLabel.tag == 12 {
-//                elementLabel.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5)
-//            } else {
-//                fatalError("unknown element label tag be found")
-//            }
-//            
-//        }
-        
         for (index, elementLabel) in self.videoElementLabels.enumerated() {
+            elementLabel.layer.masksToBounds = true
+            elementLabel.layer.cornerRadius = 6
             if index == 0 {
                 elementLabel.backgroundColor = UIColor(red: 0.0/255.0, green: 102.0/255.0, blue: 204.0/255.0, alpha: 1)
                 elementLabel.text = elements[0]
             } else {
                 for element in elements {
                     if elementLabel.text == element {
-                        elementLabel.layer.cornerRadius = 10
                         elementLabel.backgroundColor = UIColor(red: 0.0/255.0, green: 102.0/255.0, blue: 204.0/255.0, alpha: 1)
                         break
                     } else {
-                        elementLabel.layer.cornerRadius = 10
                         elementLabel.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 1)
                     }
                 }
@@ -153,16 +127,18 @@ class VideoDetailViewController: UIViewController, MKMapViewDelegate {
 
 
 extension VideoDetailViewController {
+    
     func loadVideoDetail() {
-        
         
         var videoElements: [String] = []
         
-        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/video/\(videoId)").responseJSON { response in
+        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/video/\(self.videoId)").responseJSON { response in
             switch response.result {
             case .success(let value):
                 
                 let json = JSON(value)
+                
+                print("---Downloading No. \(self.videoId) Video Succeed")
                 
                 let videoTitleSeperatedByBottomLine = json["title"].stringValue.components(separatedBy: "_")
                 let videoTitle = videoTitleSeperatedByBottomLine[0]
@@ -197,8 +173,9 @@ extension VideoDetailViewController {
                     self.videoView.allowsInlineMediaPlayback = true
                     self.videoView.loadRequest(URLRequest(url: url!))
                 })
-                print(json)
+                
             case .failure(let error):
+                print("---Downloading No. \(self.videoId) Video Fail")
                 print(error)
             }
         }
