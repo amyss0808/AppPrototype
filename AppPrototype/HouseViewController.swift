@@ -23,6 +23,7 @@ class HouseViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
+    
     var annotationList = [Annotation]()
     let clusteringManager = ClusteringManager()
     
@@ -38,21 +39,20 @@ class HouseViewController: UIViewController {
         
         mapView.delegate = self
         mapView.mapType = .standard
-        mapView.showsUserLocation = true
         mapView.userLocation.title = ""
     
         self.loadPin()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
         self.locationButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
         self.locationButton.layer.cornerRadius = 23
         self.locationButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
         self.locationButton.layer.shadowOpacity = 0.3
         self.locationButton.imageEdgeInsets = UIEdgeInsetsMake(11,11,11,11)
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
         
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         locationSearchTable.mapView = mapView
@@ -76,17 +76,13 @@ class HouseViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
     //MARK: IBAction
     @IBAction func getUserLocation(_ sender: UIButton) {
         locationManager.startUpdatingLocation()
     }
     
 }
+
 
 // MARK: - Load Data from Server
 extension HouseViewController {
@@ -97,10 +93,9 @@ extension HouseViewController {
             
             switch response.result {
             case .success(let value):
+                print("---Connecting to server success---")
                 
-                let json = JSON(value)
-                
-                let jsonArray: Array = json.arrayValue
+                let jsonArray: Array = JSON(value).arrayValue
                 
                 for (index, subJson) in jsonArray.enumerated() {
                     let annotation = Annotation()
@@ -122,16 +117,16 @@ extension HouseViewController {
                     let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
                     
                     self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
-                    
                 })
                 
             case .failure(let error):
-                print("Connecting to server failed.")
+                print("---Connecting to server failed---")
                 print(error)
             }
         }
     }
 }
+
 
 //MARK: - MKMapViewDelegate Implement
 extension HouseViewController : MKMapViewDelegate {
@@ -207,19 +202,12 @@ extension HouseViewController : MKMapViewDelegate {
         view.layer.borderColor = UIColor.white.cgColor
         
         switch view.annotation {
-            
         case is Annotation:
-            
             containerView.isHidden = true
-            
         case is AnnotationCluster:
-            
             containerView.isHidden = true
-            
         default:
-            
             break
-        
         }
     }
     
@@ -228,7 +216,6 @@ extension HouseViewController : MKMapViewDelegate {
         var reuseId = ""
         
         switch annotation {
-        
         case is AnnotationCluster:
         
             reuseId = "Cluster"
@@ -264,9 +251,7 @@ extension HouseViewController : MKMapViewDelegate {
             return searchAnnotationView
             
         default:
-        
             return nil
-        
         }
         
     }
@@ -276,7 +261,6 @@ extension HouseViewController : MKMapViewDelegate {
         DispatchQueue.global(qos: .userInitiated).async {
             let mapBoundsWidth = Double(self.mapView.bounds.size.width)
             let mapRectWidth = self.mapView.visibleMapRect.size.width
-            print("mapBoundsWidth is \(mapBoundsWidth), mapRectWidth is \(mapRectWidth)")
             let scale = mapBoundsWidth / mapRectWidth
             
             let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
@@ -294,18 +278,17 @@ extension HouseViewController : MKMapViewDelegate {
 extension HouseViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("---Updating User Location Failed---")
         print(error)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    
         if status == .authorizedAlways {
             locationManager.requestLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if let location = locations.first {
             let span = MKCoordinateSpanMake(0.0025, 0.0025)
             let region = MKCoordinateRegionMake(location.coordinate, span)

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		13C0ED889A940D10E119FE4B /* Pods_AppPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D46CBBD05E56590487755C /* Pods_AppPrototype.framework */; };
-		850D7D7E1E66D379007D9F78 /* TableSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D7D7D1E66D379007D9F78 /* TableSubView.swift */; };
 		C419AC941E83A45D0062B818 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */; };
 		C45121C51E70578600DF13AD /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45121C41E70578600DF13AD /* TaskDetailViewController.swift */; };
 		C46EDE471E6E6167003FBBB6 /* TaskPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */; };
@@ -62,7 +61,6 @@
 /* Begin PBXFileReference section */
 		0FAA4168324212D7AE946522 /* Pods-AppPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppPrototype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppPrototype/Pods-AppPrototype.debug.xcconfig"; sourceTree = "<group>"; };
 		6F0ECF85A7E4B57CD9E2556E /* Pods-AppPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppPrototype/Pods-AppPrototype.release.xcconfig"; sourceTree = "<group>"; };
-		850D7D7D1E66D379007D9F78 /* TableSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSubView.swift; sourceTree = "<group>"; };
 		C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
 		C45121C41E70578600DF13AD /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPointAnnotation.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				E1733F961E601221007FAEAA /* SearchAnnotation.swift */,
 				E1D03CF01E5C690D000FC684 /* HouseTableViewCell.swift */,
 				E1D03CF21E5C6920000FC684 /* VideoTableViewCell.swift */,
-				850D7D7D1E66D379007D9F78 /* TableSubView.swift */,
 				E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */,
 				E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */,
 				E1CAA6511E60699200386DB0 /* HouseViewController.swift */,
@@ -382,7 +379,6 @@
 				C45121C51E70578600DF13AD /* TaskDetailViewController.swift in Sources */,
 				C46EDE491E6EB02E003FBBB6 /* TaskContainerViewController.swift in Sources */,
 				E1CAA6521E60699200386DB0 /* HouseViewController.swift in Sources */,
-				850D7D7E1E66D379007D9F78 /* TableSubView.swift in Sources */,
 				E1423DB21E5C549A0034E5B8 /* TaskViewController.swift in Sources */,
 				E1423DAE1E5C549A0034E5B8 /* AppDelegate.swift in Sources */,
 				E1D03CF51E5C6CB2000FC684 /* House.swift in Sources */,
