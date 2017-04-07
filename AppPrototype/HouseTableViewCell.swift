@@ -15,9 +15,16 @@ class HouseTableViewCell: UITableViewCell {
     @IBOutlet weak var houseAddress: UILabel!
     @IBOutlet weak var houseTypeAndSquare: UILabel!
     @IBOutlet weak var housePrice: UILabel!
+    @IBOutlet weak var roundedView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        roundedView.layer.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 0.5).cgColor
+        roundedView.layer.masksToBounds = false
+        roundedView.layer.cornerRadius = 7.0
+        roundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        roundedView.layer.shadowOpacity = 0.2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

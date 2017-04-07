@@ -52,7 +52,7 @@ class VideoEditViewController: UIViewController {
         for bttn in publicFacilityBttns {
             if bttn.isChoosed {
                 guard let bttnTitle = bttn.titleLabel?.text else {
-                    print("The button has no titleLabel: \(bttn.titleLabel?.text)")
+                    print("The button has no titleLabel: \(String(describing: bttn.titleLabel?.text))")
                     return
                 }
                 self.publicFacilities = self.publicFacilities + bttnTitle + ","
@@ -65,7 +65,7 @@ class VideoEditViewController: UIViewController {
         for bttn in storeBttns {
             if bttn.isChoosed {
                 guard let bttnTitle = bttn.titleLabel?.text else {
-                    print("The button has no titleLabel: \(bttn.titleLabel?.text)")
+                    print("The button has no titleLabel: \(String(describing: bttn.titleLabel?.text))")
                     return
                 }
                 self.stores = self.stores + bttnTitle + ","
@@ -78,7 +78,7 @@ class VideoEditViewController: UIViewController {
         for bttn in weatherBttns {
             if bttn.isChoosed {
                 guard let bttnTitle = bttn.titleLabel?.text else {
-                    print("The button has no titleLabel: \(bttn.titleLabel?.text)")
+                    print("The button has no titleLabel: \(String(describing: bttn.titleLabel?.text))")
                     return
                 }
                 self.weather = self.weather + bttnTitle + ","
@@ -176,7 +176,7 @@ class VideoEditViewController: UIViewController {
     // MARK: - Server Functions
     private func saveVideoToAlbum() {
         guard let myVideoFilePath = videoFilePath else {
-            fatalError("videoFilePath: \(videoFilePath)")
+            fatalError("videoFilePath: \(String(describing: videoFilePath))")
         }
         
         // Save video to the main photo album
@@ -224,10 +224,10 @@ class VideoEditViewController: UIViewController {
                 
                 // send video id to server
                 guard let myVideoId = self.videoId else {
-                    fatalError("videoId: \(self.videoId)")
+                    fatalError("videoId: \(String(describing: self.videoId))")
                 }
                 guard let myTaskId = self.taskId else {
-                    fatalError("taskId: \(self.taskId)")
+                    fatalError("taskId: \(String(describing: self.taskId))")
                 }
                 self.sendVideoData(taskId: myTaskId, videoId: myVideoId, stores: self.stores, weather: self.weather, publicFacilities: self.publicFacilities)
                 

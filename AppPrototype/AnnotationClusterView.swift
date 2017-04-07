@@ -9,11 +9,11 @@
 import UIKit
 import MapKit
 
-public class AnnotationClusterView : MKAnnotationView {
+class AnnotationClusterView : MKAnnotationView {
 
 	private var configuration: AnnotationViewConfiguration
 
-	public let countLabel: UILabel = {
+	let countLabel: UILabel = {
 		let label = UILabel()
 		label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		label.textAlignment = .center
@@ -26,13 +26,13 @@ public class AnnotationClusterView : MKAnnotationView {
 		return label
 	}()
 
-	public override var annotation: MKAnnotation? {
+	override var annotation: MKAnnotation? {
 		didSet {
 			updateClusterSize()
 		}
 	}
 
-	public override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+	override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
 		self.configuration = AnnotationViewConfiguration.default()
 		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
 		self.setupView()

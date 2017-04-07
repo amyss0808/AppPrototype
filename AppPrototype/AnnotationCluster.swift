@@ -9,13 +9,13 @@
 import UIKit
 import MapKit
 
-open class AnnotationCluster: NSObject {
+class AnnotationCluster: NSObject {
     
-    open var coordinate = CLLocationCoordinate2D()
-    open var title: String?
-    open var subtitle: String?
+    var coordinate = CLLocationCoordinate2D()
+    var title: String?
+    var subtitle: String?
     
-    open var annotations: [MKAnnotation] = []
+    var annotations: [MKAnnotation] = []
 }
 
 extension AnnotationCluster : MKAnnotation { }

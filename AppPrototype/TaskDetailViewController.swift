@@ -38,7 +38,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         
         
         guard let mytask = task else {
-            fatalError("task is \(task)")
+            fatalError("task is \(String(describing: task))")
         }
         taskTitle.text = mytask.taskTitle
         taskDuration.text = mytask.taskDuration
@@ -98,7 +98,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
         let directions = MKDirections(request: request)
         directions.calculate(completionHandler: { response, error in
             guard let myresponse = response else {
-                fatalError("request directions has errors: \(error)")
+                fatalError("request directions has errors: \(String(describing: error))")
             }
             self.mapView.add(myresponse.routes[0].polyline)
         })
@@ -137,7 +137,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
                     self.motionManager.accelerometerUpdateInterval = 0.2
                     self.motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { (accelerometerData, error) in
                         guard let myACData = accelerometerData else {
-                            fatalError("accelerometerData : \(accelerometerData)")
+                            fatalError("accelerometerData : \(String(describing: accelerometerData))")
                         }
                         print("\(myACData.acceleration.x),\(myACData.acceleration.y),\(myACData.acceleration.z)")
                     })
