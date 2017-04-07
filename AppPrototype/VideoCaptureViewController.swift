@@ -40,8 +40,7 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     
     // MARK: - Device Orientation Properties
     var currentDevice = UIDevice.current
-    let wrongOrientationAlert = UIAlertController(title: "Wrong Orientation", message: "Please hold your device in LandscapeRight!", preferredStyle: .alert)
-    let deviceCurrentOrientation: UIDeviceOrientation = .unknown
+    let wrongOrientationAlert = UIAlertController(title: "裝置方向錯誤", message: "請解除螢幕旋轉鎖定，並向左旋轉您的裝置。", preferredStyle: .alert)
     
     
     
