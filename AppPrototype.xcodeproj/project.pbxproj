@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		13C0ED889A940D10E119FE4B /* Pods_AppPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D46CBBD05E56590487755C /* Pods_AppPrototype.framework */; };
 		850D7D7E1E66D379007D9F78 /* TableSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D7D7D1E66D379007D9F78 /* TableSubView.swift */; };
+		C419AC941E83A45D0062B818 /* VideoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */; };
 		C45121C51E70578600DF13AD /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45121C41E70578600DF13AD /* TaskDetailViewController.swift */; };
 		C46EDE471E6E6167003FBBB6 /* TaskPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */; };
 		C46EDE491E6EB02E003FBBB6 /* TaskContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */; };
-		C46EDE4B1E6EC71F003FBBB6 /* VideoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46EDE4A1E6EC71F003FBBB6 /* VideoEditViewController.swift */; };
-		C48605401E7FFFE000D6CCD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C486053F1E7FFFE000D6CCD4 /* Assets.xcassets */; };
 		C492D0701E78DA2B00F4F232 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D06F1E78DA2B00F4F232 /* TabBarController.swift */; };
 		C492D0721E7A6C5700F4F232 /* VideoEditVCButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492D0711E7A6C5700F4F232 /* VideoEditVCButton.swift */; };
+		C4F2DB871E842775002138AD /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F2DB861E842775002138AD /* VideoPlaybackViewController.swift */; };
+		C4F2DB891E842CD1002138AD /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F2DB881E842CD1002138AD /* PlayerView.swift */; };
+		C4F2DB8B1E87F7A1002138AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F2DB8A1E87F7A1002138AD /* Assets.xcassets */; };
 		C4FB83211E712FE6006C1CDA /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB83201E712FE6006C1CDA /* Task.swift */; };
 		E10A76501E5DC0DB00D9F045 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A764F1E5DC0DB00D9F045 /* VideoDetailViewController.swift */; };
 		E1423DAE1E5C549A0034E5B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */; };
@@ -62,13 +64,15 @@
 		0FAA4168324212D7AE946522 /* Pods-AppPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppPrototype.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppPrototype/Pods-AppPrototype.debug.xcconfig"; sourceTree = "<group>"; };
 		6F0ECF85A7E4B57CD9E2556E /* Pods-AppPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppPrototype.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppPrototype/Pods-AppPrototype.release.xcconfig"; sourceTree = "<group>"; };
 		850D7D7D1E66D379007D9F78 /* TableSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSubView.swift; sourceTree = "<group>"; };
+		C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCaptureViewController.swift; sourceTree = "<group>"; };
 		C45121C41E70578600DF13AD /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		C46EDE461E6E6167003FBBB6 /* TaskPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPointAnnotation.swift; sourceTree = "<group>"; };
 		C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskContainerViewController.swift; sourceTree = "<group>"; };
-		C46EDE4A1E6EC71F003FBBB6 /* VideoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditViewController.swift; sourceTree = "<group>"; };
-		C486053F1E7FFFE000D6CCD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C492D06F1E78DA2B00F4F232 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C492D0711E7A6C5700F4F232 /* VideoEditVCButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoEditVCButton.swift; sourceTree = "<group>"; };
+		C4F2DB861E842775002138AD /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
+		C4F2DB881E842CD1002138AD /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		C4F2DB8A1E87F7A1002138AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4FB83201E712FE6006C1CDA /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		C8D46CBBD05E56590487755C /* Pods_AppPrototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppPrototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10A764F1E5DC0DB00D9F045 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
@@ -196,11 +200,13 @@
 				E1423DB11E5C549A0034E5B8 /* TaskViewController.swift */,
 				C46EDE481E6EB02E003FBBB6 /* TaskContainerViewController.swift */,
 				C45121C41E70578600DF13AD /* TaskDetailViewController.swift */,
-				C46EDE4A1E6EC71F003FBBB6 /* VideoEditViewController.swift */,
+				C419AC931E83A45D0062B818 /* VideoCaptureViewController.swift */,
+				C4F2DB861E842775002138AD /* VideoPlaybackViewController.swift */,
+				C4F2DB881E842CD1002138AD /* PlayerView.swift */,
 				C492D0711E7A6C5700F4F232 /* VideoEditVCButton.swift */,
 				E1423DB31E5C549A0034E5B8 /* Main.storyboard */,
 				E1423DB81E5C549A0034E5B8 /* LaunchScreen.storyboard */,
-				C486053F1E7FFFE000D6CCD4 /* Assets.xcassets */,
+				C4F2DB8A1E87F7A1002138AD /* Assets.xcassets */,
 				E1423DBB1E5C549A0034E5B8 /* Info.plist */,
 				E1AA20D01E81679E001C408D /* SearchPointAnnotation.swift */,
 			);
@@ -305,7 +311,7 @@
 			files = (
 				E1423DBA1E5C549A0034E5B8 /* LaunchScreen.storyboard in Resources */,
 				E1423DD41E5C5F710034E5B8 /* Podfile in Resources */,
-				C48605401E7FFFE000D6CCD4 /* Assets.xcassets in Resources */,
+				C4F2DB8B1E87F7A1002138AD /* Assets.xcassets in Resources */,
 				E1423DB51E5C549A0034E5B8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +390,7 @@
 				E1423DB21E5C549A0034E5B8 /* TaskViewController.swift in Sources */,
 				E1423DAE1E5C549A0034E5B8 /* AppDelegate.swift in Sources */,
 				E1D03CF51E5C6CB2000FC684 /* House.swift in Sources */,
+				C419AC941E83A45D0062B818 /* VideoCaptureViewController.swift in Sources */,
 				E1D03CF31E5C6920000FC684 /* VideoTableViewCell.swift in Sources */,
 				C4FB83211E712FE6006C1CDA /* Task.swift in Sources */,
 				E1CD51A71E7AFDFB00E73565 /* AnnotationView.swift in Sources */,
@@ -392,11 +399,12 @@
 				E1CD51911E7AFD8300E73565 /* Annotation.swift in Sources */,
 				E1CD51971E7AFDA600E73565 /* AnnotationClusterView.swift in Sources */,
 				C492D0721E7A6C5700F4F232 /* VideoEditVCButton.swift in Sources */,
-				C46EDE4B1E6EC71F003FBBB6 /* VideoEditViewController.swift in Sources */,
 				E1CD51A41E7AFDC200E73565 /* QuadTreeNode.swift in Sources */,
+				C4F2DB871E842775002138AD /* VideoPlaybackViewController.swift in Sources */,
 				E1D03CF11E5C690D000FC684 /* HouseTableViewCell.swift in Sources */,
 				E1D03CF71E5C798F000FC684 /* Video.swift in Sources */,
 				E1CD51A31E7AFDC200E73565 /* QuadTree.swift in Sources */,
+				C4F2DB891E842CD1002138AD /* PlayerView.swift in Sources */,
 				E1DBA8B61E5D6FAB003A4484 /* HouseDetailViewController.swift in Sources */,
 				E1CD51A21E7AFDC200E73565 /* ClusteringManager.swift in Sources */,
 				E1CD51931E7AFD8F00E73565 /* AnnotationCluster.swift in Sources */,
