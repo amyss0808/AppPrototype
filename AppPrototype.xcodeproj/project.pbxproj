@@ -164,12 +164,12 @@
 				E1CD51961E7AFDA600E73565 /* AnnotationClusterView.swift */,
 				E1CD51941E7AFD9D00E73565 /* AnnotationTemplate.swift */,
 				E1CD51981E7AFDB200E73565 /* AnnotationViewConfiguration.swift */,
-				E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */,
-				E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */,
 				E1CD519C1E7AFDC200E73565 /* ClusteringManager.swift */,
 				E1CD519D1E7AFDC200E73565 /* QuadTree.swift */,
 				E1CD519E1E7AFDC200E73565 /* QuadTreeNode.swift */,
 				E1CD519F1E7AFDC200E73565 /* ZoomLevel.swift */,
+				E1CD519A1E7AFDC200E73565 /* BoundingBox.swift */,
+				E1CD519B1E7AFDC200E73565 /* BoundingBox+MapKit.swift */,
 			);
 			name = AnnotationCluster;
 			sourceTree = "<group>";
@@ -216,13 +216,10 @@
 		E1423DAC1E5C549A0034E5B8 /* AppPrototype */ = {
 			isa = PBXGroup;
 			children = (
-
 				C4C91E301E97E5E200137554 /* TableCellPrototype */,
 				C4C91E2F1E97E5A000137554 /* AnnotationCluster */,
 				C4C91E2E1E97E58300137554 /* Models */,
 				C4C91E2D1E97E54900137554 /* Annotations */,
-
-
 				E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */,
 				E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */,
 				E1CAA6511E60699200386DB0 /* HouseViewController.swift */,
@@ -307,7 +304,7 @@
 				TargetAttributes = {
 					E1423DA91E5C549A0034E5B8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4FAWUFZ5VL;
+						DevelopmentTeam = SK34PM56LJ;
 						ProvisioningStyle = Automatic;
 					};
 					E1423DBF1E5C549A0034E5B8 = {
@@ -581,11 +578,11 @@
 			baseConfigurationReference = 0FAA4168324212D7AE946522 /* Pods-AppPrototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4FAWUFZ5VL;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = AppPrototype/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.AppPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.AppPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -596,11 +593,11 @@
 			baseConfigurationReference = 6F0ECF85A7E4B57CD9E2556E /* Pods-AppPrototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4FAWUFZ5VL;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = AppPrototype/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.AppPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.AppPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
