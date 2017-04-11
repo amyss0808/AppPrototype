@@ -12,7 +12,7 @@ import MapKit
 open class QuadTree {
     
     let rootNode = QuadTreeNode(boundingBox: BoundingBox(mapRect: MKMapRectWorld))
-
+    
 	// MARK: Internal functions
     
     func insert(annotation: MKAnnotation) -> Bool {

@@ -10,7 +10,7 @@ import UIKit
 
 struct BoundingBox {
 	
-    let x0, y0, xf, yf: CGFloat
+    let x0, y0,xf, yf: CGFloat
 }
 
 extension BoundingBox {
