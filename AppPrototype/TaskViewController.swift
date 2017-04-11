@@ -182,6 +182,10 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 fatalError("The first child view controller of taskViewController is not a container view controller")
             }
             
+            // change image of selected pin
+            view.image = UIImage(named: "selected taskpin")
+            
+            
             // load task info on the container view
             let isNear = self.isNear(selectedAnnotation)
             subviewController.loadTaskDetail(of: selectedAnnotation.id, isNear: isNear)
@@ -199,8 +203,18 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        containerView.isHidden = true
+        
+        switch view.annotation {
+            
+        case is TaskPointAnnotation:
+            view.image = UIImage(named: "taskpin")
+            containerView.isHidden = true
+            
+        default:
+            print("The deselected pin is not a TaskPointAnnotation")
+        }
     }
     
     

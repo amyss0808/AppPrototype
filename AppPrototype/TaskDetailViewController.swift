@@ -143,7 +143,7 @@ class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegat
                 
             } else {
                 reuseId = "endPointAnnotation"
-                let endPointAnnotationView = self.setImage(for: startEndPointAnnotation, reuseId, with: "start pin")
+                let endPointAnnotationView = self.setImage(for: startEndPointAnnotation, reuseId, with: "end pin")
                 
                 return endPointAnnotationView
             }
