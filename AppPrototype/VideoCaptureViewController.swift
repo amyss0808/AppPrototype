@@ -44,11 +44,15 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     
     
     
+    // MARK: - Hint Properties
+    @IBOutlet weak var hintLabel: UILabel!
+    
     
     
     // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.prepareCamera()
         self.prepareWrongOrientationAlert()
     }
@@ -56,7 +60,11 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        UIApplication.shared.isStatusBarHidden = true
+        
         self.prepareTimer()
+        self.prepareHint()
         
         NotificationCenter.default.addObserver(self, selector: #selector(VideoCaptureViewController.getDeviceOrientation), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         self.currentDevice.beginGeneratingDeviceOrientationNotifications()
@@ -73,6 +81,8 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        UIApplication.shared.isStatusBarHidden = false
+        
         self.currentDevice.endGeneratingDeviceOrientationNotifications()
         NotificationCenter.default.removeObserver(self)
         self.dismissWrongOrientationAlert()
@@ -270,9 +280,17 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     
     
     
+    // MARK: - Hint Functions
+    private func prepareHint() {
+        self.hintLabel.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
+        self.hintLabel.text = "請說明：天氣狀況 安靜程度 乾淨程度 車流量狀況 沿路特別的店家、事物"
+    }
+    
+    
     
     
     // MARK: - AVCaptureFileOutputRecordingDelegate
+    // called when stop recording
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         
         self.outputFileLocation = outputFileURL

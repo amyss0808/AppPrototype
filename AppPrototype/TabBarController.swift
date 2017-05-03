@@ -34,6 +34,15 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             }
             topVC.loadTaskPin()
             
+            
+        case is HouseViewController:
+            guard let topVC = selectedVC.topViewController as? HouseViewController else {
+                print("topVC cannot downcast to HouseViewController because selectedVC.top: \(String(describing: selectedVC.topViewController))")
+                return
+            }
+            topVC.loadPin()
+        
+            
         default:
             print("It is a default case because selectedVC.top: \(String(describing: selectedVC.topViewController))")
         }

@@ -7,19 +7,11 @@
 //
 
 import UIKit
-import MobileCoreServices
 import MapKit
 import CoreLocation
 import os.log
-import CoreMotion
 
-
-class TaskDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate {
-
-    // MARK: - Camera Properties
-    let imagePicker = UIImagePickerController()
-    let motionManager = CMMotionManager()
-    
+class TaskDetailViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Task Properties
     @IBOutlet weak var taskTitle: UILabel!

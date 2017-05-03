@@ -31,6 +31,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.prepareSearch()
         
         mapView.delegate = self
@@ -52,6 +53,8 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         // disable userlocation pin view
         mapView.userLocation.title = ""
         
+        // change navigation back button
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
     }
     
     
@@ -104,7 +107,6 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     // MARK: - Pin functions
     func loadTaskPin() {
-        print("loading pins")
         
         var taskPinList = [TaskPointAnnotation]()
         let url = "http://140.119.19.33:8080/SoslabProjectServer/taskLocationList"
@@ -113,6 +115,8 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             switch response.result {
                 
             case .success(let value):
+                print("---Connecting to TASK server success---")
+                
                 let json = JSON(value)
                 
                 for (_, subJson):(String, JSON) in json {
@@ -130,7 +134,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
                 
             case .failure(let error):
-                print("didn't get task list because: \(error)")
+                print("---Didn't get task list because: \(error)---")
             }
         })
     }
