@@ -6,33 +6,23 @@
 	<dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>Pods-AppPrototype.xcscheme</key>
+		<key>Pods-FangZ.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>397D660C8B0BA192343362F3D3B15D15</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>40C9C74FD460649641D465C895111041</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4AD74611CA23915CDA89E64C3C4C5AFD</key>
+		<key>7A4398F8BA79F0B1DCB1E52E05C1B649</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,12 +32,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9450BC7CE59D0700366989ABC744C0F5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9E37B3D2FF116C28C6163A00991B4C3B</key>
+		<key>E505393B139A97236164BBAA680BD0E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
