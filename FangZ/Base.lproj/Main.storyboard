@@ -5,7 +5,8 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -323,7 +324,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.4705343246" green="0.47061932090000003" blue="0.47052896020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4DX-yN-CgF"/>
+                    <navigationItem key="navigationItem" id="4DX-yN-CgF">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="GOY-Qt-5jx"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="ICR-Pb-UsZ" id="JIj-S1-jTO"/>
                         <outlet property="locationButton" destination="5Ko-f7-1L5" id="izK-0X-ktM"/>
@@ -642,7 +645,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="256"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="資料重整中，請稍候..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jR-iH-xWS">
-                                        <rect key="frame" x="88" y="116" width="200" height="24"/>
+                                        <rect key="frame" x="87.5" y="116.5" width="200" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -729,7 +732,7 @@
                                 <rect key="frame" x="0.0" y="242.5" width="375" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yte-Bn-cid">
-                                        <rect key="frame" x="8" y="8" width="294" height="25"/>
+                                        <rect key="frame" x="8" y="8.5" width="294" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="sZD-H2-WZc"/>
                                         </constraints>
@@ -738,7 +741,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0z-qc-hhs">
-                                        <rect key="frame" x="310" y="8" width="57" height="23"/>
+                                        <rect key="frame" x="310" y="8.5" width="57" height="23"/>
                                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="57" id="0SG-TU-6oc"/>
@@ -764,7 +767,7 @@
                                 <rect key="frame" x="8" y="291.5" width="359" height="107"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-l5-Bi9">
-                                        <rect key="frame" x="8" y="8" width="343" height="25"/>
+                                        <rect key="frame" x="8" y="8.5" width="343" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PA4-HB-Hof">
                                                 <rect key="frame" x="0.0" y="0.0" width="79" height="25"/>
@@ -796,7 +799,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uur-MR-pA5">
-                                        <rect key="frame" x="8" y="41" width="343" height="25"/>
+                                        <rect key="frame" x="8" y="41.5" width="343" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="早餐店" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FN-WU-utc">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="25"/>
@@ -828,7 +831,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IE8-4S-JFm">
-                                        <rect key="frame" x="8" y="74" width="343" height="25"/>
+                                        <rect key="frame" x="8" y="74.5" width="343" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公園" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2i-2z-ItS">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="25"/>
@@ -1420,23 +1423,29 @@
                         <viewControllerLayoutGuide type="bottom" id="qMp-Mb-fC1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2l6-2a-94e">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-Bi-TzX" customClass="PlayerView" customModule="FangZ" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="285"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-Bi-TzX" customClass="PlayerView" customModule="FangZ" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
+
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選取您在此任務遇到的物件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbR-jD-fUB">
-                                        <rect key="frame" x="8" y="4" width="343" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選取您在此任務遇到的物件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbR-jD-fUB">
+                                        <rect key="frame" x="8" y="4" width="359" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="tTR-ck-niG"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJ8-UX-CEY">
-                                        <rect key="frame" x="173" y="254" width="28" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJ8-UX-CEY">
+                                        <rect key="frame" x="174" y="253" width="28" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="EDW-xI-IFN"/>
+                                            <constraint firstAttribute="width" constant="28" id="GIO-Qe-unc"/>
+                                        </constraints>
                                         <state key="normal" image="play"/>
                                         <connections>
                                             <action selector="playPauseButtonTapped:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="zbm-Lh-cdh"/>
@@ -1444,278 +1453,488 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="EJ8-UX-CEY" firstAttribute="centerX" secondItem="kQT-Bi-TzX" secondAttribute="centerX" id="07D-Wc-ge5"/>
+                                    <constraint firstAttribute="width" secondItem="kQT-Bi-TzX" secondAttribute="height" multiplier="25:19" id="0Da-C9-iTt"/>
+                                    <constraint firstItem="AbR-jD-fUB" firstAttribute="top" secondItem="kQT-Bi-TzX" secondAttribute="top" constant="4" id="7Jq-5c-L60"/>
+                                    <constraint firstAttribute="trailing" secondItem="AbR-jD-fUB" secondAttribute="trailing" constant="8" id="Tol-2k-SOe"/>
+                                    <constraint firstAttribute="bottom" secondItem="EJ8-UX-CEY" secondAttribute="bottom" constant="8" id="jQ4-bL-6uV"/>
+                                    <constraint firstItem="AbR-jD-fUB" firstAttribute="leading" secondItem="kQT-Bi-TzX" secondAttribute="leading" constant="8" id="uuV-oe-puH"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgl-P0-RDC" userLabel="Edit View">
-                                <rect key="frame" x="8" y="357" width="359" height="302"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnQ-wg-CVt">
+                                <rect key="frame" x="8" y="293" width="359" height="302"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amE-ul-HaO" userLabel="Section View">
-                                        <rect key="frame" x="8" y="8" width="343" height="75"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgl-P0-RDC" userLabel="Edit View">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="370"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZeD-s6-BY4" userLabel="Section Title View">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amE-ul-HaO" userLabel="Weather Section View">
+                                                <rect key="frame" x="8" y="8" width="343" height="73"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeD-s6-BY4" userLabel="Section Title View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天氣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96t-aT-ZeD" userLabel="Section Title Label">
+                                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="96t-aT-ZeD" secondAttribute="bottom" constant="2" id="5OF-sV-FU6"/>
+                                                            <constraint firstAttribute="height" constant="27" id="IrO-kv-vPJ"/>
+                                                            <constraint firstItem="96t-aT-ZeD" firstAttribute="top" secondItem="ZeD-s6-BY4" secondAttribute="top" constant="2" id="cdh-6Q-B0a"/>
+                                                            <constraint firstItem="96t-aT-ZeD" firstAttribute="leading" secondItem="ZeD-s6-BY4" secondAttribute="leading" constant="8" id="dBQ-a5-Y60"/>
+                                                            <constraint firstAttribute="trailing" secondItem="96t-aT-ZeD" secondAttribute="trailing" constant="8" id="rds-UN-tZG"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="C8R-VM-ATt">
+                                                        <rect key="frame" x="12" y="35" width="320.5" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqq-rR-uKe" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="aqq-rR-uKe" secondAttribute="height" multiplier="77:30" id="yYx-0O-211"/>
+                                                                </constraints>
+                                                                <state key="normal" title="晴天">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Zhl-36-iGs"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8b-QF-mYQ" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="81" y="0.0" width="77.5" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="r8b-QF-mYQ" secondAttribute="height" multiplier="77:30" id="xo2-We-uJD"/>
+                                                                </constraints>
+                                                                <state key="normal" title="陰天">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="6aC-qx-o1e"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orH-k0-VN6" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="162.5" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="orH-k0-VN6" secondAttribute="height" multiplier="77:30" id="8RQ-KW-Pc1"/>
+                                                                </constraints>
+                                                                <state key="normal" title="雨天">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="4Je-tp-uyS"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tO8-kv-kjz" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="243.5" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="tO8-kv-kjz" secondAttribute="height" multiplier="77:30" id="vfU-ES-CZJ"/>
+                                                                </constraints>
+                                                                <state key="normal" title="颱風">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="4IG-Y8-rnw"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="73" id="3Xq-Ph-qK8"/>
+                                                    <constraint firstItem="ZeD-s6-BY4" firstAttribute="top" secondItem="amE-ul-HaO" secondAttribute="top" id="55f-XM-tdb"/>
+                                                    <constraint firstItem="C8R-VM-ATt" firstAttribute="centerY" secondItem="amE-ul-HaO" secondAttribute="centerY" constant="13" id="F3N-Gv-CjI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZeD-s6-BY4" secondAttribute="trailing" id="KFY-Tx-vaZ"/>
+                                                    <constraint firstItem="ZeD-s6-BY4" firstAttribute="leading" secondItem="amE-ul-HaO" secondAttribute="leading" id="VEb-h4-qvR"/>
+                                                    <constraint firstItem="C8R-VM-ATt" firstAttribute="centerX" secondItem="amE-ul-HaO" secondAttribute="centerX" id="vLG-Tf-utd"/>
+                                                </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="天氣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96t-aT-ZeD" userLabel="Section Title Label">
-                                                <rect key="frame" x="8" y="4" width="42" height="23"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqq-rR-uKe" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="37" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="晴天">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Zhl-36-iGs"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orH-k0-VN6" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="175" y="37" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="雨天">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="4Je-tp-uyS"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tO8-kv-kjz" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="258" y="37" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="颱風">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="4IG-Y8-rnw"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8b-QF-mYQ" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="91" y="37" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="陰天">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weatherButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="6aC-qx-o1e"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-c9-Yit" userLabel="Section View">
-                                        <rect key="frame" x="8" y="91" width="343" height="114"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xU-Gg-WR2" userLabel="Section Title View">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-c9-Yit" userLabel="Shop Section View">
+                                                <rect key="frame" x="8" y="89" width="343" height="111"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xU-Gg-WR2" userLabel="Section Title View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-wG-RpM" userLabel="Section Title Label">
+                                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="w4x-wG-RpM" firstAttribute="top" secondItem="9xU-Gg-WR2" secondAttribute="top" constant="2" id="2TS-U9-oHH"/>
+                                                            <constraint firstAttribute="bottom" secondItem="w4x-wG-RpM" secondAttribute="bottom" constant="2" id="JQ7-P9-VwS"/>
+                                                            <constraint firstAttribute="trailing" secondItem="w4x-wG-RpM" secondAttribute="trailing" constant="8" id="MkR-ds-w7Z"/>
+                                                            <constraint firstAttribute="height" constant="27" id="SLT-Ye-JD1"/>
+                                                            <constraint firstItem="w4x-wG-RpM" firstAttribute="leading" secondItem="9xU-Gg-WR2" secondAttribute="leading" constant="8" id="m2U-qU-YwY"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="i3v-iP-3RE">
+                                                        <rect key="frame" x="48" y="34.5" width="247.5" height="68"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aN7-uY-let">
+                                                                <rect key="frame" x="0.0" y="0.0" width="247.5" height="30"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmW-VX-FnX" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
+                                                                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="lmW-VX-FnX" secondAttribute="height" multiplier="77:30" id="nFN-lN-50m"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="便利商店">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="5Vf-uZ-EtM"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-hk-He8" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                        <rect key="frame" x="85.5" y="0.0" width="77" height="30"/>
+                                                                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="8Sd-hk-He8" secondAttribute="height" multiplier="77:30" id="Xez-Ti-bnL"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="超市">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="mMF-AL-xec"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohB-Z3-STs" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                        <rect key="frame" x="170.5" y="0.0" width="77" height="30"/>
+                                                                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="ohB-Z3-STs" secondAttribute="height" multiplier="77:30" id="WqH-JC-Hi3"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="醫院">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="47h-rs-4Um"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JpW-iL-xK1">
+                                                                <rect key="frame" x="0.0" y="38" width="247.5" height="30"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Di2-aE-tP8" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
+                                                                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="Di2-aE-tP8" secondAttribute="height" multiplier="77:30" id="dlm-cr-Q6H"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="早餐店">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Osw-Jf-OVS"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDA-yM-c51" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                        <rect key="frame" x="85.5" y="0.0" width="77" height="30"/>
+                                                                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="zDA-yM-c51" secondAttribute="height" multiplier="77:30" id="XyM-TW-kjl"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="餐廳">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="JeR-qQ-FHR"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7O-5O-Zlh" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                        <rect key="frame" x="170.5" y="0.0" width="77" height="30"/>
+                                                                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="k7O-5O-Zlh" secondAttribute="height" multiplier="77:30" id="pc5-Qm-pbX"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="加油站">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="0Fl-eU-ltC"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="i3v-iP-3RE" firstAttribute="centerX" secondItem="nXQ-c9-Yit" secondAttribute="centerX" id="5U8-m2-vDm"/>
+                                                    <constraint firstItem="i3v-iP-3RE" firstAttribute="centerY" secondItem="nXQ-c9-Yit" secondAttribute="centerY" constant="13" id="Hpo-8W-vH7"/>
+                                                    <constraint firstItem="9xU-Gg-WR2" firstAttribute="leading" secondItem="nXQ-c9-Yit" secondAttribute="leading" id="POW-47-QW9"/>
+                                                    <constraint firstAttribute="height" constant="111" id="bh9-BE-4S7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9xU-Gg-WR2" secondAttribute="trailing" id="pAk-Lc-Hxq"/>
+                                                    <constraint firstItem="9xU-Gg-WR2" firstAttribute="top" secondItem="nXQ-c9-Yit" secondAttribute="top" id="s5k-Zp-xSF"/>
+                                                </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-wG-RpM" userLabel="Section Title Label">
-                                                <rect key="frame" x="8" y="4" width="137" height="23"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lmW-VX-FnX" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="48" y="38" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="便利商店">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="5Vf-uZ-EtM"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Di2-aE-tP8" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="48" y="76" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="早餐店">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Osw-Jf-OVS"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-hk-He8" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="133" y="38" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="超市">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="mMF-AL-xec"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDA-yM-c51" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="133" y="76" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="餐廳">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="JeR-qQ-FHR"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7O-5O-Zlh" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="218" y="76" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="加油站">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="0Fl-eU-ltC"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohB-Z3-STs" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="218" y="38" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="醫院">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="47h-rs-4Um"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFe-OY-4vc" userLabel="Section View">
-                                        <rect key="frame" x="8" y="213" width="343" height="74"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u82-sl-ZcN" userLabel="Section Title View">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFe-OY-4vc" userLabel="Public Facility Section View">
+                                                <rect key="frame" x="8" y="208" width="343" height="73"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u82-sl-ZcN" userLabel="Section Title View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公家機關／設施" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrW-f9-dfi" userLabel="Section Title Label">
+                                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="RrW-f9-dfi" firstAttribute="leading" secondItem="u82-sl-ZcN" secondAttribute="leading" constant="8" id="36M-pw-c2N"/>
+                                                            <constraint firstAttribute="trailing" secondItem="RrW-f9-dfi" secondAttribute="trailing" constant="8" id="6ul-8H-gq0"/>
+                                                            <constraint firstItem="RrW-f9-dfi" firstAttribute="top" secondItem="u82-sl-ZcN" secondAttribute="top" constant="2" id="MK6-kV-MFP"/>
+                                                            <constraint firstAttribute="height" constant="27" id="QTQ-1v-F9c"/>
+                                                            <constraint firstAttribute="bottom" secondItem="RrW-f9-dfi" secondAttribute="bottom" constant="2" id="Z1h-0g-pBm"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6xK-92-Gna">
+                                                        <rect key="frame" x="12" y="35" width="320.5" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRX-1M-47a" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="qRX-1M-47a" secondAttribute="height" multiplier="77:30" id="S5c-3g-TKY"/>
+                                                                </constraints>
+                                                                <state key="normal" title="郵局">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="QNT-sc-4Fj"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fq-Zx-p8a" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="81" y="0.0" width="77.5" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="2Fq-Zx-p8a" secondAttribute="height" multiplier="77:30" id="dG9-ov-Zvj"/>
+                                                                </constraints>
+                                                                <state key="normal" title="公園">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="pVz-uN-qzq"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfr-YS-6qT" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="162.5" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="yfr-YS-6qT" secondAttribute="height" multiplier="77:30" id="yIR-Uh-vKG"/>
+                                                                </constraints>
+                                                                <state key="normal" title="學校">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="siy-Sa-i17"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7n-yj-Qxx" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="243.5" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="d7n-yj-Qxx" secondAttribute="height" multiplier="77:30" id="SeG-48-rOP"/>
+                                                                </constraints>
+                                                                <state key="normal" title="警察局">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="WGS-HF-3oz"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="6xK-92-Gna" firstAttribute="centerY" secondItem="cFe-OY-4vc" secondAttribute="centerY" constant="13" id="1Qs-oR-wsi"/>
+                                                    <constraint firstItem="6xK-92-Gna" firstAttribute="centerX" secondItem="cFe-OY-4vc" secondAttribute="centerX" id="UQU-pP-53M"/>
+                                                    <constraint firstAttribute="height" constant="73" id="aGQ-3w-C7U"/>
+                                                    <constraint firstAttribute="trailing" secondItem="u82-sl-ZcN" secondAttribute="trailing" id="gDh-Dv-L1c"/>
+                                                    <constraint firstItem="u82-sl-ZcN" firstAttribute="leading" secondItem="cFe-OY-4vc" secondAttribute="leading" id="k6m-0d-jxG"/>
+                                                    <constraint firstItem="u82-sl-ZcN" firstAttribute="top" secondItem="cFe-OY-4vc" secondAttribute="top" id="kqN-Z6-rgA"/>
+                                                </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="公家機關／設施" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrW-f9-dfi" userLabel="Section Title Label">
-                                                <rect key="frame" x="8" y="4" width="137" height="23"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfr-YS-6qT" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="174" y="36" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="學校">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="siy-Sa-i17"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRX-1M-47a" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="36" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="郵局">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="QNT-sc-4Fj"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7n-yj-Qxx" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="258" y="36" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="警察局">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="WGS-HF-3oz"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fq-Zx-p8a" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="91" y="36" width="77" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="公園">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="pVz-uN-qzq"/>
-                                                </connections>
-                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9B-jE-aj5" userLabel="Environment Section View">
+                                                <rect key="frame" x="8" y="289" width="343" height="73"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frg-IV-rId" userLabel="Section Title View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="環境狀況" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsg-MX-Eg8" userLabel="Seciton Title Label">
+                                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="gsg-MX-Eg8" firstAttribute="top" secondItem="frg-IV-rId" secondAttribute="top" constant="2" id="4QS-Bl-4Qs"/>
+                                                            <constraint firstAttribute="height" constant="27" id="dvB-N7-8wv"/>
+                                                            <constraint firstItem="gsg-MX-Eg8" firstAttribute="leading" secondItem="frg-IV-rId" secondAttribute="leading" constant="8" id="evR-8j-Hks"/>
+                                                            <constraint firstAttribute="bottom" secondItem="gsg-MX-Eg8" secondAttribute="bottom" constant="2" id="jCH-V0-cRW"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gsg-MX-Eg8" secondAttribute="trailing" constant="8" id="yQB-G9-kas"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ai4-s0-NYf">
+                                                        <rect key="frame" x="13.5" y="34" width="316" height="30"/>
+                                                        <subviews>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPl-bD-gPo" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="dPl-bD-gPo" secondAttribute="height" multiplier="77:30" id="StQ-uJ-KPh"/>
+                                                                </constraints>
+                                                                <state key="normal" title="安靜">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="environmentButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Aed-r8-Jdz"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37O-2z-1LD" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="81" y="0.0" width="154" height="30"/>
+                                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="37O-2z-1LD" secondAttribute="height" multiplier="154:30" id="hso-tr-T8j"/>
+                                                                </constraints>
+                                                                <state key="normal" title="近大眾運輸工具">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="environmentButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="JXL-YE-d4l"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ6-xL-jpa" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                                <rect key="frame" x="239" y="0.0" width="77" height="30"/>
+                                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="jJ6-xL-jpa" secondAttribute="height" multiplier="77:30" id="pfN-Js-SSC"/>
+                                                                </constraints>
+                                                                <state key="normal" title="車流量少">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="environmentButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Ibu-kd-97B"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="frg-IV-rId" firstAttribute="top" secondItem="n9B-jE-aj5" secondAttribute="top" id="FjT-SX-shN"/>
+                                                    <constraint firstItem="frg-IV-rId" firstAttribute="leading" secondItem="n9B-jE-aj5" secondAttribute="leading" id="QYt-es-e9G"/>
+                                                    <constraint firstItem="ai4-s0-NYf" firstAttribute="centerY" secondItem="n9B-jE-aj5" secondAttribute="centerY" constant="13" id="XGt-04-kDS"/>
+                                                    <constraint firstAttribute="height" constant="73" id="d1q-kj-8Sz"/>
+                                                    <constraint firstItem="ai4-s0-NYf" firstAttribute="centerX" secondItem="n9B-jE-aj5" secondAttribute="centerX" id="k7h-NR-RNG"/>
+                                                    <constraint firstAttribute="trailing" secondItem="frg-IV-rId" secondAttribute="trailing" id="x1u-ev-CZH"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.35289931299999999" green="0.35296526550000001" blue="0.35289514059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="n9B-jE-aj5" firstAttribute="leading" secondItem="fgl-P0-RDC" secondAttribute="leading" constant="8" id="56Y-xK-SLZ"/>
+                                            <constraint firstItem="cFe-OY-4vc" firstAttribute="leading" secondItem="fgl-P0-RDC" secondAttribute="leading" constant="8" id="AfB-HY-YBb"/>
+                                            <constraint firstAttribute="trailing" secondItem="nXQ-c9-Yit" secondAttribute="trailing" constant="8" id="EML-D4-DVE"/>
+                                            <constraint firstAttribute="trailing" secondItem="cFe-OY-4vc" secondAttribute="trailing" constant="8" id="HF2-al-l6U"/>
+                                            <constraint firstItem="nXQ-c9-Yit" firstAttribute="top" secondItem="amE-ul-HaO" secondAttribute="bottom" constant="8" id="P6k-Ca-eN0"/>
+                                            <constraint firstItem="cFe-OY-4vc" firstAttribute="top" secondItem="nXQ-c9-Yit" secondAttribute="bottom" constant="8" id="S1U-HD-Sgx"/>
+                                            <constraint firstItem="n9B-jE-aj5" firstAttribute="top" secondItem="cFe-OY-4vc" secondAttribute="bottom" constant="8" id="Wdc-lo-SlB"/>
+                                            <constraint firstAttribute="trailing" secondItem="n9B-jE-aj5" secondAttribute="trailing" constant="8" id="Z1P-S7-yn6"/>
+                                            <constraint firstItem="amE-ul-HaO" firstAttribute="leading" secondItem="fgl-P0-RDC" secondAttribute="leading" constant="8" id="aZs-aU-vUm"/>
+                                            <constraint firstItem="nXQ-c9-Yit" firstAttribute="leading" secondItem="fgl-P0-RDC" secondAttribute="leading" constant="8" id="fcg-Xn-IcT"/>
+                                            <constraint firstAttribute="bottom" secondItem="n9B-jE-aj5" secondAttribute="bottom" constant="8" id="lyS-m0-vFK"/>
+                                            <constraint firstAttribute="trailing" secondItem="amE-ul-HaO" secondAttribute="trailing" constant="8" id="oM8-lI-Rxg"/>
+                                            <constraint firstItem="amE-ul-HaO" firstAttribute="top" secondItem="fgl-P0-RDC" secondAttribute="topMargin" id="otf-c3-Irg"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.35289931299999999" green="0.35296526550000001" blue="0.35289514059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xy-x7-9MU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.29304242130000002" green="0.407371223" blue="0.61487150189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="mXb-Dk-kkm">
-                                        <barButtonItem key="leftBarButtonItem" title="重新拍攝" id="aTN-PY-Zy3">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="retakeVideoButtonTapped:" destination="pcQ-9C-HC5" id="Ufb-as-2gb"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="完成" id="2rp-mB-dyb">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="finishButtonTapped:" destination="pcQ-9C-HC5" id="c9J-Q9-UQd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fgl-P0-RDC" secondAttribute="trailing" id="kgn-BL-RXk"/>
+                                    <constraint firstAttribute="bottom" secondItem="fgl-P0-RDC" secondAttribute="bottom" id="nPv-Hb-bhd"/>
+                                    <constraint firstItem="fgl-P0-RDC" firstAttribute="leading" secondItem="mnQ-wg-CVt" secondAttribute="leading" id="p5b-5b-L7g"/>
+                                    <constraint firstItem="fgl-P0-RDC" firstAttribute="top" secondItem="mnQ-wg-CVt" secondAttribute="top" id="rjh-wb-PBk"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mnQ-wg-CVt" firstAttribute="top" secondItem="kQT-Bi-TzX" secondAttribute="bottom" constant="8" id="B8M-Fc-Lsd"/>
+                            <constraint firstItem="fgl-P0-RDC" firstAttribute="width" secondItem="2l6-2a-94e" secondAttribute="width" constant="-16" id="BOi-9c-f6Q"/>
+                            <constraint firstItem="mnQ-wg-CVt" firstAttribute="leading" secondItem="2l6-2a-94e" secondAttribute="leading" constant="8" id="OaM-uk-4GK"/>
+                            <constraint firstItem="qMp-Mb-fC1" firstAttribute="top" secondItem="mnQ-wg-CVt" secondAttribute="bottom" constant="8" id="Tg8-BG-727"/>
+                            <constraint firstItem="kQT-Bi-TzX" firstAttribute="leading" secondItem="2l6-2a-94e" secondAttribute="leading" id="aHi-Dp-st9"/>
+                            <constraint firstAttribute="trailing" secondItem="mnQ-wg-CVt" secondAttribute="trailing" constant="8" id="fe6-bU-I1d"/>
+                            <constraint firstItem="kQT-Bi-TzX" firstAttribute="top" secondItem="c7L-SH-igI" secondAttribute="bottom" id="hVC-yK-tyy"/>
+                            <constraint firstAttribute="trailing" secondItem="kQT-Bi-TzX" secondAttribute="trailing" id="oLw-ro-9PJ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="iXV-FE-4gr">
+                        <barButtonItem key="leftBarButtonItem" title="重新拍攝" id="M0r-Vo-3oZ">
+                            <connections>
+                                <action selector="reshootButtonTapped:" destination="pcQ-9C-HC5" id="fvR-pI-XIW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="W2o-pN-4B3">
+                            <connections>
+                                <action selector="finishTaskButtonTapped:" destination="pcQ-9C-HC5" id="MNf-fN-EuJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="finishButton" destination="2rp-mB-dyb" id="uGy-se-78T"/>
                         <outlet property="playPauseButton" destination="EJ8-UX-CEY" id="HZf-d6-seo"/>
                         <outlet property="playbackView" destination="kQT-Bi-TzX" id="dU9-a2-JdS"/>
-                        <outletCollection property="weatherButtons" destination="aqq-rR-uKe" collectionClass="NSMutableArray" id="ibn-53-Jbg"/>
-                        <outletCollection property="weatherButtons" destination="r8b-QF-mYQ" collectionClass="NSMutableArray" id="7zU-nS-l7T"/>
-                        <outletCollection property="weatherButtons" destination="orH-k0-VN6" collectionClass="NSMutableArray" id="Y4M-U1-bJx"/>
-                        <outletCollection property="weatherButtons" destination="tO8-kv-kjz" collectionClass="NSMutableArray" id="tsl-WJ-b6q"/>
-                        <outletCollection property="storeButtons" destination="lmW-VX-FnX" collectionClass="NSMutableArray" id="aSj-iR-Bkc"/>
-                        <outletCollection property="storeButtons" destination="8Sd-hk-He8" collectionClass="NSMutableArray" id="YsV-1g-KzJ"/>
-                        <outletCollection property="storeButtons" destination="ohB-Z3-STs" collectionClass="NSMutableArray" id="uf2-TN-d8z"/>
                         <outletCollection property="storeButtons" destination="Di2-aE-tP8" collectionClass="NSMutableArray" id="iZV-nB-hNh"/>
-                        <outletCollection property="storeButtons" destination="zDA-yM-c51" collectionClass="NSMutableArray" id="J6f-Pc-bBE"/>
-                        <outletCollection property="storeButtons" destination="k7O-5O-Zlh" collectionClass="NSMutableArray" id="a7F-mM-JF5"/>
-                        <outletCollection property="publicFacilityButtons" destination="qRX-1M-47a" collectionClass="NSMutableArray" id="dFQ-R3-Fb4"/>
-                        <outletCollection property="publicFacilityButtons" destination="2Fq-Zx-p8a" collectionClass="NSMutableArray" id="iXt-Dd-dIt"/>
-                        <outletCollection property="publicFacilityButtons" destination="yfr-YS-6qT" collectionClass="NSMutableArray" id="3XD-3u-l4e"/>
+                        <outletCollection property="sectionViews" destination="cFe-OY-4vc" collectionClass="NSMutableArray" id="Zmw-yF-Jkv"/>
                         <outletCollection property="publicFacilityButtons" destination="d7n-yj-Qxx" collectionClass="NSMutableArray" id="PlH-aD-efH"/>
                         <outletCollection property="sectionViews" destination="amE-ul-HaO" collectionClass="NSMutableArray" id="2WO-lQ-Qoi"/>
-                        <outletCollection property="sectionViews" destination="cFe-OY-4vc" collectionClass="NSMutableArray" id="Zmw-yF-Jkv"/>
-                        <outletCollection property="sectionViews" destination="nXQ-c9-Yit" collectionClass="NSMutableArray" id="kqk-yf-dGp"/>
                         <outletCollection property="sectionTitleViews" destination="ZeD-s6-BY4" collectionClass="NSMutableArray" id="TkN-Cd-Qxa"/>
+                        <outletCollection property="environmentButtons" destination="jJ6-xL-jpa" collectionClass="NSMutableArray" id="Ic0-zf-o8w"/>
+                        <outletCollection property="weatherButtons" destination="orH-k0-VN6" collectionClass="NSMutableArray" id="Y4M-U1-bJx"/>
+                        <outletCollection property="sectionTitleViews" destination="frg-IV-rId" collectionClass="NSMutableArray" id="ILj-SM-B9E"/>
+                        <outletCollection property="storeButtons" destination="zDA-yM-c51" collectionClass="NSMutableArray" id="J6f-Pc-bBE"/>
+                        <outletCollection property="environmentButtons" destination="dPl-bD-gPo" collectionClass="NSMutableArray" id="U80-Kg-ZZJ"/>
+                        <outletCollection property="storeButtons" destination="ohB-Z3-STs" collectionClass="NSMutableArray" id="uf2-TN-d8z"/>
+                        <outletCollection property="weatherButtons" destination="r8b-QF-mYQ" collectionClass="NSMutableArray" id="7zU-nS-l7T"/>
+                        <outletCollection property="sectionViews" destination="n9B-jE-aj5" collectionClass="NSMutableArray" id="8Fl-oC-bDZ"/>
                         <outletCollection property="sectionTitleViews" destination="u82-sl-ZcN" collectionClass="NSMutableArray" id="BXc-Zv-yrg"/>
+                        <outletCollection property="publicFacilityButtons" destination="2Fq-Zx-p8a" collectionClass="NSMutableArray" id="iXt-Dd-dIt"/>
+                        <outletCollection property="storeButtons" destination="k7O-5O-Zlh" collectionClass="NSMutableArray" id="a7F-mM-JF5"/>
+                        <outletCollection property="publicFacilityButtons" destination="qRX-1M-47a" collectionClass="NSMutableArray" id="dFQ-R3-Fb4"/>
+                        <outletCollection property="weatherButtons" destination="tO8-kv-kjz" collectionClass="NSMutableArray" id="tsl-WJ-b6q"/>
+                        <outletCollection property="environmentButtons" destination="37O-2z-1LD" collectionClass="NSMutableArray" id="6c8-95-Cz8"/>
+                        <outletCollection property="publicFacilityButtons" destination="yfr-YS-6qT" collectionClass="NSMutableArray" id="3XD-3u-l4e"/>
+                        <outletCollection property="sectionViews" destination="nXQ-c9-Yit" collectionClass="NSMutableArray" id="kqk-yf-dGp"/>
+                        <outletCollection property="storeButtons" destination="8Sd-hk-He8" collectionClass="NSMutableArray" id="YsV-1g-KzJ"/>
+                        <outletCollection property="storeButtons" destination="lmW-VX-FnX" collectionClass="NSMutableArray" id="aSj-iR-Bkc"/>
+                        <outletCollection property="weatherButtons" destination="aqq-rR-uKe" collectionClass="NSMutableArray" id="ibn-53-Jbg"/>
                         <outletCollection property="sectionTitleViews" destination="9xU-Gg-WR2" collectionClass="NSMutableArray" id="OfH-YH-sZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zd-hp-K4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5064.8000000000002" y="366.56671664167919"/>
+            <point key="canvasLocation" x="6096.8000000000002" y="364.7676161919041"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="gSE-Bm-UWb">
@@ -1826,9 +2045,11 @@
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wla-xW-UIM" userLabel="Hint View">
                                 <rect key="frame" x="0.0" y="20" width="49" height="647"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBy-nJ-KNU">
-                                        <rect key="frame" x="-309" y="319" width="667" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBy-nJ-KNU">
+                                        <rect key="frame" x="-299" y="309.5" width="647" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="lYK-GR-Gvf"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1836,12 +2057,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="NBy-nJ-KNU" firstAttribute="centerY" secondItem="wla-xW-UIM" secondAttribute="centerY" id="0fn-9i-ZS8"/>
+                                    <constraint firstItem="NBy-nJ-KNU" firstAttribute="centerX" secondItem="wla-xW-UIM" secondAttribute="centerX" id="gkh-n5-E3g"/>
+                                    <constraint firstItem="NBy-nJ-KNU" firstAttribute="width" secondItem="wla-xW-UIM" secondAttribute="height" id="pAg-zU-Gmk"/>
                                     <constraint firstAttribute="width" constant="49" id="sbY-DP-GwV"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01:00:03" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEd-dj-aMO">
-                                <rect key="frame" x="295" y="321" width="103" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:00:03" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEd-dj-aMO">
+                                <rect key="frame" x="304.5" y="321.5" width="83" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1865,6 +2088,8 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="cEd-dj-aMO" secondAttribute="centerX" constant="13" id="1GE-aw-BCw"/>
+                            <constraint firstItem="cEd-dj-aMO" firstAttribute="centerY" secondItem="Yju-OB-Yk6" secondAttribute="centerY" id="1OM-8m-xE7"/>
                             <constraint firstItem="ZPe-la-yTC" firstAttribute="top" secondItem="1U7-PY-pqK" secondAttribute="bottom" constant="20" id="7X3-Rl-jlS"/>
                             <constraint firstItem="ENs-cF-5gt" firstAttribute="top" secondItem="yKg-Rp-yz6" secondAttribute="bottom" constant="8" id="Mwz-bm-CiB"/>
                             <constraint firstItem="ZPe-la-yTC" firstAttribute="top" secondItem="wd1-Hm-0uD" secondAttribute="bottom" id="UNb-mT-UcY"/>
@@ -1883,7 +2108,7 @@
                         <outlet property="previewView" destination="wd1-Hm-0uD" id="SZu-G1-IkP"/>
                         <outlet property="recordStopButton" destination="1U7-PY-pqK" id="lVI-Xz-i8r"/>
                         <outlet property="timerLabel" destination="cEd-dj-aMO" id="nxM-7C-Dbx"/>
-                        <segue destination="pcQ-9C-HC5" kind="show" identifier="videoPlayback" animates="NO" id="qeg-A3-2Pk"/>
+                        <segue destination="tD3-8K-QK8" kind="presentation" identifier="videoPlayback" animates="NO" id="qeg-A3-2Pk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afq-v5-HCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1915,27 +2140,24 @@
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="d2v-lq-Ylm">
+        <scene sceneID="Jcl-ms-gTR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fL0-RC-gAv" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tD3-8K-QK8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="38x-1M-PDA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="69x-B9-Rpu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.29304242134094238" green="0.40737122297286987" blue="0.61487150192260742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
+                        <color key="barTintColor" red="0.29304242130000002" green="0.407371223" blue="0.61487150189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="GzF-aj-qq8" kind="relationship" relationship="rootViewController" id="V1R-Xv-CbM"/>
+                        <segue destination="pcQ-9C-HC5" kind="relationship" relationship="rootViewController" id="CBf-UE-weH"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a3j-Xr-pmL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDn-Cp-ove" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2318" y="-1146"/>
+            <point key="canvasLocation" x="5157.6000000000004" y="364.7676161919041"/>
         </scene>
     </scenes>
     <resources>

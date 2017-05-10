@@ -26,6 +26,7 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     var videoCaptureDevice: AVCaptureDevice?
     var movieFileOutput = AVCaptureMovieFileOutput()
     var outputFileLocation: URL?
+    var recordFinishDatetime: String?
     
     
     
@@ -40,12 +41,15 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     
     // MARK: - Device Orientation Properties
     var currentDevice = UIDevice.current
-    let wrongOrientationAlert = UIAlertController(title: "裝置方向錯誤", message: "請解除螢幕旋轉鎖定，並向左旋轉您的裝置。", preferredStyle: .alert)
+    let wrongOrientationAlert = UIAlertController(title: "裝置方向錯誤", message: "請解除螢幕直向鎖定，並向左旋轉您的裝置。\n\n\n", preferredStyle: .alert)
     
     
     
     // MARK: - Hint Properties
     @IBOutlet weak var hintLabel: UILabel!
+    
+    
+    
     
     
     
@@ -153,8 +157,24 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
         captureSession.startRunning()
     }
     
+    
+    private func videoFileLocation() -> String {
+        return NSTemporaryDirectory().appending("videoFile.mov")
+    }
 
     
+    private func countRecordFinishDateTime() -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.month, from: date)
+        let hour = calendar.component(.hour, from: date)
+        print("record datetime = \(year)-\(month)-\(day) \(hour)")
+        
+        return "\(year)-\(month)-\(day) \(hour)"
+    }
     
     
     
@@ -187,9 +207,7 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     }
 
     
-    private func videoFileLocation() -> String {
-        return NSTemporaryDirectory().appending("videoFile.mov")
-    }
+    
     
     
     
@@ -256,7 +274,15 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     
     
     private func prepareWrongOrientationAlert() {
-        self.wrongOrientationAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        // add image on alert view
+        let unlockPLImageView = UIImageView(frame: CGRect(x: 75, y: 90, width: 120, height: 40))
+        unlockPLImageView.image = UIImage(named: "unlock portrait lock")
+        self.wrongOrientationAlert.view.addSubview(unlockPLImageView)
+        
+        self.wrongOrientationAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { alertAction in
+            print("OK dismissed alert")
+        }))
     }
     
     
@@ -293,6 +319,7 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     // called when stop recording
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         
+        self.recordFinishDatetime = self.countRecordFinishDateTime()
         self.outputFileLocation = outputFileURL
         self.performSegue(withIdentifier: "videoPlayback", sender: nil)
     }
@@ -306,12 +333,23 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
         super.prepare(for: segue, sender: sender)
         
         switch (segue.identifier ?? "") {
+            
         case "videoPlayback":
-            guard let videoPlaybackVC = segue.destination as? VideoPlaybackViewController else {
-                fatalError("The destination view controller: \(segue.destination) of this segue is not VideoPlaybackViewController")
+            guard let videoPlaybackVCNavigationController = segue.destination as? UINavigationController else {
+                fatalError("The destination view controller: \(segue.destination) of this segue is not VideoPlaybackVCNavigationController")
             }
-            videoPlaybackVC.fileLocation = self.outputFileLocation
-            videoPlaybackVC.taskId = self.taskId
+            
+            let childVCs = videoPlaybackVCNavigationController.childViewControllers
+            for vc in childVCs {
+                if vc is VideoPlaybackViewController {
+                    guard let videoPlaybackVC = vc as? VideoPlaybackViewController else {
+                        fatalError("vc cannot downcast to VideoPlaybackViewController")
+                    }
+                    videoPlaybackVC.fileLocation = self.outputFileLocation
+                    videoPlaybackVC.taskId = self.taskId
+                    videoPlaybackVC.recordFinishDatetime = self.recordFinishDatetime
+                }
+            }
             
         default:
             fatalError("Unexpected Segue Identifier: \(segue.identifier)")
