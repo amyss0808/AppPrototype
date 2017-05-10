@@ -23,7 +23,7 @@ class VideoEditVCButton: UIButton {
     
     
     // MARK: - View Functions
-    // called when the view is loaded from IB
+    // called if the view is loaded from StoryBoard
     override func awakeFromNib() {
         self.layer.cornerRadius = 10
         self.isChoosed = false

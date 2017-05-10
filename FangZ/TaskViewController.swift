@@ -54,7 +54,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         mapView.userLocation.title = ""
         
         // change navigation back button
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
     }
     
     

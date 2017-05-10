@@ -15,10 +15,10 @@ import os.log
 
 class VideoPlaybackViewController: UIViewController {
     
-    // MARK: Playback View Properties
+    // MARK: - Playback View Properties
     @IBOutlet weak var playbackView: PlayerView!
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var finishButton: UIBarButtonItem!
+    
     
     
     static let assetKeysRequiredToPlay = ["playable", "hasProtectedContent"]
@@ -59,43 +59,49 @@ class VideoPlaybackViewController: UIViewController {
     
     
     
-    // MARK: - Video Edit Button Outlets
+    // MARK: - Video Content Button Outlets
     @IBOutlet var weatherButtons: [VideoEditVCButton]!
     @IBOutlet var storeButtons: [VideoEditVCButton]!
     @IBOutlet var publicFacilityButtons: [VideoEditVCButton]!
-    
+    @IBOutlet var environmentButtons: [VideoEditVCButton]!
     
     
     
     // MARK: - Video Properties
     var taskId: String?
     var videoId: String?
+    var recordFinishDatetime: String?
     var weather: String = ""
     var stores: String = ""
     var publicFacilities: String = ""
+    var environment: String = ""
     
     
     
     // MARK: - View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        decorateViews()
+        
+        self.decorateSectionViews()
         
         self.playbackView.playerLayer.player = player
         
-        addObserver(self, forKeyPath: "player.currentItem.status", options: .new, context: nil)
+        self.addObserver(self, forKeyPath: "player.currentItem.status", options: .new, context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(playerReachedEnd(notification:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
     
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         removeObserver(self, forKeyPath: "player.currentItem.status")
-        dealWithSelectedButton()
+        self.dealWithSelectedButton()
     }
     
     
-    private func decorateViews() {
+    private func decorateSectionViews() {
         for view in self.sectionViews {
             view.layer.cornerRadius = 8
             view.layer.shadowOffset = CGSize(width: -1, height: 1)
@@ -142,6 +148,19 @@ class VideoPlaybackViewController: UIViewController {
         }
         self.publicFacilities = String(self.publicFacilities.characters.dropLast())
         print(self.publicFacilities)
+        
+        
+        for bttn in self.environmentButtons {
+            if bttn.isChoosed {
+                guard let bttnTitle = bttn.titleLabel?.text else {
+                    print("The button has no titleLabel: \(bttn.titleLabel?.text)")
+                    return
+                }
+                self.environment = self.environment + bttnTitle + ","
+            }
+        }
+        self.environment = String(self.environment.characters.dropLast())
+        print(self.environment)
     }
     
     
@@ -151,7 +170,7 @@ class VideoPlaybackViewController: UIViewController {
     // MARK: - Video Edit Button Functions
     @IBAction func weatherButtonSelected(_ sender: VideoEditVCButton) {
         sender.isChoosed = true
-        self.finishButton.isEnabled = true
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
         
         for bttn in self.weatherButtons {
             if bttn.tag != sender.tag {
@@ -171,6 +190,16 @@ class VideoPlaybackViewController: UIViewController {
     }
     
     @IBAction func publicFacilityButtonSelected(_ sender: VideoEditVCButton) {
+        
+        // default: isChoosed == false
+        if sender.isChoosed == true {
+            sender.isChoosed = false
+        } else {
+            sender.isChoosed = true
+        }
+    }
+    
+    @IBAction func environmentButtonSelected(_ sender: VideoEditVCButton) {
         
         // default: isChoosed == false
         if sender.isChoosed == true {
@@ -221,20 +250,37 @@ class VideoPlaybackViewController: UIViewController {
     }
     
     
-    @IBAction func finishButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func finishTaskButtonTapped(_ sender: UIBarButtonItem) {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: {
             self.saveVideoToUserLibrary()
+            print("finish editing")
         })
     }
     
     
-    @IBAction func retakeVideoButtonTapped(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: false, completion: nil)
+    @IBAction func reshootButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: {
+            print("want to reshoot")
+        })
+    }
+    
+    
+    private func saveVideoToUserLibrary() {
+        guard let myFileLocation = self.fileLocation?.path else {
+            fatalError("video fileLocation: \(self.fileLocation?.path)")
+        }
+        if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(myFileLocation) {
+            print("\(myFileLocation)")
+            
+            UISaveVideoAtPathToSavedPhotosAlbum(myFileLocation, self, #selector(self.getAccessTokenToUpload(videoPath: didFinishSavingWithError:contextInfo:)), nil)
+        } else {
+            print("didn't save")
+        }
     }
     
     
     
-    func updatePlayPauseButtonImage() {
+    private func updatePlayPauseButtonImage() {
         if self.player.rate > 0 {
             // playing
             player.pause()
@@ -248,18 +294,7 @@ class VideoPlaybackViewController: UIViewController {
     }
     
     
-    func saveVideoToUserLibrary() {
-        guard let myFileLocation = self.fileLocation?.path else {
-            fatalError("video fileLocation: \(self.fileLocation?.path)")
-        }
-        if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(myFileLocation) {
-            print("\(myFileLocation)")
-            
-            UISaveVideoAtPathToSavedPhotosAlbum(myFileLocation, self, #selector(self.getAccessTokenToUpload(videoPath: didFinishSavingWithError:contextInfo:)), nil)
-        } else {
-            print("didn't save")
-        }
-    }
+    
     
     
     
@@ -306,6 +341,30 @@ class VideoPlaybackViewController: UIViewController {
         
         let url = "https://www.googleapis.com/upload/youtube/v3/videos?part=snippet"
         let headers = ["Authorization": "Bearer \(accessToken)"]
+
+        
+//        Alamofire.upload(multipartFormData: { multipartFormData in
+//            multipartFormData.append("{'title': 'HELLO', 'description': 'HEY'}".data(using: .utf8)!, withName: "snippet")
+//            multipartFormData.append(fileURL, withName: "file", fileName: "videoFile.mov", mimeType: "application/octet-stream")
+//            
+//        }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers, encodingCompletion: { encodingResult in
+//            switch encodingResult {
+//                
+//            case .success(request: let upload, _, _):
+//                debugPrint(upload)
+//                
+//                upload.responseJSON { response in
+//                    debugPrint(response)
+//                }
+//                
+//            case .failure(let encodingError):
+//                print(encodingError)
+//            }
+//
+//        })
+    
+        
+        
         
         Alamofire.upload(fileURL, to: url, method: .post, headers: headers).validate().responseJSON(completionHandler: { response in
             
@@ -315,17 +374,24 @@ class VideoPlaybackViewController: UIViewController {
                 print(value)
                 let json = JSON(value)
                 self.videoId = json["id"].stringValue
-                print("\(self.videoId)")
+                print("\(self.videoId ?? "no videoId")")
+                
                 
                 // send video id to server
                 guard let myVideoId = self.videoId else {
-                    fatalError("videoId: \(self.videoId)")
+                    fatalError("videoId: \(self.videoId ?? "no videoId")")
                 }
                 guard let myTaskId = self.taskId else {
-                    fatalError("taskId: \(self.taskId)")
+                    fatalError("taskId: \(self.taskId ?? "no taskId")")
                 }
-                self.sendVideoData(taskId: myTaskId, videoId: myVideoId, stores: self.stores, weather: self.weather, publicFacilities: self.publicFacilities)
+                guard let myRecordFinishDatetime = self.recordFinishDatetime else {
+                    fatalError("recordFinishDatetime: \(self.recordFinishDatetime ?? "no recordFinishDatetime")")
+                }
                 
+//                self.updateVideoData(myVideoId, by: accessToken)
+                
+                self.sendVideoData(taskId: myTaskId, videoId: myVideoId, stores: self.stores, weather: self.weather, publicFacilities: self.publicFacilities, recordFinishDatetime: myRecordFinishDatetime ,environment: self.environment)
+    
             case .failure(let error):
                 print("Upload video: \(error)")
             }
@@ -334,18 +400,32 @@ class VideoPlaybackViewController: UIViewController {
     
     
 //    private func updateVideoData(_ videoId: String, by accessToken: String) {
-//        
-//        let url = "https://www.googleapis.com/youtube/v3/videos?part=snippet"
+//        let clientId = "1081569165592-ddoue96mskvohur20u755pdtq3trsaqi.apps.googleusercontent.com"
+//        let url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&key=\(clientId)"
 //        let headers = ["Authorization": "Bearer \(accessToken)"]
+//        let snippet = ["title": "Hello", "description": "Hey", "categoryId" : "22"]
+//        let parameter: [String: Any] = ["id": "\(videoId)", "snippet": snippet]
 //        
-//        Alamofire.request(url, method: .put, parameters: <#T##Parameters?#>, encoding: <#T##ParameterEncoding#>, headers: headers)
+//        Alamofire.request(url, method: .put, parameters: parameter, encoding: JSONEncoding.default, headers: headers).validate().responseJSON(completionHandler: { response in
+//            
+//            switch response.result {
+//            
+//            case .success(let value):
+//                print(value)
+//                
+//            case .failure(let error):
+//                print(error)
+//            }
+//        })
+//        
 //    }
     
     
-    private func sendVideoData(taskId: String, videoId: String, stores: String, weather: String, publicFacilities: String) {
+    
+    private func sendVideoData(taskId: String, videoId: String, stores: String, weather: String, publicFacilities: String, recordFinishDatetime: String, environment: String) {
         
         let url = "http://140.119.19.33:8080/SoslabProjectServer/saveTask"
-        let parameters = ["id": taskId, "youtubeId": videoId, "shop": stores, "weather": weather, "facility": publicFacilities]
+        let parameters = ["id": taskId, "youtubeId": videoId, "shop": stores, "weather": weather, "facility": publicFacilities, "time": recordFinishDatetime, "environment": environment]
         
         Alamofire.request(url, method: .post, parameters: parameters).validate().responseString(completionHandler: {
             response in
@@ -361,13 +441,4 @@ class VideoPlaybackViewController: UIViewController {
             }
         })
     }
-}
-
-extension ParameterEncoding {
-    
-//    public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
-//        var request = try urlRequest.asURLRequest()
-//        request.httpBody = data(using: .utf8, allowLossyConversion: false)
-//        return request
-//    }
 }
