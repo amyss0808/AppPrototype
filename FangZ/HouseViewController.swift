@@ -36,24 +36,29 @@ class HouseViewController: UIViewController {
     //MARK: Default Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // MapView Configuration
         mapView.delegate = self
         mapView.mapType = .standard
         mapView.userLocation.title = ""
-    
+
+        // UI Configuration
+        self.locationButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
+        self.locationButton.imageEdgeInsets = UIEdgeInsetsMake(11,11,11,11)
+        
+        containerView.isHidden = true
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
+        
         self.loadPin()
         
+        // User Location Configuration
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        self.locationButton.layer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 0.9).cgColor
-        self.locationButton.layer.cornerRadius = 23
-        self.locationButton.layer.shadowOffset = CGSize(width: 3.3, height: 3.3)
-        self.locationButton.layer.shadowOpacity = 0.3
-        self.locationButton.imageEdgeInsets = UIEdgeInsetsMake(11,11,11,11)
-        
+        // Search Location and Road
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         locationSearchTable.mapView = mapView
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -71,9 +76,8 @@ class HouseViewController: UIViewController {
         locationSearchTable.handleMapSearchDelegate = self
         resultSearchController?.searchBar.delegate = self
         
-        containerView.isHidden = true
-        
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
+//        let selectBtn = UIBarButtonItem(image: UIImage(named: "task"), style: .plain, target: self, action: #selector(selectButtonTapped))
+//        self.navigationItem.rightBarButtonItem = selectBtns
     }
     
     //MARK: IBAction
@@ -81,6 +85,14 @@ class HouseViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
+    func selectButtonTapped() {
+        print("select")
+    }
+    
+    func refreshView() {
+        locationManager.startUpdatingLocation()
+        loadPin()
+    }
 }
 
 
@@ -89,11 +101,17 @@ extension HouseViewController {
     
     //MARK: Private Functions
     func loadPin() {
+
+        self.annotationList.removeAll()
+        self.clusteringManager.removeAll()
+        
+        var annotations = [MKPointAnnotation]()
+        
         Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/videoRoadList").responseJSON { response in
             
             switch response.result {
             case .success(let value):
-                print("---Connecting to server success---")
+                print("---Connecting to VIDEO ROAD server success---")
                 
                 let jsonArray: Array = JSON(value).arrayValue
                 
@@ -105,6 +123,8 @@ extension HouseViewController {
                     annotation.id = index
                     
                     self.annotationList.append(annotation)
+                    
+                    
                 }
                 
                 DispatchQueue.main.async(execute: {
@@ -117,10 +137,13 @@ extension HouseViewController {
                     let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
                     
                     self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
+                    
+            
+                    print("---Display HOME Annotations---")
                 })
                 
             case .failure(let error):
-                print("---Connecting to server failed---")
+                print("---Connecting to VIDEO ROAD server failed---")
                 print(error)
             }
         }
@@ -249,7 +272,6 @@ extension HouseViewController : MKMapViewDelegate {
                 searchAnnotationView?.annotation = annotation
             }
             return searchAnnotationView
-            
         default:
             return nil
         }

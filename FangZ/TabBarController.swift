@@ -40,7 +40,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 print("topVC cannot downcast to HouseViewController because selectedVC.top: \(String(describing: selectedVC.topViewController))")
                 return
             }
-            topVC.loadPin()
+            topVC.refreshView()
         
             
         default:
