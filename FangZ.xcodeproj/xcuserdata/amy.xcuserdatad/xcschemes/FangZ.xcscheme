@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E1423DA91E5C549A0034E5B8"
-               BuildableName = "AppPrototype.app"
-               BlueprintName = "AppPrototype"
-               ReferencedContainer = "container:AppPrototype.xcodeproj">
+               BuildableName = "FangZ.app"
+               BlueprintName = "FangZ"
+               ReferencedContainer = "container:FangZ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1423DBF1E5C549A0034E5B8"
-               BuildableName = "AppPrototypeTests.xctest"
-               BlueprintName = "AppPrototypeTests"
-               ReferencedContainer = "container:AppPrototype.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1423DA91E5C549A0034E5B8"
-            BuildableName = "AppPrototype.app"
-            BlueprintName = "AppPrototype"
-            ReferencedContainer = "container:AppPrototype.xcodeproj">
+            BuildableName = "FangZ.app"
+            BlueprintName = "FangZ"
+            ReferencedContainer = "container:FangZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1423DA91E5C549A0034E5B8"
-            BuildableName = "AppPrototype.app"
-            BlueprintName = "AppPrototype"
-            ReferencedContainer = "container:AppPrototype.xcodeproj">
+            BuildableName = "FangZ.app"
+            BlueprintName = "FangZ"
+            ReferencedContainer = "container:FangZ.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E1423DA91E5C549A0034E5B8"
-            BuildableName = "AppPrototype.app"
-            BlueprintName = "AppPrototype"
-            ReferencedContainer = "container:AppPrototype.xcodeproj">
+            BuildableName = "FangZ.app"
+            BlueprintName = "FangZ"
+            ReferencedContainer = "container:FangZ.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

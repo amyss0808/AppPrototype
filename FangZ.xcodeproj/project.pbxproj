@@ -27,6 +27,7 @@
 		E1423DD41E5C5F710034E5B8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1423DD31E5C5F710034E5B8 /* Podfile */; };
 		E1733F911E5FE6CD007FAEAA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */; };
 		E1733F971E601221007FAEAA /* SearchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1733F961E601221007FAEAA /* SearchAnnotation.swift */; };
+		E19350A81EBB825F00C66011 /* HouseSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19350A71EBB825F00C66011 /* HouseSelectViewController.swift */; };
 		E1CAA6521E60699200386DB0 /* HouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CAA6511E60699200386DB0 /* HouseViewController.swift */; };
 		E1CAA6541E606A1700386DB0 /* HouseContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CAA6531E606A1700386DB0 /* HouseContainerViewController.swift */; };
 		E1CD51911E7AFD8300E73565 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CD51901E7AFD8300E73565 /* Annotation.swift */; };
@@ -87,6 +88,7 @@
 		E1423DD31E5C5F710034E5B8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		E1733F961E601221007FAEAA /* SearchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAnnotation.swift; sourceTree = "<group>"; };
+		E19350A71EBB825F00C66011 /* HouseSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseSelectViewController.swift; sourceTree = "<group>"; };
 		E1CAA6511E60699200386DB0 /* HouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseViewController.swift; sourceTree = "<group>"; };
 		E1CAA6531E606A1700386DB0 /* HouseContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseContainerViewController.swift; sourceTree = "<group>"; };
 		E1CD51901E7AFD8300E73565 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				E1733F901E5FE6CD007FAEAA /* LocationSearchTable.swift */,
 				E1423DAD1E5C549A0034E5B8 /* AppDelegate.swift */,
 				E1CAA6511E60699200386DB0 /* HouseViewController.swift */,
+				E19350A71EBB825F00C66011 /* HouseSelectViewController.swift */,
 				E1CAA6531E606A1700386DB0 /* HouseContainerViewController.swift */,
 				E1DBA8B51E5D6FAB003A4484 /* HouseDetailViewController.swift */,
 				E10A764F1E5DC0DB00D9F045 /* VideoDetailViewController.swift */,
@@ -304,7 +307,7 @@
 				TargetAttributes = {
 					E1423DA91E5C549A0034E5B8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 88974F63K2;
+						DevelopmentTeam = SK34PM56LJ;
 						ProvisioningStyle = Automatic;
 					};
 					E1423DBF1E5C549A0034E5B8 = {
@@ -427,6 +430,7 @@
 				E1CD51911E7AFD8300E73565 /* Annotation.swift in Sources */,
 				E1CD51971E7AFDA600E73565 /* AnnotationClusterView.swift in Sources */,
 				C492D0721E7A6C5700F4F232 /* VideoEditVCButton.swift in Sources */,
+				E19350A81EBB825F00C66011 /* HouseSelectViewController.swift in Sources */,
 				E1CD51A41E7AFDC200E73565 /* QuadTreeNode.swift in Sources */,
 				C4F2DB871E842775002138AD /* VideoPlaybackViewController.swift in Sources */,
 				E1D03CF11E5C690D000FC684 /* HouseTableViewCell.swift in Sources */,
@@ -578,11 +582,11 @@
 			baseConfigurationReference = 974B80BBD4CD345887B86EEB /* Pods-FangZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 88974F63K2;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = FangZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.FangZ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.FangZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -593,11 +597,11 @@
 			baseConfigurationReference = 5A70E5204222F2569FF9CF43 /* Pods-FangZ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 88974F63K2;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = FangZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yenchulin.FangZ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.FangZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
