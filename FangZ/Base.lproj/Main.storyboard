@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -75,11 +75,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uz0-qD-yOZ">
-                        <barButtonItem key="rightBarButtonItem" image="cancel" id="jDX-J7-IF0">
-                            <connections>
-                                <segue destination="fL0-RC-gAv" kind="presentation" id="nAD-io-DR3"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="cancel" id="jDX-J7-IF0"/>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="SAD-9G-89W" id="1Xh-MI-sVC"/>
@@ -100,7 +96,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NjH-NM-3xe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8Me-md-gcC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Me-JU-r36" userLabel="Section View">
@@ -1426,10 +1422,8 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-Bi-TzX" customClass="PlayerView" customModule="FangZ" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
-
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選取您在此任務遇到的物件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbR-jD-fUB">
                                         <rect key="frame" x="8" y="4" width="359" height="29"/>

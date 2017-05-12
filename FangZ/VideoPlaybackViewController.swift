@@ -377,7 +377,7 @@ class VideoPlaybackViewController: UIViewController {
                 print("\(self.videoId ?? "no videoId")")
                 
                 
-                // send video id to server
+                // send video id and data to server
                 guard let myVideoId = self.videoId else {
                     fatalError("videoId: \(self.videoId ?? "no videoId")")
                 }
@@ -387,6 +387,9 @@ class VideoPlaybackViewController: UIViewController {
                 guard let myRecordFinishDatetime = self.recordFinishDatetime else {
                     fatalError("recordFinishDatetime: \(self.recordFinishDatetime ?? "no recordFinishDatetime")")
                 }
+                
+                
+                let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: <#T##Selector#>, userInfo: nil, repeats: true)
                 
 //                self.updateVideoData(myVideoId, by: accessToken)
                 
@@ -399,26 +402,26 @@ class VideoPlaybackViewController: UIViewController {
     }
     
     
-//    private func updateVideoData(_ videoId: String, by accessToken: String) {
-//        let clientId = "1081569165592-ddoue96mskvohur20u755pdtq3trsaqi.apps.googleusercontent.com"
-//        let url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&key=\(clientId)"
-//        let headers = ["Authorization": "Bearer \(accessToken)"]
-//        let snippet = ["title": "Hello", "description": "Hey", "categoryId" : "22"]
-//        let parameter: [String: Any] = ["id": "\(videoId)", "snippet": snippet]
-//        
-//        Alamofire.request(url, method: .put, parameters: parameter, encoding: JSONEncoding.default, headers: headers).validate().responseJSON(completionHandler: { response in
-//            
-//            switch response.result {
-//            
-//            case .success(let value):
-//                print(value)
-//                
-//            case .failure(let error):
-//                print(error)
-//            }
-//        })
-//        
-//    }
+    
+    private func updateVideoData(_ videoId: String, by accessToken: String) {
+        let url = "https://www.googleapis.com/youtube/v3/videos?part=snippet"
+        let headers = ["Authorization": "Bearer \(accessToken)"]
+        let snippet = ["title": "Hello", "description": "Hey", "categoryId" : "22"]
+        let parameter: [String: Any] = ["id": "\(videoId)", "snippet": snippet]
+        
+        Alamofire.request(url, method: .put, parameters: parameter, encoding: JSONEncoding.default, headers: headers).validate().responseJSON(completionHandler: { response in
+            
+            switch response.result {
+            
+            case .success(let value):
+                print(value)
+                
+            case .failure(let error):
+                print(error)
+            }
+        })
+        
+    }
     
     
     
