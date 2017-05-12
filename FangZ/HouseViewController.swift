@@ -24,10 +24,19 @@ class HouseViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationButton: UIButton!
     
+    // for annotation and cluster
     var annotationList = [Annotation]()
     let clusteringManager = ClusteringManager()
     
     let locationManager = CLLocationManager()
+    
+    // for select house
+    var constraintParameter: Dictionary<String, String> = [:]
+    {
+        didSet{
+            self.callServerToLoadPin()
+        }
+    }
     
     // for search
     var resultSearchController: UISearchController? = nil
@@ -49,8 +58,6 @@ class HouseViewController: UIViewController {
         containerView.isHidden = true
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
-        
-        self.loadPin()
         
         // User Location Configuration
         locationManager.delegate = self
@@ -76,8 +83,8 @@ class HouseViewController: UIViewController {
         locationSearchTable.handleMapSearchDelegate = self
         resultSearchController?.searchBar.delegate = self
         
-//        let selectBtn = UIBarButtonItem(image: UIImage(named: "task"), style: .plain, target: self, action: #selector(selectButtonTapped))
-//        self.navigationItem.rightBarButtonItem = selectBtns
+        // first load pin
+        self.callServerToLoadPin()
     }
     
     //MARK: IBAction
@@ -85,13 +92,23 @@ class HouseViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
-    func selectButtonTapped() {
-        print("select")
+    func callServerToLoadPin() {
+        var numberOfNothing = 0
+        for (_, value) in self.constraintParameter {
+            if value == "nothing" {
+                numberOfNothing += 1
+            }
+        }
+        if numberOfNothing == 3 || self.constraintParameter.isEmpty {
+            self.loadPinWithoutConstraints()
+        } else {
+            self.loadPinWithConstraints()
+        }
     }
     
     func refreshView() {
         locationManager.startUpdatingLocation()
-        loadPin()
+        self.callServerToLoadPin()
     }
 }
 
@@ -100,12 +117,10 @@ class HouseViewController: UIViewController {
 extension HouseViewController {
     
     //MARK: Private Functions
-    func loadPin() {
+    fileprivate func loadPinWithoutConstraints() {
 
         self.annotationList.removeAll()
         self.clusteringManager.removeAll()
-        
-        var annotations = [MKPointAnnotation]()
         
         Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/videoRoadList").responseJSON { response in
             
@@ -124,7 +139,6 @@ extension HouseViewController {
                     
                     self.annotationList.append(annotation)
                     
-                    
                 }
                 
                 DispatchQueue.main.async(execute: {
@@ -139,7 +153,7 @@ extension HouseViewController {
                     self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
                     
             
-                    print("---Display HOME Annotations---")
+                    print("---Display HOME Annotations WITHOUT CONSTRAINTS---")
                 })
                 
             case .failure(let error):
@@ -147,6 +161,55 @@ extension HouseViewController {
                 print(error)
             }
         }
+    }
+    
+    fileprivate func loadPinWithConstraints() {
+        
+        self.annotationList.removeAll()
+        self.clusteringManager.removeAll()
+        
+        Alamofire.request("http://140.119.19.33:8080/SoslabProjectServer/search", method: .post, parameters: self.constraintParameter).validate().responseJSON(completionHandler: {
+            response in
+            
+            switch response.result {
+                
+            case .success(let value):
+                print("---Connecting to SEARCH server success---")
+                
+                let jsonArray: Array = JSON(value).arrayValue
+                
+                for (index, subJson) in jsonArray.enumerated() {
+                    let annotation = Annotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: subJson["lat"].doubleValue, longitude: subJson["lng"].doubleValue)
+                    annotation.address = subJson["address"].stringValue
+                    annotation.numberOfElement = subJson["houseNumber"].intValue
+                    annotation.id = index
+                    
+                    self.annotationList.append(annotation)
+                    
+                }
+                print(value)
+                print(self.annotationList)
+                
+                DispatchQueue.main.async(execute: {
+                    self.clusteringManager.add(annotations: self.annotationList)
+                    
+                    let mapBoundsWidth = Double(self.mapView.bounds.size.width)
+                    let mapRectWidth = self.mapView.visibleMapRect.size.width
+                    let scale = mapBoundsWidth / mapRectWidth
+                    
+                    let annotationArray = self.clusteringManager.clusteredAnnotations(withinMapRect: self.mapView.visibleMapRect, zoomScale:scale)
+                    
+                    self.clusteringManager.display(annotations: annotationArray, onMapView:self.mapView)
+                    
+                    print("---Display HOME Annotations WITH CONSTRAINTS---")
+                })
+                
+            case .failure(let error):
+                print("---Connecting to SEARCH server failed---")
+                print(error)
+            }
+        })
     }
 }
 
@@ -318,6 +381,35 @@ extension HouseViewController : CLLocationManagerDelegate {
         }
         locationManager.stopUpdatingLocation()
     }
+}
+
+//MARK: - Navigation
+extension HouseViewController {
+    
+    @IBAction func unwindToHouseView(sender: UIStoryboardSegue){
+        guard let sourceViewController = sender.source as? HouseSelectViewController else {
+                fatalError("Unexpected sourceViewController")
+        }
+        self.constraintParameter = sourceViewController.constraintParameter
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case is HouseContainerViewController:
+            break
+        case is UINavigationController:
+            guard let rootDestination = segue.destination as? UINavigationController else {
+                fatalError("Cannot downcast")
+            }
+            guard let destination = rootDestination.viewControllers.first as? HouseSelectViewController else{
+                fatalError("Cannot downcast")
+            }
+                destination.constraintParameter = self.constraintParameter
+        default:
+            fatalError("Unexpected Destination! Destination is \(segue.destination)")
+        }
+    }
+    
 }
 
 

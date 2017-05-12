@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -75,9 +75,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uz0-qD-yOZ">
-                        <barButtonItem key="rightBarButtonItem" image="cancel" id="jDX-J7-IF0">
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="jDX-J7-IF0">
                             <connections>
-                                <segue destination="fL0-RC-gAv" kind="presentation" id="nAD-io-DR3"/>
+                                <segue destination="yJC-iL-JwW" kind="presentation" id="njx-RD-hNE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -103,169 +103,374 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Me-JU-r36" userLabel="Section View">
-                                <rect key="frame" x="16" y="15" width="343" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBe-Fg-rbP" userLabel="Shop Section View">
+                                <rect key="frame" x="16" y="20" width="343" height="120"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="em6-cz-GMV" userLabel="Section Title View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojV-nL-bkH" userLabel="Section Title View">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVg-h9-Nki" userLabel="Section Title Label">
+                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="Cy0-VT-4cA"/>
+                                            <constraint firstAttribute="bottom" secondItem="YVg-h9-Nki" secondAttribute="bottom" constant="2" id="LR1-0T-agb"/>
+                                            <constraint firstAttribute="trailing" secondItem="YVg-h9-Nki" secondAttribute="trailing" constant="8" id="NQA-Zk-Ymz"/>
+                                            <constraint firstItem="YVg-h9-Nki" firstAttribute="top" secondItem="ojV-nL-bkH" secondAttribute="top" constant="2" id="k6c-0D-IPX"/>
+                                            <constraint firstItem="YVg-h9-Nki" firstAttribute="leading" secondItem="ojV-nL-bkH" secondAttribute="leading" constant="8" id="z17-Gr-1t8"/>
+                                        </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9I-1C-YFI" userLabel="Section Title Label">
-                                        <rect key="frame" x="8" y="4" width="137" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlD-ZE-ndj" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="48" y="38" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="便利商店">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="M54-iU-vP0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpR-hr-Ppb" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="48" y="76" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="早餐店">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="TBo-fm-fNS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcF-Gf-QcD" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="133" y="38" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="超市">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="bV0-eg-c8z"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkE-ex-IP3" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="133" y="76" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="餐廳">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="r6K-Hc-dqp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mye-W3-VX4" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="218" y="76" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="加油站">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="iKO-Rs-PcE"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBy-fJ-t2d" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="218" y="38" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="醫院">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="storeButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="URP-p8-34T"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OEY-vl-mzB">
+                                        <rect key="frame" x="48" y="39" width="247.5" height="68"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nSc-4C-0b2">
+                                                <rect key="frame" x="0.0" y="0.0" width="247.5" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-QL-rVw" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
+                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="KHe-QL-rVw" secondAttribute="height" multiplier="77:30" id="Rdg-H2-rIY"/>
+                                                        </constraints>
+                                                        <state key="normal" title="便利商店">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="Jzz-1x-Wc8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqi-Vd-rVn" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                        <rect key="frame" x="85.5" y="0.0" width="77" height="30"/>
+                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Nqi-Vd-rVn" secondAttribute="height" multiplier="77:30" id="VJY-b9-r03"/>
+                                                        </constraints>
+                                                        <state key="normal" title="超市">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="Jke-Vg-31i"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fg-uO-hJg" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                        <rect key="frame" x="170.5" y="0.0" width="77" height="30"/>
+                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="4fg-uO-hJg" secondAttribute="height" multiplier="77:30" id="Bn8-Df-mJA"/>
+                                                        </constraints>
+                                                        <state key="normal" title="醫院">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="DQG-qx-3ht"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="srI-xS-bfC">
+                                                <rect key="frame" x="0.0" y="38" width="247.5" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aV-rT-dWD" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
+                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="8aV-rT-dWD" secondAttribute="height" multiplier="77:30" id="guK-fb-BUm"/>
+                                                        </constraints>
+                                                        <state key="normal" title="早餐店">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="B0J-qJ-RNJ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKY-w2-4zq" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                        <rect key="frame" x="85.5" y="0.0" width="77" height="30"/>
+                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="MKY-w2-4zq" secondAttribute="height" multiplier="77:30" id="foj-bT-C40"/>
+                                                        </constraints>
+                                                        <state key="normal" title="餐廳">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="kxu-PV-S1i"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbP-g8-8DE" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                        <rect key="frame" x="170.5" y="0.0" width="77" height="30"/>
+                                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="AbP-g8-8DE" secondAttribute="height" multiplier="77:30" id="T8d-Ue-00f"/>
+                                                        </constraints>
+                                                        <state key="normal" title="加油站">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="qj7-Jg-W4p"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="OEY-vl-mzB" firstAttribute="centerX" secondItem="OBe-Fg-rbP" secondAttribute="centerX" id="0kx-Ab-iPG"/>
+                                    <constraint firstAttribute="trailing" secondItem="ojV-nL-bkH" secondAttribute="trailing" id="Ap2-Lj-dq4"/>
+                                    <constraint firstAttribute="height" constant="120" id="K8O-WB-YqC"/>
+                                    <constraint firstItem="ojV-nL-bkH" firstAttribute="leading" secondItem="OBe-Fg-rbP" secondAttribute="leading" id="V3X-jK-5yr"/>
+                                    <constraint firstItem="OEY-vl-mzB" firstAttribute="centerY" secondItem="OBe-Fg-rbP" secondAttribute="centerY" constant="13" id="jit-eO-GnO"/>
+                                    <constraint firstItem="ojV-nL-bkH" firstAttribute="top" secondItem="OBe-Fg-rbP" secondAttribute="top" id="vRG-Qq-1Kn"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drk-kr-Phr" userLabel="Section View">
-                                <rect key="frame" x="16" y="146" width="343" height="87"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3m-0E-KaS" userLabel="Public Facility Section View">
+                                <rect key="frame" x="16" y="160" width="343" height="80"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kO1-pQ-PiB" userLabel="Section Title View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctc-Sy-kCF" userLabel="Section Title View">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公家機關／設施" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNm-dR-wrk" userLabel="Section Title Label">
+                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.25879135730000002" green="0.25884211060000001" blue="0.25878816840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="mNm-dR-wrk" secondAttribute="bottom" constant="2" id="AwM-Qq-Qte"/>
+                                            <constraint firstAttribute="trailing" secondItem="mNm-dR-wrk" secondAttribute="trailing" constant="8" id="KvV-uD-HuF"/>
+                                            <constraint firstItem="mNm-dR-wrk" firstAttribute="top" secondItem="ctc-Sy-kCF" secondAttribute="top" constant="2" id="Ueb-mr-e6Y"/>
+                                            <constraint firstAttribute="height" constant="27" id="iC3-3a-t26"/>
+                                            <constraint firstItem="mNm-dR-wrk" firstAttribute="leading" secondItem="ctc-Sy-kCF" secondAttribute="leading" constant="8" id="wuy-Qw-Khp"/>
+                                        </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="公家機關／設施" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KC-e3-NXB" userLabel="Section Title Label">
-                                        <rect key="frame" x="8" y="4" width="137" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1d-wh-fvS" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="173" y="36" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="學校">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="lVU-gb-4EI"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsL-Dk-VqH" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="36" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="郵局">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="3kM-0Q-9vy"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhJ-u6-pvB" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="258" y="36" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="警察局">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="vhZ-Ks-f1A"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJm-on-M10" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                        <rect key="frame" x="93" y="36" width="77" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="公園">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="pln-lh-rMj"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="mkm-bE-uWN">
+                                        <rect key="frame" x="12" y="38.5" width="320.5" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhi-M6-9TQ" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Dhi-M6-9TQ" secondAttribute="height" multiplier="77:30" id="WSk-dn-ic1"/>
+                                                </constraints>
+                                                <state key="normal" title="郵局">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="dRs-tk-r13"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="aYZ-Q6-Yih"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZQ-Vh-Lf8" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="81" y="0.0" width="77.5" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="qZQ-Vh-Lf8" secondAttribute="height" multiplier="77:30" id="ked-wB-1VF"/>
+                                                </constraints>
+                                                <state key="normal" title="公園">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="hRP-0m-jgz"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="vNc-Vk-zvK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-Ag-dlG" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="162.5" y="0.0" width="77" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="sCn-Ag-dlG" secondAttribute="height" multiplier="77:30" id="VKb-RC-ZP0"/>
+                                                </constraints>
+                                                <state key="normal" title="學校">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="L8s-9r-ecR"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="qIh-nU-DaV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy2-Yk-iIc" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="243.5" y="0.0" width="77" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Iy2-Yk-iIc" secondAttribute="height" multiplier="77:30" id="DAo-0K-0Vo"/>
+                                                </constraints>
+                                                <state key="normal" title="警察局">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="publicFacilityButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="9ul-zH-T8V"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="Ra7-09-4Do"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ctc-Sy-kCF" firstAttribute="leading" secondItem="K3m-0E-KaS" secondAttribute="leading" id="GTM-Sw-bqk"/>
+                                    <constraint firstItem="mkm-bE-uWN" firstAttribute="centerX" secondItem="K3m-0E-KaS" secondAttribute="centerX" id="S1j-d2-fGj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ctc-Sy-kCF" secondAttribute="trailing" id="i3m-8L-2Mf"/>
+                                    <constraint firstItem="mkm-bE-uWN" firstAttribute="centerY" secondItem="K3m-0E-KaS" secondAttribute="centerY" constant="13" id="nft-A2-zBj"/>
+                                    <constraint firstItem="ctc-Sy-kCF" firstAttribute="top" secondItem="K3m-0E-KaS" secondAttribute="top" id="qIB-FJ-b1V"/>
+                                    <constraint firstAttribute="height" constant="80" id="xuA-mX-Q93"/>
+                                </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3Q-lD-53p" userLabel="Environment Section View">
+                                <rect key="frame" x="16" y="260" width="343" height="80"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvm-g0-Jhf" userLabel="Section Title View">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="環境狀況" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyc-pn-Do2" userLabel="Seciton Title Label">
+                                                <rect key="frame" x="8" y="2" width="327" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Yyc-pn-Do2" secondAttribute="bottom" constant="2" id="3iP-pp-l7s"/>
+                                            <constraint firstItem="Yyc-pn-Do2" firstAttribute="leading" secondItem="cvm-g0-Jhf" secondAttribute="leading" constant="8" id="88q-iL-cgQ"/>
+                                            <constraint firstItem="Yyc-pn-Do2" firstAttribute="top" secondItem="cvm-g0-Jhf" secondAttribute="top" constant="2" id="g61-by-jat"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yyc-pn-Do2" secondAttribute="trailing" constant="8" id="nUP-FU-f9Z"/>
+                                            <constraint firstAttribute="height" constant="27" id="oTW-WB-KqT"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MTg-0X-fbz">
+                                        <rect key="frame" x="13.5" y="37.5" width="316.5" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Elq-Ny-YZM" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="77" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Elq-Ny-YZM" secondAttribute="height" multiplier="77:30" id="ORJ-Ms-IAh"/>
+                                                </constraints>
+                                                <state key="normal" title="安靜">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="environmentButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="2lx-gT-Iu8"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="Lni-id-z1b"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sl3-9x-6Tc" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="81" y="0.0" width="154.5" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Sl3-9x-6Tc" secondAttribute="height" multiplier="154:30" id="tac-6L-jUK"/>
+                                                </constraints>
+                                                <state key="normal" title="近大眾運輸工具">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="environmentButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="WZ6-Mx-m1v"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="2wq-Gg-JNY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kaq-Xs-m7b" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
+                                                <rect key="frame" x="239.5" y="0.0" width="77" height="30"/>
+                                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Kaq-Xs-m7b" secondAttribute="height" multiplier="77:30" id="w5J-c2-xMp"/>
+                                                </constraints>
+                                                <state key="normal" title="車流量少">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="environmentButtonSelected:" destination="pcQ-9C-HC5" eventType="touchUpInside" id="Bct-vc-bhb"/>
+                                                    <action selector="tagButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="oq0-k5-Hhh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="MTg-0X-fbz" firstAttribute="centerX" secondItem="b3Q-lD-53p" secondAttribute="centerX" id="Hw9-Lj-y1P"/>
+                                    <constraint firstAttribute="height" constant="80" id="K4c-J3-gJA"/>
+                                    <constraint firstItem="MTg-0X-fbz" firstAttribute="centerY" secondItem="b3Q-lD-53p" secondAttribute="centerY" constant="13" id="cLT-Qd-Xub"/>
+                                    <constraint firstAttribute="trailing" secondItem="cvm-g0-Jhf" secondAttribute="trailing" id="fTS-Gt-sXU"/>
+                                    <constraint firstItem="cvm-g0-Jhf" firstAttribute="leading" secondItem="b3Q-lD-53p" secondAttribute="leading" id="miG-TC-Hs9"/>
+                                    <constraint firstItem="cvm-g0-Jhf" firstAttribute="top" secondItem="b3Q-lD-53p" secondAttribute="top" id="zlg-cl-bQB"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiX-KK-hRg">
+                                <rect key="frame" x="131" y="360" width="108" height="35"/>
+                                <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="D4K-A2-n8z"/>
+                                    <constraint firstAttribute="width" constant="108" id="oDn-Fn-W87"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="清除所有條件"/>
+                                <connections>
+                                    <action selector="clearButtonTapped:" destination="GzF-aj-qq8" eventType="touchUpInside" id="HtQ-KY-lXq"/>
+                                    <action selector="urlButtonTapped:" destination="Ju3-Lj-l2p" eventType="touchUpInside" id="tHa-YF-yGd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.47053432464599609" green="0.4706193208694458" blue="0.47052896022796631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="b3Q-lD-53p" firstAttribute="top" secondItem="K3m-0E-KaS" secondAttribute="bottom" constant="20" id="1Wg-Js-xex"/>
+                            <constraint firstItem="b3Q-lD-53p" firstAttribute="trailing" secondItem="8Me-md-gcC" secondAttribute="trailingMargin" id="9rf-8p-wF1"/>
+                            <constraint firstItem="QiX-KK-hRg" firstAttribute="top" secondItem="b3Q-lD-53p" secondAttribute="bottom" constant="20" id="Bn1-kJ-XxI"/>
+                            <constraint firstItem="OBe-Fg-rbP" firstAttribute="leading" secondItem="8Me-md-gcC" secondAttribute="leadingMargin" id="Lm4-A5-muJ"/>
+                            <constraint firstItem="b3Q-lD-53p" firstAttribute="leading" secondItem="8Me-md-gcC" secondAttribute="leadingMargin" id="QJl-x6-92d"/>
+                            <constraint firstItem="K3m-0E-KaS" firstAttribute="leading" secondItem="8Me-md-gcC" secondAttribute="leadingMargin" id="WPz-Iu-wAu"/>
+                            <constraint firstItem="K3m-0E-KaS" firstAttribute="trailing" secondItem="8Me-md-gcC" secondAttribute="trailingMargin" id="YMC-8b-hiV"/>
+                            <constraint firstItem="QiX-KK-hRg" firstAttribute="centerX" secondItem="8Me-md-gcC" secondAttribute="centerX" constant="-2.5" id="alK-al-fdR"/>
+                            <constraint firstItem="OBe-Fg-rbP" firstAttribute="top" secondItem="rqe-kG-UgO" secondAttribute="bottom" constant="20" id="kZR-ri-N1u"/>
+                            <constraint firstItem="OBe-Fg-rbP" firstAttribute="trailing" secondItem="8Me-md-gcC" secondAttribute="trailingMargin" id="neA-00-ZGj"/>
+                            <constraint firstItem="K3m-0E-KaS" firstAttribute="top" secondItem="OBe-Fg-rbP" secondAttribute="bottom" constant="20" id="xQR-Iq-380"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="搜尋區域" id="M0u-jO-Fgg">
                         <barButtonItem key="leftBarButtonItem" title="取消" id="0g5-9T-fGm">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="GzF-aj-qq8" id="Kj8-Dl-77h"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="搜尋" id="eR8-CW-AAJ"/>
+                        <barButtonItem key="rightBarButtonItem" title="搜尋" id="eR8-CW-AAJ">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="vwq-VL-ecv" kind="unwind" unwindAction="unwindToHouseViewWithSender:" id="v9m-f2-46m"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchButton" destination="eR8-CW-AAJ" id="ufY-Om-HIb"/>
+                        <outletCollection property="sectionViews" destination="OBe-Fg-rbP" collectionClass="NSMutableArray" id="MMj-Wt-QiQ"/>
+                        <outletCollection property="sectionViews" destination="K3m-0E-KaS" collectionClass="NSMutableArray" id="mTM-hl-IvM"/>
+                        <outletCollection property="sectionViews" destination="b3Q-lD-53p" collectionClass="NSMutableArray" id="fiF-WE-yOE"/>
+                        <outletCollection property="storeButtons" destination="KHe-QL-rVw" collectionClass="NSMutableArray" id="4HD-eT-7Ca"/>
+                        <outletCollection property="storeButtons" destination="Nqi-Vd-rVn" collectionClass="NSMutableArray" id="qFn-rm-TWE"/>
+                        <outletCollection property="storeButtons" destination="4fg-uO-hJg" collectionClass="NSMutableArray" id="rn0-Gd-KML"/>
+                        <outletCollection property="storeButtons" destination="8aV-rT-dWD" collectionClass="NSMutableArray" id="71b-2N-4bJ"/>
+                        <outletCollection property="storeButtons" destination="MKY-w2-4zq" collectionClass="NSMutableArray" id="Wku-S1-ztQ"/>
+                        <outletCollection property="storeButtons" destination="AbP-g8-8DE" collectionClass="NSMutableArray" id="WRo-Ce-Uaa"/>
+                        <outletCollection property="publicFacilityButtons" destination="Dhi-M6-9TQ" collectionClass="NSMutableArray" id="NCB-Pw-U7P"/>
+                        <outletCollection property="publicFacilityButtons" destination="qZQ-Vh-Lf8" collectionClass="NSMutableArray" id="06O-D8-jzx"/>
+                        <outletCollection property="publicFacilityButtons" destination="sCn-Ag-dlG" collectionClass="NSMutableArray" id="77R-h4-uVk"/>
+                        <outletCollection property="publicFacilityButtons" destination="Iy2-Yk-iIc" collectionClass="NSMutableArray" id="jlQ-fx-qOq"/>
+                        <outletCollection property="environmentButtons" destination="Elq-Ny-YZM" collectionClass="NSMutableArray" id="oOQ-wW-EAK"/>
+                        <outletCollection property="environmentButtons" destination="Sl3-9x-6Tc" collectionClass="NSMutableArray" id="5lM-Le-O2q"/>
+                        <outletCollection property="environmentButtons" destination="Kaq-Xs-m7b" collectionClass="NSMutableArray" id="54W-AX-k4r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxl-Ld-L4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vwq-VL-ecv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3068" y="-1146.4767616191905"/>
+            <point key="canvasLocation" x="3168.8000000000002" y="-1128.4857571214393"/>
         </scene>
         <!--Task Navigation Controller-->
         <scene sceneID="BNJ-Y9-QqD">
@@ -380,7 +585,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjs-lo-pfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-884" y="-361"/>
+            <point key="canvasLocation" x="-1" y="-1091"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -701,7 +906,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4EB-1s-5QS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2362" y="-125"/>
+            <point key="canvasLocation" x="2244" y="-297"/>
         </scene>
         <!--Video Detail View Controller-->
         <scene sceneID="lkl-gX-GlB">
@@ -916,7 +1121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2x-MN-PE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4216.8000000000002" y="-290.10494752623691"/>
+            <point key="canvasLocation" x="3887" y="-297"/>
         </scene>
         <!--House Detail View Controller-->
         <scene sceneID="kuK-DR-0eW">
@@ -1315,7 +1520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuC-e8-CiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4217" y="-1361"/>
+            <point key="canvasLocation" x="4642" y="-960"/>
         </scene>
         <!--Task Container View Controller-->
         <scene sceneID="aL0-ic-9aU">
@@ -1426,10 +1631,8 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-Bi-TzX" customClass="PlayerView" customModule="FangZ" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
-
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選取您在此任務遇到的物件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbR-jD-fUB">
                                         <rect key="frame" x="8" y="4" width="359" height="29"/>
@@ -2159,9 +2362,32 @@
             </objects>
             <point key="canvasLocation" x="5157.6000000000004" y="364.7676161919041"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Clg-te-hAK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yJC-iL-JwW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qNg-7g-ZWX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.29304242130000002" green="0.407371223" blue="0.61487150189999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GzF-aj-qq8" kind="relationship" relationship="rootViewController" id="HZi-sM-R0f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tob-38-aQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="-1127"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cancel" width="25" height="25"/>
+        <image name="filter" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
         <image name="info" width="16" height="16"/>
         <image name="location" width="32" height="32"/>
