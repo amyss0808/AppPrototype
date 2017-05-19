@@ -389,7 +389,7 @@ class VideoPlaybackViewController: UIViewController {
                 }
                 
                 
-                let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: <#T##Selector#>, userInfo: nil, repeats: true)
+//                let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: <#T##Selector#>, userInfo: nil, repeats: true)
                 
 //                self.updateVideoData(myVideoId, by: accessToken)
                 

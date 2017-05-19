@@ -35,15 +35,15 @@ class TaskDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         
         
-        guard let mytask = task else {
+        guard let mytask = self.task else {
             fatalError("task is \(String(describing: task))")
         }
-        taskTitle.text = mytask.taskTitle
-        taskDuration.text = mytask.taskDuration
-        taskDistance.text = mytask.taskDistance
+        self.taskTitle.text = mytask.taskTitle
+        self.taskDuration.text = mytask.taskDuration
+        self.taskDistance.text = mytask.taskDistance
         
-        configureMapView(for: mytask)
-        loadStartEndPins(of: mytask)
+        self.configureMapView(for: mytask)
+        self.loadStartEndPins(of: mytask)
         
         // disabel or enable + decorate "執行任務" UIButton
         if mytask.taskIsNear == false {

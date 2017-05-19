@@ -276,7 +276,7 @@ class VideoCaptureViewController: UIViewController, AVCaptureFileOutputRecording
     private func prepareWrongOrientationAlert() {
         
         // add image on alert view
-        let unlockPLImageView = UIImageView(frame: CGRect(x: 75, y: 90, width: 120, height: 40))
+        let unlockPLImageView = UIImageView(frame: CGRect(x: 75, y: 45, width: 120, height: 120))
         unlockPLImageView.image = UIImage(named: "unlock portrait lock")
         self.wrongOrientationAlert.view.addSubview(unlockPLImageView)
         

@@ -330,7 +330,7 @@ extension HouseViewController : MKMapViewDelegate {
             var searchAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             if searchAnnotationView == nil {
                 searchAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                searchAnnotationView?.image = UIImage(named: "pin")
+                searchAnnotationView?.image = UIImage(named: "search pin")
             } else {
                 searchAnnotationView?.annotation = annotation
             }

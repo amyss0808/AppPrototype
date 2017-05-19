@@ -478,7 +478,7 @@ extension HouseDetailViewController : MKMapViewDelegate {
         switch annotation {
         case is Annotation:
             let annotationView = MKAnnotationView()
-            annotationView.image = UIImage(named: "pin")
+            annotationView.image = UIImage(named: "search pin")
             return annotationView
         default:
             print("here")

@@ -19,7 +19,9 @@ class Task {
     var taskEndPointLongitude: Double
     var taskIsNear: Bool
     
+    
     init(taskId: String, taskTitle: String, taskDistance: String, taskDuration: String, taskStartPointLatitude: Double, taskStartPointLongitude: Double, taskEndPointLatitude: Double, taskEndPointLongitude: Double, taskIsNear: Bool) {
+        
         self.taskId = taskId
         self.taskTitle = taskTitle
         self.taskDistance = taskDistance
