@@ -52,9 +52,6 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         // disable userlocation pin view
         mapView.userLocation.title = ""
-        
-        // change navigation back button
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "返回", style: .plain, target: nil, action: nil)
     }
     
     
@@ -91,8 +88,8 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let latitude: CLLocationDegrees = userLocation.coordinate.latitude
         let longitude: CLLocationDegrees = userLocation.coordinate.longitude
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.0025, 0.0025)
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        let centerLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(centerLocation, span)
         
         mapView.setRegion(region, animated: false)
         manager.stopUpdatingLocation()
@@ -151,7 +148,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         let distance = pinLocation.distance(from: userLocation)
         
-        if distance < 2000000 {
+        if distance < 25 {
             isNear = true
         } else {
             isNear = false
@@ -159,20 +156,10 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         return isNear
     }
-    
-    
-    
-    private func createAlert() {
-        let farAlert = UIAlertController(title: "Task is too far!", message: "You cannot execute the task.", preferredStyle: .alert)
-        
-        farAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-            print("yes is too far")
-        }))
-        self.present(farAlert, animated: true, completion: nil)
-    }
 
     
     
+    // MARK: - MKMapViewDelegate functions
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 
         switch view.annotation {
@@ -182,7 +169,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 fatalError("The selected pin annotation cannot be downcast")
             }
             
-            guard let subviewController = self.childViewControllers[0] as? TaskContainerViewController else {
+            guard let taskContainerVC = self.childViewControllers[0] as? TaskContainerViewController else {
                 fatalError("The first child view controller of taskViewController is not a container view controller")
             }
             
@@ -191,14 +178,9 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             
             
             // load task info on the container view
-            let isNear = self.isNear(selectedAnnotation)
-            subviewController.loadTaskDetail(of: selectedAnnotation.id, isNear: isNear)
-            
-            
-            if isNear == false {
-                createAlert()
-            }
-            
+            let taskIsNear = self.isNear(selectedAnnotation)
+            taskContainerVC.loadTaskDetail(of: selectedAnnotation.id, isNearUser: taskIsNear)
+
             containerView.isHidden = false
             
         default:
@@ -234,7 +216,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             var searchAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             if searchAnnotationView == nil {
                 searchAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                searchAnnotationView?.image = UIImage(named: "pin")
+                searchAnnotationView?.image = UIImage(named: "search pin")
                 
             } else {
                 searchAnnotationView?.annotation = annotation
@@ -258,6 +240,30 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             
         default:
             return nil
+        }
+    }
+    
+    
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        print("\(mapView.region.span)")
+        print("\(mapView.region.center)")
+        
+        if mapView.region.span.longitudeDelta > 0.0100000 || mapView.region.span.latitudeDelta > 0.0100000 {
+            print("maxZoomLevel")
+            
+            // or hide annotations
+            
+////            let maxZoomLevel: MKCoordinateSpan = MKCoordinateSpanMake(0.0100000, 0.0100000)
+//            mapView.region.span.latitudeDelta = 0.01
+//            mapView.region.span.longitudeDelta = 0.01
+////            let centerLocation: CLLocationCoordinate2D = mapView.centerCoordinate
+////            let region: MKCoordinateRegion = MKCoordinateRegionMake(centerLocation, maxZoomLevel)
+//            
+//            print("\(mapView.region.span.longitudeDelta)")
+//            mapView.setRegion(<#T##region: MKCoordinateRegion##MKCoordinateRegion#>, animated: <#T##Bool#>)
+//            
+//            print("set region")
         }
     }
 }

@@ -35,7 +35,7 @@ class TaskContainerViewController: UIViewController {
     
     
     // MARK: - Task Detail Functions
-    func loadTaskDetail(of taskId: Int, isNear: Bool) {
+    func loadTaskDetail(of taskId: Int, isNearUser: Bool) {
         let url = "http://140.119.19.33:8080/SoslabProjectServer/task/\(taskId)"
         
         Alamofire.request(url, method: .get).validate().responseJSON(completionHandler: { response in
@@ -68,7 +68,8 @@ class TaskContainerViewController: UIViewController {
                 }
 
                 
-                self.task = Task(taskId: id, taskTitle: title, taskDistance: distance, taskDuration: duration, taskStartPointLatitude: startLat, taskStartPointLongitude: startLng, taskEndPointLatitude: endLat, taskEndPointLongitude: endLng, taskIsNear: isNear)
+                
+                self.task = Task(taskId: id, taskTitle: title, taskDistance: distance, taskDuration: duration, taskStartPointLatitude: startLat, taskStartPointLongitude: startLng, taskEndPointLatitude: endLat, taskEndPointLongitude: endLng, taskIsNear: isNearUser)
                 
                 self.taskTitle.text = title
                 self.taskDistance.text = distance
@@ -84,7 +85,41 @@ class TaskContainerViewController: UIViewController {
     
     
     
+    
     // MARK: - Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "buttonShowTaskDetail":
+            
+            guard let mytask = self.task else {
+                fatalError("In shouldPerformSegue(withIdentifier:sender:) self.task is \(self.task)")
+            }
+            
+            if mytask.taskIsNear {
+                return true
+            } else {
+                self.createAlert()
+                return false
+            }
+            
+        default:
+            fatalError("Unexpected Segue Identifier: \(identifier))")
+        }
+    }
+    
+    
+    
+    private func createAlert() {
+        let farAlert = UIAlertController(title: "無法執行任務", message: "這項任務距離太遙遠了！", preferredStyle: .alert)
+        
+        farAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+            print("too far! OK dismiss alert.")
+        }))
+        self.present(farAlert, animated: true, completion: nil)
+    }
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
