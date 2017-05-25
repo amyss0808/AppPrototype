@@ -84,16 +84,18 @@ class VideoDetailViewController: UIViewController, MKMapViewDelegate {
     
     
     func loadStartEndPins(startCoordinate: CLLocationCoordinate2D, endCoordinate: CLLocationCoordinate2D) {
-        let startPin = MKPointAnnotation()
+        let startPin = StartEndPointAnnotation(position: .start)
         startPin.coordinate = startCoordinate
         
-        let endPin = MKPointAnnotation()
+        let endPin = StartEndPointAnnotation(position: .end)
         endPin.coordinate = endCoordinate
         
         mapView.addAnnotations([startPin, endPin])
         showRoute(from: startPin, to: endPin)
         
     }
+
+
     
     
     private func showRoute(from startPin: MKPointAnnotation, to endPin: MKPointAnnotation) {
@@ -122,6 +124,51 @@ class VideoDetailViewController: UIViewController, MKMapViewDelegate {
         } else {
             return MKPolylineRenderer()
         }
+    }
+    
+    
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var reuseId = ""
+        
+        switch annotation {
+        case is StartEndPointAnnotation:
+            guard let startEndPointAnnotation = annotation as? StartEndPointAnnotation else {
+                fatalError("Unexpected annotation class: \(annotation)")
+            }
+            
+            if startEndPointAnnotation.position == .start {
+                reuseId = "startPointAnnotation"
+                let startPointAnnotationView = self.setImage(for: startEndPointAnnotation, reuseId, with: "start pin")
+                
+                return startPointAnnotationView
+                
+            } else {
+                reuseId = "endPointAnnotation"
+                let endPointAnnotationView = self.setImage(for: startEndPointAnnotation, reuseId, with: "end pin")
+                
+                return endPointAnnotationView
+            }
+            
+            
+        default:
+            return nil
+        }
+    }
+    
+    
+    private func setImage(for annotation: MKAnnotation, _ reuseId: String, with imageName: String) -> MKAnnotationView? {
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            annotationView?.image = UIImage(named: imageName)
+            
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
     }
 }
 

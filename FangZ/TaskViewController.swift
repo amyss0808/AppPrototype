@@ -249,10 +249,11 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         print("\(mapView.region.span)")
         print("\(mapView.region.center)")
         
-        if mapView.region.span.longitudeDelta > 0.0100000 || mapView.region.span.latitudeDelta > 0.0100000 {
+        if mapView.region.span.longitudeDelta > 0.01 || mapView.region.span.latitudeDelta > 0.01 {
             print("maxZoomLevel")
             
             // or hide annotations
+            
             
 ////            let maxZoomLevel: MKCoordinateSpan = MKCoordinateSpanMake(0.0100000, 0.0100000)
 //            mapView.region.span.latitudeDelta = 0.01

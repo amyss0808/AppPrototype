@@ -107,7 +107,6 @@ class HouseViewController: UIViewController {
     }
     
     func refreshView() {
-        locationManager.startUpdatingLocation()
         self.callServerToLoadPin()
     }
 }
