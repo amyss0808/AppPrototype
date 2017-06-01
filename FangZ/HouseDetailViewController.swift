@@ -123,10 +123,6 @@ class HouseDetailViewController: UIViewController {
         urlButton.layer.shadowOffset = CGSize(width: -1, height: 1)
         urlButton.layer.shadowOpacity = 0.2
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     
     // MARK: IBAction
@@ -263,6 +259,8 @@ extension HouseDetailViewController {
                     }
                     
                     self.houseUrl = url
+                    
+                    print("---Update No. \(self.houseIndex) House UI Succeed")
                 })
                 
             case .failure(let error):
@@ -400,45 +398,116 @@ extension HouseDetailViewController {
     
     func changeDetailUI(detailArray :[(key: String, value: String)]) {
         
+        var keyYPosition = self.detailTitleView.frame.height
+        var valueYPosition = self.detailTitleView.frame.height
+        
         for (index, detail) in detailArray.enumerated() {
             
             let yPosition = self.detailTitleView.frame.height + CGFloat((index + 1) * 8) + CGFloat(index * 20)
             
-            let keyLabel = UILabel()
-            keyLabel.text = detail.key
-            keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
-            keyLabel.sizeToFit()
-            keyLabel.frame = CGRect(x: 12, y: yPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
-            keyLabel.textAlignment = .left
-            self.detailView.addSubview(keyLabel)
-            
-            if detail.key.contains("障礙空間") && detail.value.components(separatedBy: "、").count > 1{
-                for (index, value) in detail.value.components(separatedBy: "、").enumerated() {
-                    print(value)
+            if detail.key.contains("朝向") && detail.value.components(separatedBy: "；").count > 1 {
+                
+                if index == 0 {
+                    keyYPosition += 8
+                } else {
+                    keyYPosition += 28
+                }
+                
+                let keyLabel = UILabel()
+                keyLabel.text = detail.key
+                keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
+                keyLabel.sizeToFit()
+                keyLabel.frame = CGRect(x: 12, y: keyYPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
+                keyLabel.textAlignment = .left
+                self.detailView.addSubview(keyLabel)
+                
+                for (detailIndex, value) in detail.value.components(separatedBy: "；").enumerated() {
+                    
+                    if index == 0 {
+                        valueYPosition += 8
+                    } else if detailIndex == 0{
+                        valueYPosition += 28
+                    } else {
+                        valueYPosition += 28
+                        keyYPosition += 28
+                    }
+                    
                     let valueLabel = UILabel()
                     valueLabel.text = value
                     valueLabel.textColor = .white
                     valueLabel.sizeToFit()
                     let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
-                    valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition + CGFloat(index * 28), width: valueLabel.frame.width, height: valueLabel.frame.height)
+                    valueLabel.frame = CGRect(x: xPositionOfValue, y: valueYPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
+                    self.detailView.addSubview(valueLabel)
+                }
+            } else if detail.key.contains("障礙空間") && detail.value.components(separatedBy: "、").count > 1 {
+                
+                if index == 0 {
+                    keyYPosition += 8
+                } else {
+                    keyYPosition += 28
+                }
+                
+                let keyLabel = UILabel()
+                keyLabel.text = detail.key
+                keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
+                keyLabel.sizeToFit()
+                keyLabel.frame = CGRect(x: 12, y: keyYPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
+                keyLabel.textAlignment = .left
+                self.detailView.addSubview(keyLabel)
+                
+                for (detailIndex, value) in detail.value.components(separatedBy: "、").enumerated() {
+                    
+                    if index == 0 {
+                        valueYPosition += 8
+                    } else if detailIndex == 0{
+                        valueYPosition += 28
+                    } else {
+                        valueYPosition += 28
+                        keyYPosition += 28
+                    }
+                    
+                    let valueLabel = UILabel()
+                    valueLabel.text = value
+                    valueLabel.textColor = .white
+                    valueLabel.sizeToFit()
+                    let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
+                    valueLabel.frame = CGRect(x: xPositionOfValue, y: valueYPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
                     self.detailView.addSubview(valueLabel)
                 }
                 
-                self.detailViewHeightConstraint.constant = self.detailTitleView.frame.height + CGFloat((detailArray.count + 1) * 28 + 8)
-                
             } else {
+                
+                if index == 0 {
+                    keyYPosition += 8
+                } else {
+                    keyYPosition += 28
+                }
+                
+                let keyLabel = UILabel()
+                keyLabel.text = detail.key
+                keyLabel.textColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1)
+                keyLabel.sizeToFit()
+                keyLabel.frame = CGRect(x: 12, y: keyYPosition, width: keyLabel.frame.width, height: keyLabel.frame.height)
+                keyLabel.textAlignment = .left
+                self.detailView.addSubview(keyLabel)
+                
+                if index == 0 {
+                    valueYPosition += 8
+                } else {
+                    valueYPosition += 28
+                }
+                
                 let valueLabel = UILabel()
                 valueLabel.text = detail.value
                 valueLabel.textColor = .white
                 valueLabel.sizeToFit()
                 let xPositionOfValue = self.detailView.frame.width - 12 - valueLabel.frame.width
-                valueLabel.frame = CGRect(x: xPositionOfValue, y: yPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
+                valueLabel.frame = CGRect(x: xPositionOfValue, y: valueYPosition, width: valueLabel.frame.width, height: valueLabel.frame.height)
                 self.detailView.addSubview(valueLabel)
-                
-                self.detailViewHeightConstraint.constant = self.detailTitleView.frame.height + CGFloat(detailArray.count * 28 + 8)
             }
             
-            
+            self.detailViewHeightConstraint.constant = valueYPosition + 28
         }
         
     }

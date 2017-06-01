@@ -307,7 +307,7 @@
 				TargetAttributes = {
 					E1423DA91E5C549A0034E5B8 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 88974F63K2;
+						DevelopmentTeam = SK34PM56LJ;
 						ProvisioningStyle = Automatic;
 					};
 					E1423DBF1E5C549A0034E5B8 = {
@@ -582,11 +582,11 @@
 			baseConfigurationReference = 974B80BBD4CD345887B86EEB /* Pods-FangZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 88974F63K2;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = FangZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nccu.soslab.FangZ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.FangZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -597,11 +597,11 @@
 			baseConfigurationReference = 5A70E5204222F2569FF9CF43 /* Pods-FangZ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 88974F63K2;
+				DEVELOPMENT_TEAM = SK34PM56LJ;
 				INFOPLIST_FILE = FangZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nccu.soslab.FangZ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.soslab.FangZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

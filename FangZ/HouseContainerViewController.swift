@@ -225,16 +225,16 @@ extension HouseContainerViewController {
                         
                         var videoElements: [String] = []
                         
-                        if subJson["shop"].stringValue.isEmpty {
-                            
-                        } else {
+                        if !subJson["shop"].stringValue.isEmpty {
                             videoElements += subJson["shop"].stringValue.components(separatedBy: ",")
                         }
                         
-                        if subJson["facility"].stringValue.isEmpty {
-                            
-                        } else {
+                        if !subJson["facility"].stringValue.isEmpty {
                             videoElements += subJson["facility"].stringValue.components(separatedBy: ",")
+                        }
+                        
+                        if !subJson["environment"].stringValue.isEmpty {
+                            videoElements += subJson["environment"].stringValue.components(separatedBy: ",")
                         }
                         
                         let video = Video(videoId: videoId, imageData: nil, videoTitle: videoTitle, videoTime: videoTime, videoWeather: videoWeather, videoElements: videoElements)
@@ -339,7 +339,9 @@ extension HouseContainerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch segmentControl.selectedSegmentIndex {
+        
         case 0:
             guard let houseCell = tableView.dequeueReusableCell(withIdentifier: "houseCell", for: indexPath) as? HouseTableViewCell else {
                 fatalError("error")
@@ -349,8 +351,8 @@ extension HouseContainerViewController: UITableViewDataSource {
             houseCell.houseTypeAndSquare.text = "\(self.houseList[indexPath.row].houseType)/\(houseList[indexPath.row].houseSquare)"
             houseCell.housePrice.text = houseList[indexPath.row].housePrice
             return houseCell
+        
         case 1:
-            
             guard let videoCell = tableView.dequeueReusableCell(withIdentifier: "videoCell", for: indexPath) as? VideoTableViewCell else {
                 fatalError("error")
             }
@@ -412,6 +414,7 @@ extension HouseContainerViewController: UITableViewDataSource {
                 videoCell.imgView.image = UIImage(data: imageData)
             }
             return videoCell
+        
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "houseCell", for: indexPath) as? HouseTableViewCell else {
                 fatalError("error")
