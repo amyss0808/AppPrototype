@@ -14,11 +14,11 @@ import MapKit
 class VideoDetailViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: Properties
+    @IBOutlet weak var videoView: UIWebView!
     @IBOutlet weak var videoDescriptionView: UIView!
+    @IBOutlet weak var videoDescriptionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var videoTime: UILabel!
     @IBOutlet weak var videoTitle: UILabel!
-    @IBOutlet weak var videoView: UIWebView!
-    @IBOutlet var videoElementLabels: [UILabel]!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -53,23 +53,40 @@ class VideoDetailViewController: UIViewController, MKMapViewDelegate {
     
     func changeElementsUI(elements: [String]) {
         
-        for (index, elementLabel) in self.videoElementLabels.enumerated() {
+        let elementWidth = (self.view.frame.width - 56) / 4
+        
+        for (index, element) in elements.enumerated() {
+            let elementLabel = UILabel()
             elementLabel.layer.masksToBounds = true
             elementLabel.layer.cornerRadius = 6
-            if index == 0 {
-                elementLabel.backgroundColor = UIColor(red: 0.0/255.0, green: 102.0/255.0, blue: 204.0/255.0, alpha: 1)
-                elementLabel.text = elements[0]
-            } else {
-                for element in elements {
-                    if elementLabel.text == element {
-                        elementLabel.backgroundColor = UIColor(red: 0.0/255.0, green: 102.0/255.0, blue: 204.0/255.0, alpha: 1)
-                        break
-                    } else {
-                        elementLabel.backgroundColor = UIColor(red: 94.0/255.0, green: 94.0/255.0, blue: 94.0/255.0, alpha: 1)
-                    }
-                }
-            }
+            elementLabel.backgroundColor = UIColor(red: 51.0/255.0, green: 102.0/255.0, blue: 204.0/255.0, alpha: 1)
+            elementLabel.text = element
+            elementLabel.baselineAdjustment = .alignCenters
+            elementLabel.textAlignment = .center
+            elementLabel.textColor = .white
+            
+            let position = self.calculateXYPosition(where: index)
+            print(position.elementXPosition)
+            print(position.elementYPosition)
+            elementLabel.frame = CGRect(x: position.elementXPosition, y: position.elementYPosition, width: Int(elementWidth), height: 25)
+            self.videoDescriptionView.addSubview(elementLabel)
         }
+        
+        self.videoDescriptionViewHeightConstraint.constant = CGFloat(Int((elements.count - 1) / 4 + 1) * 33 + 8)
+
+    }
+    
+    func calculateXYPosition(where index: Int) -> (elementXPosition: Int, elementYPosition: Int){
+        
+        let elementWidth = Int((self.view.frame.width - 56) / 4)
+        
+        let row = index / 4
+        let column = index % 4
+        
+        let elementXPosition = 8 + column * (elementWidth + 8)
+        let elementYPosition = 8 + row * 33
+        
+        return (elementXPosition: elementXPosition, elementYPosition: elementYPosition)
     }
     
     // MARK: - Task Functions
@@ -189,15 +206,16 @@ extension VideoDetailViewController {
                 
                 let videoTitleSeperatedByBottomLine = json["title"].stringValue.components(separatedBy: "_")
                 let videoTitle = videoTitleSeperatedByBottomLine[0]
+                
                 let videoTime = self.convertVideoTime(toChinese: json["time"].stringValue)
+                
                 let youtubeId = json["youtube_id"].stringValue
+                
                 let url = URL(string: "https://www.youtube.com/embed/\(youtubeId)?playsinline=1")
                 
-                let start_geometry = json["start_geometry"].arrayValue
-                let startCoordinate = CLLocationCoordinate2D(latitude: start_geometry[0].doubleValue, longitude: start_geometry[1].doubleValue)
+                let startCoordinate = CLLocationCoordinate2D(latitude: json["start_geometry"].arrayValue[0].doubleValue, longitude: json["start_geometry"].arrayValue[1].doubleValue)
                 
-                let end_geometry = json["end_geometry"].arrayValue
-                let endCoordinate = CLLocationCoordinate2D(latitude: end_geometry[0].doubleValue, longitude: end_geometry[1].doubleValue)
+                let endCoordinate = CLLocationCoordinate2D(latitude: json["end_geometry"].arrayValue[0].doubleValue, longitude: json["end_geometry"].arrayValue[1].doubleValue)
                 
                 let videoWeather = json["weather"].stringValue
                     videoElements.append(videoWeather)
@@ -208,6 +226,10 @@ extension VideoDetailViewController {
                 
                 if !json["facility"].stringValue.isEmpty {
                     videoElements += json["facility"].stringValue.components(separatedBy: ",")
+                }
+                
+                if !json["environment"].stringValue.isEmpty {
+                    videoElements += json["environment"].stringValue.components(separatedBy: ",")
                 }
                 
                 DispatchQueue.main.async(execute: {
