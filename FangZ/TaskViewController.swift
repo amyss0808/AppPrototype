@@ -148,7 +148,7 @@ class TaskViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         let distance = pinLocation.distance(from: userLocation)
         
-        if distance < 25 {
+        if distance < 2000000 {
             isNear = true
         } else {
             isNear = false

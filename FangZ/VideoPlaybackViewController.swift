@@ -341,10 +341,19 @@ class VideoPlaybackViewController: UIViewController {
         
         let url = "https://www.googleapis.com/upload/youtube/v3/videos?part=snippet"
         let headers = ["Authorization": "Bearer \(accessToken)"]
+        let requestbody = JSON([
+            "snippet": [
+                "title": "HELLO"
+            ],
+            "status": [
+                "privacyStatus": "unlisted"
+            ]
+        ])
 
         
+        
 //        Alamofire.upload(multipartFormData: { multipartFormData in
-//            multipartFormData.append("{'title': 'HELLO', 'description': 'HEY'}".data(using: .utf8)!, withName: "snippet")
+//            multipartFormData.append(requestbody.stringValue.data(using: .utf8)!, withName: "snippet", mimeType: "application/json")
 //            multipartFormData.append(fileURL, withName: "file", fileName: "videoFile.mov", mimeType: "application/octet-stream")
 //            
 //        }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers, encodingCompletion: { encodingResult in

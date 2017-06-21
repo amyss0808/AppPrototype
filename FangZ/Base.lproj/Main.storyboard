@@ -255,7 +255,7 @@
                                         <rect key="frame" x="4" y="38" width="335" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhi-M6-9TQ" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="81" height="31"/>
                                                 <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Dhi-M6-9TQ" secondAttribute="height" multiplier="77:30" id="WSk-dn-ic1"/>
@@ -269,7 +269,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZQ-Vh-Lf8" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="84.5" y="0.0" width="81" height="31"/>
+                                                <rect key="frame" x="85" y="0.0" width="80.5" height="31"/>
                                                 <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="qZQ-Vh-Lf8" secondAttribute="height" multiplier="77:30" id="ked-wB-1VF"/>
@@ -283,7 +283,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-Ag-dlG" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="169.5" y="0.0" width="80.5" height="31"/>
+                                                <rect key="frame" x="169.5" y="0.0" width="81" height="31"/>
                                                 <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="sCn-Ag-dlG" secondAttribute="height" multiplier="77:30" id="VKb-RC-ZP0"/>
@@ -297,7 +297,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy2-Yk-iIc" customClass="VideoEditVCButton" customModule="FangZ" customModuleProvider="target">
-                                                <rect key="frame" x="254" y="0.0" width="81" height="31"/>
+                                                <rect key="frame" x="254.5" y="0.0" width="80.5" height="31"/>
                                                 <color key="backgroundColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Iy2-Yk-iIc" secondAttribute="height" multiplier="77:30" id="DAo-0K-0Vo"/>
