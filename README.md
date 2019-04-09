@@ -1,7 +1,7 @@
 <img src="https://github.com/amyss0808/FangZ/raw/master/FangZ_Image.png" width="300">
 
 # FangZ
-> ### **An iOS APP for real estate video collecting**
+> An iOS APP for real estate video collecting
 
 A lot of people spend plenty of time and money looking for their ideal houses. Moreover, housing disputes often arise due to information asymmetry. 
 
@@ -16,7 +16,7 @@ We provide more information of the environment around the house. To be more spec
 ## Documentation
 > This describes the files within [📁 FangZ](https://github.com/amyss0808/FangZ/raw/master/FangZ)
 
-#### Clustering Annotations:
+#### 📍 Clustering Annotations:
 Gathers or distributes annotations when user zooms in/out the map
 - Annotation*.swift            
 - BoundingBox*.swift           
@@ -24,9 +24,9 @@ Gathers or distributes annotations when user zooms in/out the map
 - QuadTree*.swift
 - ZoomLevel.swift
 
-#### Data Models:
+#### 📦 Data Models:
 - House.swift
 - Task.swift
 - Video.swift
 
-#### Pages in APP:
+#### 📱 Pages in APP:
